@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.control.Hyperlink?>
+<VBox style="-fx-background-color: #fac9cf" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.login.Login" prefHeight="700.0" prefWidth="600.0">
+    <Label text="Sign In" style="-fx-font-size: 50px ;padding: 40;"/>
+    <HBox alignment="CENTER">
+        <VBox alignment="CENTER_LEFT" style="padding: 50px;">
+            <Label text="Username" style="-fx-padding: 5px"/>
+            <TextField fx:id="Username" promptText="Username or email"
+                       style="-fx-font-size: 15px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-pref-width: 300px;-fx-pref-height: 40px"/>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER">
+        <VBox alignment="CENTER_LEFT" style="padding: 50px;">
+            <Label text="Password" style="-fx-padding: 5px"/>
+            <PasswordField fx:id="Password" promptText="Password"
+                           style="-fx-font-size: 15px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-pref-width: 300px;-fx-pref-height: 40px"/>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" spacing="20.0">
+        <VBox>
+            <CheckBox text="Remember Me" style="-fx-padding: 10px"/>
+            <Button fx:id="loginButton" text="Login"
+                    style="-fx-pref-width: 295px;-fx-pref-height:40px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-background-color: #560856;-fx-text-fill: white"/>
+            <Hyperlink text="Forgot your password" style="-fx-font-size: 15px"/>
+        </VBox>
+
+    </HBox>
+    <Label text="........................................................................"/>
+    <Button fx:id="signButton" text="Sign in"
+            style="-fx-pref-width: 295px;-fx-pref-height:40px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-background-color: #560856;-fx-text-fill: white"/>
+</VBox>
