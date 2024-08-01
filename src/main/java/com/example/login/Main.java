@@ -6,13 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
     private static Stage primaryStage;
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        try{
+    public void start(Stage primaryStage) throws IOException {
+
+
+        try {
             Main.primaryStage = primaryStage;
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
             primaryStage.setScene(new Scene(root));
@@ -21,10 +25,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public static void changeScene(String fxml) throws Exception {
         Parent pane = FXMLLoader.load(Main.class.getResource(fxml));
         primaryStage.setScene(new Scene(pane));
     }
+
     public static void main(String[] args) {
         launch(args);
     }

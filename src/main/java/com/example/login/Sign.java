@@ -14,6 +14,8 @@ public class Sign extends Login {
     @FXML
     private TextField Email;
     @FXML
+    private TextField PhoneNumber;
+    @FXML
     private PasswordField Password;
     @FXML
     private PasswordField ConfirmPassword;
@@ -22,6 +24,7 @@ public class Sign extends Login {
     @FXML
     private Button backButton;
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String PHONE_REGEX = "^\\d{10}$";
 
     @FXML
     private void initialize() {
@@ -32,29 +35,32 @@ public class Sign extends Login {
     private void handleSign() {
         String fullName = FullName.getText();
         String email = Email.getText();
+        String phoneNumber = PhoneNumber.getText();
         String password = Password.getText();
         String confirmPassword = ConfirmPassword.getText();
 
-        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phoneNumber.isEmpty()) {
             showAlert("Không được để chống các mục");
         } else if (fullName.length() < 8) {
             showAlert("Tên không được dưới 8 kí tự");
-        } else if (password.length() < 8) {
-            showAlert("Password không được dưới 8 kí tự");
         } else if (!isValidEmail(email)) {
             showAlert("Địa chỉ email không hợp lệ.");
+        } else if (!isValidPhoneNumber(phoneNumber)) {
+            showAlert("Số điện thoại không hợp lệ. Số điện thoại phải gồm 10 chữ số.");
+        } else if (password.length() < 8) {
+            showAlert("Password không được dưới 8 kí tự");
         } else if (!password.equals(confirmPassword)) {
             showAlert("Mật Khẩu không khớp");
         } else {
             showAlert("Đăng kí thành công");
             Login login = new Sign();
-            login.getUsers().add(new String[]{fullName, password, email});
+            login.getUsers().add(new String[]{fullName, password, email, phoneNumber});
+
             FullName.clear();
             Password.clear();
             Email.clear();
+            PhoneNumber.clear();
             ConfirmPassword.clear();
-
-
         }
     }
 
@@ -71,7 +77,12 @@ public class Sign extends Login {
         alert.setContentText(message);
         alert.show();
     }
+
     private boolean isValidEmail(String email) {
         return Pattern.matches(EMAIL_REGEX, email);
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return Pattern.matches(PHONE_REGEX, phoneNumber);
     }
 }

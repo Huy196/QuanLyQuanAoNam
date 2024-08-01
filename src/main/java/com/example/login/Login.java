@@ -1,16 +1,8 @@
 package com.example.login;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +26,11 @@ public class Login {
     }
 
     public void listUser() {
-        user.add(new String[]{"doquochuy", "123456789"});
-        user.add(new String[]{"levandan1", "987654321"});
-        user.add(new String[]{"huyentrang", "111111111"});
-        user.add(new String[]{"vungocanh", "333333333"});
-        user.add(new String[]{"tiencong1", "555555555"});
+        user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com","0743278462", "admin"});
+        user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com","0108738465", "user"});
+        user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com","0829746352", "user"});
+        user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com","0849284736", "user"});
+        user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com","9473625174", "user"});
     }
 
     private void handleLogin() {
@@ -83,13 +75,18 @@ public class Login {
         alert.setContentText(mesage);
         alert.show();
     }
+
     protected List<String[]> getUsers() {
         return user;
     }
 
-    protected void showUserList(){
-        for (String[] user : user){
-            System.out.println(user);
+    protected void showUserList() {
+        for (String[] user : user) {
+            if (user[3].equals("admin")) {
+                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + user[3] + ",\t\t" + " Role: " + user[3]);
+            } else {
+                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" +"SĐT : "+ user[3] + ",\t\t" + " Role: " + "user");
+            }
         }
     }
 }
