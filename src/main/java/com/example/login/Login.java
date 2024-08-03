@@ -100,7 +100,7 @@ public class Login {
                 Password.clear();
                 showUserList();
                 try {
-                    Main.changeScene("hello-view.fxml");
+                    Main.changeScene("Layout.fxml");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

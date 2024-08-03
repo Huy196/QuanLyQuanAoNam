@@ -64,11 +64,18 @@ public class HomeController {
         alert.setTitle("Đăng xuất");
         alert.setHeaderText(null);
 
+
         if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
             // Mã để xử lý đăng xuất
             System.out.println("Đang đăng xuất...");
-            Stage stage = (Stage) contentArea.getScene().getWindow();
-            stage.close(); // Đóng cửa sổ hiện tại
+//            Stage stage = (Stage) contentArea.getScene().getWindow();
+//            stage.close(); // Đóng cửa sổ hiện tại
+
+            try {
+                Main.changeScene("Login.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
