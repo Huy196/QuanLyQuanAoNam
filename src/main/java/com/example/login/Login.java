@@ -56,6 +56,11 @@ public class Login {
                 Username.clear();
                 Password.clear();
                 showUserList();
+                try {
+                    Main.changeScene("hello-view.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
                 showAlert("Đăng nhập thất bại !");
             }
