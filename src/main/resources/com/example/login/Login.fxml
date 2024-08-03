@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.shape.Box?>
-<VBox styleClass="chinh" alignment="CENTER" prefHeight="750.0" prefWidth="600.0" spacing="20.0"
-      style="-fx-background-color: #fac9cf"
-      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea"
+<VBox alignment="CENTER" prefHeight="750.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #fac9cf"
+      styleClass="chinh" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.login.Login">
-
     <Label style="-fx-font-size: 50px ;padding: 40;" text="Sign In"/>
     <HBox alignment="CENTER">
         <VBox alignment="CENTER_LEFT">
@@ -22,18 +20,24 @@
             <Label style="-fx-padding: 5px" text="Password"/>
             <PasswordField fx:id="Password" promptText="Password"
                            style="-fx-font-size: 15px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-pref-width: 300px;-fx-pref-height: 40px"/>
+            <TextField fx:id="textField"
+                       style="-fx-font-size: 15px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-pref-width: 300px;-fx-pref-height: 40px "/>
+            <Label fx:id="messageLable" />
+
         </VBox>
     </HBox>
-    <HBox alignment="CENTER" spacing="20.0">
+    <HBox alignment="CENTER" spacing="0.0">
         <VBox>
-            <CheckBox style="-fx-padding: 10px" fx:id="showPasswordCheckBox" text="Show password"/>
+            <CheckBox fx:id="showPassword" text="Show password">
+                <padding>
+                    <Insets bottom="5.0" top="10.0"/>
+                </padding>
+            </CheckBox>
             <Button fx:id="loginButton"
                     style="-fx-pref-width: 295px;-fx-pref-height:40px;-fx-background-radius: 20;-fx-border-radius: 20;-fx-background-color: #560856;-fx-text-fill: white"
                     text="Login"/>
-            <Hyperlink graphicTextGap="5.0" prefWidth="159.0" style="-fx-font-size: 15px"
-                       text="Forgot your password"/>
+            <Hyperlink graphicTextGap="5.0" prefWidth="159.0" style="-fx-font-size: 15px" text="Forgot your password"/>
         </VBox>
-
     </HBox>
     <Label text="........................................................................"/>
     <Button fx:id="signButton"
