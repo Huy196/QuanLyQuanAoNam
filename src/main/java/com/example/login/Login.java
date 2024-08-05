@@ -16,13 +16,56 @@ public class Login {
     @FXML
     private Button signButton;
 
+    @FXML
+    private CheckBox showPassword;
+    @FXML
+    private TextField textField;
+    @FXML
+    private Label messageLable;
+
     private static List<String[]> user = new ArrayList<>();
+
+    public Login() {
+    }
 
     @FXML
     private void initialize() {
         listUser();
         loginButton.setOnAction(actionEvent -> handleLogin());
         signButton.setOnAction(actionEvent -> handleSign());
+
+        textField.setManaged(false);
+        textField.setVisible(false);
+
+        textField.textProperty().bindBidirectional(Password.textProperty());
+
+        showPassword.selectedProperty().addListener((obs, wasSelected, isSelected) ->{
+            if (isSelected){
+                textField.setVisible(true);
+                textField.setManaged(true);
+                Password.setVisible(false);
+                Password.setManaged(false);
+            }else {
+                textField.setVisible(false);
+                textField.setManaged(false);
+                Password.setVisible(true);
+                Password.setManaged(true);
+
+            }
+        });
+        Password.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!showPassword.isSelected()) {
+                textField.setText(newValue);
+            }
+        });
+
+        // Đồng bộ hóa PasswordField với TextField khi văn bản thay đổi
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (showPassword.isSelected()) {
+                Password.setText(newValue);
+            }
+        });
+
     }
 
     public void listUser() {
@@ -52,12 +95,21 @@ public class Login {
                 }
             }
             if (isValid) {
-                showAlert("Đăng nhập thành công");
+                messageLable.setText("Đăng nhập thành công");
                 Username.clear();
                 Password.clear();
                 showUserList();
+                try {
+                    Main.changeScene("Layout.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
-                showAlert("Đăng nhập thất bại !");
+//                showAlert("Đăng nhập thất bại !");
+                messageLable.setText("sai mật khẩu");
+
+                messageLable.setStyle("-fx-text-fill: red");
+                Password.clear();
             }
         }
     }
@@ -83,9 +135,9 @@ public class Login {
     protected void showUserList() {
         for (String[] user : user) {
             if (user[3].equals("admin")) {
-                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + user[3] + ",\t\t" + " Role: " + user[3]);
+                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + user[3] + ",\t\t" + " Role: " + user[4]);
             } else {
-                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" +"SĐT : "+ user[3] + ",\t\t" + " Role: " + "user");
+                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" +"SĐT : "+ user[3] + ",\t\t" + " Role: " + user[4]);
             }
         }
     }
