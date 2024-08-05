@@ -23,6 +23,7 @@ public class Sign extends Login {
     private Button signButton;
     @FXML
     private Button backButton;
+
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     private static final String PHONE_REGEX = "^\\d{10}$";
 
@@ -30,6 +31,8 @@ public class Sign extends Login {
     private void initialize() {
         signButton.setOnAction(actionEvent -> handleSign());
         backButton.setOnAction(actionEvent -> handleLogin());
+
+
     }
 
     private void handleSign() {
@@ -64,6 +67,7 @@ public class Sign extends Login {
         }
     }
 
+    @FXML
     private void handleLogin() {
         try {
             Main.changeScene("Login.fxml");
