@@ -28,7 +28,7 @@
                     <Font size="20.0" />
                 </font>
             </Button>
-            <Button onAction="#showOrders" prefHeight="45.0" prefWidth="175.0" text="Khách hàng">
+            <Button onAction="#showOrders" prefHeight="45.0" prefWidth="175.0" text="Đơn hàng">
                 <font>
                     <Font size="20.0" />
                 </font>
@@ -38,7 +38,7 @@
                     <Font size="20.0" />
                 </font>
             </Button>
-            <Button onAction="#showInvoices" prefHeight="45.0" prefWidth="175.0" text="Hóa đơn">
+            <Button onAction="#showCustomer" prefHeight="45.0" prefWidth="175.0" text="Khách hàng">
                 <font>
                     <Font size="20.0" />
                 </font>

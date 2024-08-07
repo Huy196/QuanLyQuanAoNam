@@ -2,6 +2,7 @@ package com.example.login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,6 +22,7 @@ public class HomeController {
 
     @FXML
     private ImageView imageView;
+
 
     // Phương thức xử lý sự kiện
     @FXML
@@ -49,8 +51,23 @@ public class HomeController {
     @FXML
     private void showOrders() {
         // Mã để hiển thị giao diện đơn hàng
-        System.out.println("Đang hiển thị Đơn hàng");
+
+        try {
+            // Tải nội dung của order_list.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("order_list.fxml"));
+            Parent orderListView = loader.load();
+
+            // Thay thế nội dung hiện tại của contentArea bằng order_list.fxml
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(orderListView);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi khi hiển thị giao diện Đơn hàng.");
+        } finally {
+            System.out.println("Đang hiển thị  Đơn hàng ");
+        }
     }
+
 
     @FXML
     private void showEmployees() {
@@ -59,9 +76,9 @@ public class HomeController {
     }
 
     @FXML
-    private void showInvoices() {
-        // Mã để hiển thị giao diện hóa đơn
-        System.out.println("Đang hiển thị Hóa đơn");
+    private void showCustomer() {
+        // Mã để hiển thị giao diện khách hàng
+        System.out.println("Đang hiển thị Khách hàng");
     }
 
     @FXML

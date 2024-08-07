@@ -1,4 +1,4 @@
-image,3246283.0,132,file:/C:/Users/Dell/Downloads/ảnh.jpg
-Loveyou,2.3443242E7,1,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
+image,3246283.0,132,file:/C:/Users/ADMON/OneDrive%20-%20THPT%20Hồng%20Thái/Ảnh/nhẫm%20dương.png
+Loveyou,2.3443242E7,1,file:/C:/Users/ADMON/IdeaProjects/DuAn/src/main/resources/Image/anh-bia-.jpg
 bài tập,3432.0,23,file:/C:/Users/Dell/OneDrive/Gambar/Screenshots/Screenshot%202024-08-06%20080629.png
 34234,3423.0,3,file:/D:/download.jpg

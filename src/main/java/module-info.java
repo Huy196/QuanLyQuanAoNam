@@ -5,5 +5,7 @@ module com.example.login {
 
     opens com.example.login to javafx.fxml;
     exports com.example.login;
+    exports Entity;
+    opens Entity to javafx.fxml;
 
 }
