@@ -1,6 +1,5 @@
 package com.example.login;
 
-
 import Entity.Order;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,6 +19,9 @@ public class OrderItemController {
 
     @FXML
     private Label totalAmountLabel;
+
+    @FXML
+    private Label statusLabel;  // Thêm để hiển thị trạng thái đơn hàng
 
     @FXML
     private Button paidButton;
@@ -42,12 +44,13 @@ public class OrderItemController {
         quantityLabel.setText("Số lượng: " + order.getQuantity());
         totalAmountLabel.setText("Tổng tiền: $" + order.getTotalAmount());
         // Cập nhật trạng thái nút nếu cần
+        statusLabel.setText(order.getStatus());
 
-
+        paidButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
+        cancelButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
     }
 
     private void handlePaidAction() {
-        // Xử lý hành động khi nút "Đã thanh toán" được nhấn
         if (order != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Xác nhận");
@@ -60,7 +63,6 @@ public class OrderItemController {
                 System.out.println("Đã thanh toán");
                 updateButtonStatus();
             }
-
         }
     }
 
@@ -98,5 +100,3 @@ public class OrderItemController {
         }
     }
 }
-
-

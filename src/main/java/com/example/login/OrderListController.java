@@ -27,7 +27,8 @@ public class OrderListController {
                 new Order("VanDanLe", "Sản phẩm B", 1, 30.0, "Đã thanh toán"),
                 new Order("HuyQuocDo", "Sản phẩm C", 5, 75.0, "Hủy đơn"),
                 new Order("KhanhBaoNguyen", "Sản phẩm D", 3, 45.0, "Đã thanh toán"),
-                new Order("ThomNgocPham", "Sản phẩm E", 7, 95.0, "Hủy đơn")
+                new Order("ThomNgocPham", "Sản phẩm E", 7, 95.0, "Hủy đơn"),
+                new Order("MinhTuanNguyen", "Sản phẩm G", 7, 95.0, "Chờ thanh toán")
         );
 
         // Cập nhật ListView với danh sách đơn hàng
