@@ -15,9 +15,6 @@ public class Login {
     private Button loginButton;
     @FXML
     private Button signButton;
-
-    @FXML
-    private CheckBox showPassword;
     @FXML
     private TextField textField;
     @FXML
@@ -33,47 +30,20 @@ public class Login {
         listUser();
         loginButton.setOnAction(actionEvent -> handleLogin());
         signButton.setOnAction(actionEvent -> handleSign());
+        if (textField != null) {
+            textField.setManaged(false);
+            textField.setVisible(false);
 
-        textField.setManaged(false);
-        textField.setVisible(false);
-
-        textField.textProperty().bindBidirectional(Password.textProperty());
-
-        showPassword.selectedProperty().addListener((obs, wasSelected, isSelected) ->{
-            if (isSelected){
-                textField.setVisible(true);
-                textField.setManaged(true);
-                Password.setVisible(false);
-                Password.setManaged(false);
-            }else {
-                textField.setVisible(false);
-                textField.setManaged(false);
-                Password.setVisible(true);
-                Password.setManaged(true);
-
-            }
-        });
-        Password.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!showPassword.isSelected()) {
-                textField.setText(newValue);
-            }
-        });
-
-        // Đồng bộ hóa PasswordField với TextField khi văn bản thay đổi
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (showPassword.isSelected()) {
-                Password.setText(newValue);
-            }
-        });
-
+            textField.textProperty().bindBidirectional(Password.textProperty());
+        }
     }
 
     public void listUser() {
-        user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com","0743278462", "admin"});
-        user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com","0108738465", "user"});
-        user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com","0829746352", "user"});
-        user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com","0849284736", "user"});
-        user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com","9473625174", "user"});
+        user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462", "admin"});
+        user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com", "0108738465", "user"});
+        user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com", "0829746352", "user"});
+        user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com", "0849284736", "user"});
+        user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com", "9473625174", "user"});
     }
 
     private void handleLogin() {
@@ -105,7 +75,6 @@ public class Login {
                     e.printStackTrace();
                 }
             } else {
-//                showAlert("Đăng nhập thất bại !");
                 messageLable.setText("sai mật khẩu");
 
                 messageLable.setStyle("-fx-text-fill: red");
@@ -137,7 +106,7 @@ public class Login {
             if (user[3].equals("admin")) {
                 System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + user[3] + ",\t\t" + " Role: " + user[4]);
             } else {
-                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" +"SĐT : "+ user[3] + ",\t\t" + " Role: " + user[4]);
+                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + "SĐT : " + user[3] + ",\t\t" + " Role: " + user[4]);
             }
         }
     }
