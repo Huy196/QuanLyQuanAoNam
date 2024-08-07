@@ -4,10 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" spacing="10" fx:controller="com.example.login.OrderItemController">
+<HBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" spacing="40" fx:controller="com.example.login.OrderItemController">
     <Label fx:id="productLabel" />
     <Label fx:id="quantityLabel" />
     <Label fx:id="totalAmountLabel" />
-    <Button fx:id="paidButton" text="Đã thanh toán" />
-    <Button fx:id="cancelButton" text="Hủy đơn" />
+    <Button fx:id="paidButton" text="Đã thanh toán" style="-fx-background-color: lightblue; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" />
+    <Button fx:id="cancelButton" text="Hủy đơn" style="-fx-background-color: lightblue; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" />
 </HBox>
