@@ -70,7 +70,7 @@ public class Login {
                 Password.clear();
                 showUserList();
                 try {
-                    Main.changeScene("Layout.fxml");
+                    Main.changeScene("View_Home.fxml");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

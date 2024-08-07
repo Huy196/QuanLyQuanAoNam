@@ -18,7 +18,7 @@
             </ImageView>
 
             <!-- Các nút -->
-            <Button onAction="#showDashboard" prefHeight="45.0" prefWidth="173.0" text="Trang chủ">
+            <Button onAction="#showHome" prefHeight="45.0" prefWidth="173.0" text="Trang chủ">
                 <font>
                     <Font size="20.0" />
                 </font>

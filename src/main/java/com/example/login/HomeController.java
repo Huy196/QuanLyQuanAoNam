@@ -26,9 +26,20 @@ public class HomeController {
 
     // Phương thức xử lý sự kiện
     @FXML
-    private void showDashboard() {
+    private void showHome() {
         // Mã để hiển thị giao diện bảng điều khiển
-        System.out.println("Đang hiển thị Bảng điều khiển");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Page.fxml"));
+            Parent dashboardView = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(dashboardView);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi khi hiển thị giao diện  Trang chủ.");
+        } finally {
+            System.out.println("Đang hiển thị Trang chủ");
+        }
     }
 
     @FXML

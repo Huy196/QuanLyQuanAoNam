@@ -1,4 +1,4 @@
-package com.example.login;
+package Entity;
 
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
