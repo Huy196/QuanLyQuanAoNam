@@ -13,23 +13,22 @@
                   prefWidth="200" spacing="50"
                   style="-fx-background-color: lightgray; -fx-background-radius: 30; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.75),15,0,0,0);-fx-background-color: rgba(20, 0, 0, 0.4) ">
                 <Label style="-fx-font-size: 40; -fx-border-width: 80; -fx-font-weight: bold; -fx-text-fill:  #6FB98F; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.75),10,0,0,0);"
-                       text="SIGN UP"/>
+                       text="Login"/>
                 <HBox alignment="CENTER" spacing="10">
                     <Label style="-fx-text-fill: white; -fx-font-size: 15" text="UserName :"/>
                     <TextField fx:id="Username" prefHeight="31.0" prefWidth="224.0" promptText="Nhap ten dang nhap"
-                               style="-fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-font-size: 15; -fx-background-radius: 10"/>
+                               style="-fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-background-color: white;  -fx-font-size: 15; -fx-background-radius: 10"/>
                 </HBox>
                 <HBox alignment="CENTER" spacing="10">
                     <Label style="-fx-text-fill: white; -fx-font-size: 15" text="PassWord :"/>
                     <PasswordField fx:id="Password" prefHeight="31.0" prefWidth="220.0" promptText="Nhap mat khau"
-                                   style="-fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-font-size: 15; -fx-background-radius: 10"/>
-
+                                   style=" -fx-background-color: white; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-font-size: 15; -fx-background-radius: 10"/>
                 </HBox>
-
-
                 <HBox alignment="CENTER" spacing="70">
-                    <CheckBox text="Remember login" style="-fx-text-fill: white"/>
+                    <CheckBox fx:id="showPassword" text="Remember login" style="-fx-text-fill: white"/>
                     <Hyperlink  style=" -fx-text-fill: white;" text="Forgot password" />
+                    <Label fx:id="messageLable"/>
+                    <TextField fx:id="textField"/>
                 </HBox>
 
                 <HBox alignment="CENTER" spacing="50">

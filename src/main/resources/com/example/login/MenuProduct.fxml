@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.ProductListController">
+    <top>
+        <HBox>
+         <Label prefHeight="89.0" prefWidth="732.0" text="Product" />
+            <!-- Nút để chuyển đến màn hình thêm sản phẩm -->
+            <Button alignment="CENTER" onAction="#handleAddProduct" prefHeight="68.0" prefWidth="146.0" text="Add Product" textAlignment="CENTER" />
+        </HBox>
+    </top>
+    <center>
+        <!-- Bảng hiển thị danh sách sản phẩm -->
+        <TableView fx:id="productTable">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="imageColumn" prefWidth="217.60003662109375" text="Image" />
+                <TableColumn fx:id="nameColumn" prefWidth="212.20001220703125" text="Name" />
+                <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="151.79998779296875" text="Price" />
+                <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="78.20001220703125" text="Quantity" />
+                <TableColumn fx:id="actionColumn" minWidth="0.0" prefWidth="176.5999755859375" text="Actions" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

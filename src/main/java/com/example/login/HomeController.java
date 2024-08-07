@@ -1,12 +1,16 @@
 package com.example.login;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class HomeController {
     @FXML
@@ -27,8 +31,17 @@ public class HomeController {
 
     @FXML
     private void showProducts() {
-        // Mã để hiển thị giao diện sản phẩm
-        System.out.println("Đang hiển thị Sản phẩm");
+        try {
+            // Tải nội dung của ProductList.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuProduct.fxml"));
+            Parent productListView = loader.load();
+
+            // Thay thế nội dung hiện tại của contentArea bằng ProductList.fxml
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(productListView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
