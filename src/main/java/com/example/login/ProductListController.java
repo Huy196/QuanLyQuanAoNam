@@ -71,6 +71,9 @@ public class ProductListController {
             private final Button deleteButton = new Button("Delete");
 
             {
+                updateButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0)");
+                // Đổi màu cho nút "Delete"
+                deleteButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0)");
                 updateButton.setOnAction(e -> {
                     Product product = getTableView().getItems().get(getIndex());
                     handleEdit(product);
@@ -83,8 +86,8 @@ public class ProductListController {
                     }
                 });
 
-                HBox buttons = new HBox(10, updateButton, deleteButton);
-                buttons.setPadding(new Insets(5));
+                HBox buttons = new HBox(20, updateButton, deleteButton);
+                buttons.setPadding(new Insets(10));
                 setGraphic(buttons);
             }
 

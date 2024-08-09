@@ -7,9 +7,8 @@
 <BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.Sign">
 
     <center>
-        <VBox alignment="CENTER" style=" -fx-background-color: linear-gradient(to bottom, #ff7e5f, #feb47b),
-                          radial-gradient(center 50% 50%, radius 50%, #ffffff, #000000);" styleClass="signUp">
-            <VBox alignment="CENTER" maxHeight="1500" maxWidth="500" minHeight="200" minWidth="320" prefHeight="580" prefWidth="200" spacing="30" style="-fx-background-color: white; -fx-background-radius: 30; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.75),15,0,0,0); ">
+        <VBox alignment="CENTER" style="-fx-background-color: linear-gradient(to bottom, violet,greenyellow);" styleClass="signUp">
+            <VBox alignment="CENTER" maxHeight="1500" maxWidth="500" minHeight="200" minWidth="320" prefHeight="580" prefWidth="200" spacing="30" style="-fx-background-color: rgba(20, 0, 0, 0.3); -fx-background-radius: 30; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.75),15,0,0,0); ">
 
 
                 <Label style="-fx-font-size: 30; -fx-border-width: 80; -fx-font-weight: bold; -fx-text-fill: #3376BC; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.75),10,0,0,0);" text="SIGN UP" />

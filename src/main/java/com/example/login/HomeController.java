@@ -9,6 +9,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +24,11 @@ public class HomeController {
 
     @FXML
     private ImageView imageView;
+
+
+
+
+
 
 
     // Phương thức xử lý sự kiện
@@ -41,6 +48,8 @@ public class HomeController {
             System.out.println("Đang hiển thị Trang chủ");
         }
     }
+
+
 
     @FXML
     private void showProducts() {
@@ -118,6 +127,8 @@ public class HomeController {
                 e.printStackTrace();
             }
         }
+
+
     }
 }
 

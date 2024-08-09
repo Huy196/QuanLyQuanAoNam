@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="601.0" spacing="40" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderItemController">
+<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="601.0" spacing="65" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderItemController">
 
     <Label fx:id="productLabel" layoutX="20.0" layoutY="20.0" text="Sản phẩm">
       <font>
@@ -22,11 +22,11 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <Button fx:id="paidButton" style="-fx-background-color: lightblue; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Đã thanh toán">
+    <Button fx:id="paidButton" style="-fx-background-color: #009688 ; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Đã thanh toán">
       <font>
          <Font size="13.0" />
       </font></Button>
-    <Button fx:id="cancelButton" style="-fx-background-color: lightblue; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Hủy đơn">
+    <Button fx:id="cancelButton" style="-fx-background-color:  #E53935; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Hủy đơn">
       <font>
          <Font size="13.0" />
       </font></Button>

@@ -5,78 +5,83 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.HomeController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.login.HomeController">
 
     <!-- Thanh bên trái -->
     <left>
-        <VBox prefHeight="504.0" prefWidth="230.0" spacing="20" style="-fx-padding: 20;">
+        <VBox prefHeight="504.0" prefWidth="230.0" spacing="29" style="-fx-padding: 15; -fx-background-color: white;  ">
             <!-- Logo -->
-            <ImageView fitHeight="184.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView styleClass="view" fitHeight="184.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../../Image/logo-chat.png" />
+                    <Image url="@../../../Image/logoHDT.jpg"/>
                 </image>
             </ImageView>
 
             <!-- Các nút -->
-            <Button onAction="#showHome" prefHeight="45.0" prefWidth="173.0" text="Trang chủ">
+            <Button onAction="#showHome" prefHeight="45.0" prefWidth="173.0" text="Trang chủ" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
-            <Button onAction="#showProducts" prefHeight="45.0" prefWidth="175.0" text="Sản phẩm">
+            <Button onAction="#showProducts" prefHeight="45.0" prefWidth="175.0" text="Sản phẩm" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
-            <Button onAction="#showOrders" prefHeight="45.0" prefWidth="175.0" text="Đơn hàng">
+            <Button onAction="#showOrders" prefHeight="45.0" prefWidth="175.0" text="Đơn hàng" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
-            <Button onAction="#showEmployees" prefHeight="45.0" prefWidth="175.0" text="Nhân viên">
+            <Button onAction="#showEmployees" prefHeight="45.0" prefWidth="175.0" text="Nhân viên" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
-            <Button onAction="#showCustomer" prefHeight="45.0" prefWidth="175.0" text="Khách hàng">
+            <Button onAction="#showCustomer" prefHeight="45.0" prefWidth="175.0" text="Khách hàng" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
-            <Button onAction="#showInvoiceDetails" prefHeight="45.0" prefWidth="175.0" text="Chi tiết hóa đơn">
+            <Button onAction="#showInvoiceDetails" prefHeight="45.0" prefWidth="175.0" text="Chi tiết hóa đơn" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
 
             <!-- Khoảng trống đẩy nút Đăng xuất xuống -->
-            <Region VBox.vgrow="ALWAYS" />
+            <!--            <Region VBox.vgrow="ALWAYS" />-->
 
             <!-- Nút Đăng xuất -->
-            <Button onAction="#logout" prefHeight="45.0" prefWidth="175.0" text="Đăng xuất">
+            <Button onAction="#logout" prefHeight="35.0" prefWidth="175.0" text="Đăng xuất" style="-fx-background-color: red; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7">
                 <font>
-                    <Font size="20.0" />
+                    <Font size="20.0"/>
                 </font>
             </Button>
         </VBox>
     </left>
 
-    <!-- Khu vực nội dung chính -->
-    <center>
-        <AnchorPane fx:id="contentArea" prefHeight="687.0" prefWidth="1207.0">
-            <children>
-                <TextField fx:id="text" layoutX="283.0" prefHeight="94.0" prefWidth="547.0" text="Shop Bán Nam Quần Áo Nam">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
-                </TextField>
-                <ImageView fitHeight="476.0" fitWidth="1109.0" layoutX="51.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../Image/anh-bia-.jpg" />
-                    </image>
-                </ImageView>
-            </children>
 
+
+    <!-- Khu vực nội dung chính -->
+
+    <center>
+        <AnchorPane fx:id="contentArea" prefHeight="687.0" prefWidth="1207.0" style=" -fx-background-color: linear-gradient(to bottom, honeydew, lightblue)">
+            <VBox alignment="CENTER" spacing="20"   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" >
+                <HBox alignment="CENTER">
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: black; -fx-font-size: 50; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0, 0, 0)"
+                           text="Shop Bán Quần Áo Nam"/>
+                </HBox>
+
+                <HBox alignment="CENTER" >
+                    <ImageView fitHeight="608.0" fitWidth="1207.0" preserveRatio="true" >
+                        <Image url="@../../../Image/anhshopmoi.jpg"/>
+                    </ImageView>
+                </HBox>
+            </VBox>
         </AnchorPane>
     </center>
+
+
 </BorderPane>
