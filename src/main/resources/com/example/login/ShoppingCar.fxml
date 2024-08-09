@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.Layout_Sp">
+
+    <HBox alignment="CENTER" prefHeight="272.0" prefWidth="1300.0" spacing="10" style="-fx-padding: 10px;-fx-background-color: #cbc6c6">
+       <Button onAction="#handleBack" prefHeight="48.0" prefWidth="124.0" text="Đăng Xuất" />
+        <VBox alignment="CENTER" layoutX="250.0" prefHeight="160.0" prefWidth="270.0" style="-fx-padding: 20px;-fx-background-color: white ">
+            <ImageView fitHeight="238.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../ImageProduct/aonam_1.jpg" />
+                </image>
+            </ImageView>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Button mnemonicParsing="false" text="Button" />
+        </VBox>
+        <VBox alignment="CENTER" layoutX="250.0" prefHeight="160.0" prefWidth="270.0" style="-fx-padding: 20px;-fx-background-color: white">
+            <ImageView fitHeight="238.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../ImageProduct/aonam_1.jpg" />
+                </image>
+            </ImageView>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Button mnemonicParsing="false" text="Button" />
+        </VBox>
+        <VBox alignment="CENTER" layoutX="250.0" prefHeight="160.0" prefWidth="270.0" style="-fx-padding: 20px;-fx-background-color: white">
+            <ImageView fitHeight="238.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../ImageProduct/aonam_2.jpg" />
+                </image>
+            </ImageView>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Button mnemonicParsing="false" text="Button" />
+        </VBox>
+        <VBox alignment="CENTER" layoutX="250.0" prefHeight="160.0" prefWidth="270.0" style="-fx-padding: 20px;-fx-background-color: white">
+            <ImageView fitHeight="238.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../ImageProduct/aonam_3.jpg" />
+                </image>
+            </ImageView>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Button mnemonicParsing="false" text="Button" />
+        </VBox>
+    </HBox>
+
+</AnchorPane>

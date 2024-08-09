@@ -35,7 +35,7 @@ public class Sign extends Login {
 
     }
 
-    private void handleSign() {
+    public void handleSign() {
         String fullName = FullName.getText();
         String email = Email.getText();
         String phoneNumber = PhoneNumber.getText();
@@ -57,18 +57,20 @@ public class Sign extends Login {
         } else {
             showAlert("Đăng kí thành công");
             Login login = new Sign();
-            login.getUsers().add(new String[]{fullName, password, email, phoneNumber});
+            login.getUsers().add(new String[]{fullName, password, email, phoneNumber,User});
 
             FullName.clear();
             Password.clear();
             Email.clear();
             PhoneNumber.clear();
             ConfirmPassword.clear();
+
+            handleLogin();
         }
     }
 
     @FXML
-    private void handleLogin() {
+    public void handleLogin() {
         try {
             Main.changeScene("Login.fxml");
         } catch (Exception e) {

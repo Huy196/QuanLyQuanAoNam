@@ -71,7 +71,6 @@ public class Product {
 
     public static Product fromString(String line) {
 //         Phân tách chuỗi để tạo đối tượng Product
-//         Chú ý: xử lý ảnh và các giá trị khác phù hợp với định dạng của bạn
         String[] parts = line.split(",", 4);
         if (parts.length < 4) {
             throw new IllegalArgumentException("Invalid product format.");

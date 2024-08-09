@@ -40,7 +40,7 @@ public class AddProductController {
         this.products = products;
     }
 
-    @FXML
+    @FXML //lấy image
     private void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(stage);
@@ -97,7 +97,7 @@ public class AddProductController {
         alert.show();
     }
 
-    private void saveProductsToFile() {
+    private void saveProductsToFile() { //lưu dữ liệu product để tránh bị mất khi thoát
         try (FileWriter writer = new FileWriter(FILE_PATH, false)) {
             for (Product product : products) {
                 writer.write(product.toString() + System.lineSeparator());
@@ -107,7 +107,7 @@ public class AddProductController {
         }
     }
 
-    @FXML
+    @FXML //update sản phầm
     private void handAddOrUpdate() {
 
         try {
@@ -122,15 +122,10 @@ public class AddProductController {
             if (products == null) {
                 throw new IllegalStateException("Product list is not initialized.");
             }
-
-            if (currentProduct == null) { // Thêm sản phẩm mới
-                products.add(new Product(name, price, quantity, image));
-            } else { // Chỉnh sửa sản phẩm hiện tại
-                currentProduct.setName(name);
-                currentProduct.setPrice(price);
-                currentProduct.setQuantity(quantity);
-                currentProduct.setImage(image);
-            }
+            currentProduct.setName(name);
+            currentProduct.setPrice(price);
+            currentProduct.setQuantity(quantity);
+            currentProduct.setImage(image);
             saveProductsToFile();
             showAlert("Product saved successfully!");
 
@@ -143,7 +138,7 @@ public class AddProductController {
         }
     }
 
-    public void setProductListController(ProductListController productListController) {
+    public void setProductListController(ProductListController productListController) { //thiết lập giá trị tham chiếu từ bên ngoài
     }
 
     public void setCurrentProduct(Product product) {

@@ -12,6 +12,8 @@ public class Login {
     @FXML
     private PasswordField Password;
     @FXML
+    String User = "User";
+    @FXML
     private Button loginButton;
     @FXML
     private Button signButton;
@@ -19,6 +21,13 @@ public class Login {
     private TextField textField;
     @FXML
     private Label messageLable;
+
+    public Login(TextField UserName, TextField Password) {
+        TextField username = null;
+        this.Username = username;
+        PasswordField password = null;
+        this.Password = password;
+    }
 
     private static List<String[]> user = new ArrayList<>();
 
@@ -46,7 +55,7 @@ public class Login {
         user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com", "9473625174", "user"});
     }
 
-    private void handleLogin() {
+    void handleLogin() {
         String username = Username.getText();
         String password = Password.getText();
 
@@ -58,9 +67,11 @@ public class Login {
             showAlert("Mật khẩu phải trên 8 kí tự");
         } else {
             boolean isValid = false;
+            String[] loggedInUser = null;
             for (String[] newUser : user) {
                 if (newUser[0].equals(username) && newUser[1].equals(password)) {
                     isValid = true;
+                    loggedInUser = newUser;
                     break;
                 }
             }
@@ -68,22 +79,27 @@ public class Login {
                 messageLable.setText("Đăng nhập thành công");
                 Username.clear();
                 Password.clear();
-                showUserList();
+                if (loggedInUser != null) {
+                    showUserList(loggedInUser);
+                }
                 try {
-                    Main.changeScene("View_Home.fxml");
+                    if ("admin".equals(loggedInUser[4])) {
+                        Main.changeScene("View_Home.fxml");
+                    }else {
+                        Main.changeScene("ShoppingCar.fxml");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
                 messageLable.setText("sai mật khẩu");
-
                 messageLable.setStyle("-fx-text-fill: red");
                 Password.clear();
             }
         }
     }
 
-    private void handleSign() {
+    void handleSign() {
         try {
             Main.changeScene("Sign.fxml");
         } catch (Exception e) {
@@ -101,13 +117,13 @@ public class Login {
         return user;
     }
 
-    protected void showUserList() {
-        for (String[] user : user) {
-            if (user[3].equals("admin")) {
-                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + user[3] + ",\t\t" + " Role: " + user[4]);
-            } else {
-                System.out.println("Username: \"" + user[0] + ",\t" + " Password: " + user[1] + "\t," + "Email: " + user[2] + ",\t\t" + "SĐT : " + user[3] + ",\t\t" + " Role: " + user[4]);
-            }
+    protected void showUserList(String[] loggedInUser) {
+        String newUser = loggedInUser[4];
+        if (newUser.equals("admin")) {
+            System.out.println("Username: \"" + loggedInUser[0] + ",\t\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + ",\t\t" + " Role: " + loggedInUser[4]);
+
+        } else {
+            System.out.println("Username: \"" + loggedInUser[0] + ",\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + ",\t\t" + " Role: " + loggedInUser[4]);
         }
     }
 }

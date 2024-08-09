@@ -36,8 +36,6 @@ public class ProductListController {
     @FXML
     private TableColumn<Product, Void> actionColumn;
 
-    private Runnable addProductHandler;
-
     private ObservableList<Product> products = FXCollections.observableArrayList();
     private Stage stage;
 
@@ -101,6 +99,7 @@ public class ProductListController {
 
         List<Product> loadedProducts = loadProductsFromFile();
         products.addAll(loadedProducts);
+        productTable.setItems(products);
     }
 
     @FXML
@@ -161,6 +160,7 @@ public class ProductListController {
 
     private void handleDelete(Product product) {
         products.remove(product);
+        saveProductsToFile();
     }
 
     private void showError(String message) {
