@@ -48,6 +48,11 @@ public class OrderItemController {
 
         paidButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
         cancelButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
+
+//        order.statusProperty().addListener((observable, oldValue, newValue) -> {
+//            updateButtonStatus();  // Cập nhật trạng thái các nút khi trạng thái đơn hàng thay đổi
+//        });
+
     }
 
     private void handlePaidAction() {
@@ -61,7 +66,12 @@ public class OrderItemController {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 order.setStatus("Đã thanh toán");
                 System.out.println("Đã thanh toán");
+                statusLabel.setText(order.getStatus()); // cập nhật mới
                 updateButtonStatus();
+
+                //ẩn nút
+                paidButton.setVisible(false);
+                cancelButton.setVisible(false);
             }
         }
     }
@@ -77,7 +87,12 @@ public class OrderItemController {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 order.setStatus("Hủy đơn");
                 System.out.println("Hủy đơn");
+                statusLabel.setText(order.getStatus()); //chuyển đổi trạng thái
                 updateButtonStatus();
+
+                //ẩn nút
+                paidButton.setVisible(false);
+                cancelButton.setVisible(false);
             }
         }
     }

@@ -25,7 +25,7 @@ public class OrderListController {
         orders = FXCollections.observableArrayList(
                 new Order("HuyenTrangTran", "Sản phẩm A", 2, 50.0, "Chờ thanh toán"),
                 new Order("VanDanLe", "Sản phẩm B", 1, 30.0, "Đã thanh toán"),
-                new Order("HuyQuocDo", "Sản phẩm C", 5, 75.0, "Hủy đơn"),
+                new Order("HuyQuocDo", "Sản phẩm C", 5, 75.0, "Chờ thanh toán"),
                 new Order("KhanhBaoNguyen", "Sản phẩm D", 3, 45.0, "Đã thanh toán"),
                 new Order("ThomNgocPham", "Sản phẩm E", 7, 95.0, "Hủy đơn"),
                 new Order("MinhTuanNguyen", "Sản phẩm G", 7, 95.0, "Chờ thanh toán")
