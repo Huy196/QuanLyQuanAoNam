@@ -82,4 +82,6 @@ public class Product {
 
         return new Product(name, price, quantity, image);
     }
+
+
 }

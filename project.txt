@@ -1,4 +1,3 @@
-gẻg,324.0,22,file:/D:/download.jpg
-ẻtewrretre,34234.0,32423,file:/C:/Users/Dell/Downloads/doxwn9qf.png
-ewfsfwe,342.0,23423,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
-frwf,423.0,234,file:/C:/Users/Dell/OneDrive/Gambar/Screenshots/Screenshot%202024-08-13%20081008.png
+Áo Sơ Mi,450.0,10,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_1.jpg
+Áo phông trơn ( Đen),200.0,50,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg
+Áo phông GoodBoy (Đỏ),250.0,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg

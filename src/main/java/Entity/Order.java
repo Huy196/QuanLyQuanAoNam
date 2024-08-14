@@ -1,13 +1,16 @@
 package Entity;
 
+import java.util.List;
+
 public class Order {
-    private String customer;
-    private String product;
+
+    private Customer customer;
+    private Product product;
     private int quantity;
     private double totalAmount;
     private String status;
 
-    public Order(String customer, String product, int quantity, double totalAmount, String status) {
+    public Order(Customer customer, Product product, int quantity, double totalAmount, String status) {
         this.customer = customer;
         this.product = product;
         this.quantity = quantity;
@@ -15,20 +18,22 @@ public class Order {
         this.status = status;
     }
 
-    public String getCustomer() {
+
+
+    public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
-        this.customer = String.valueOf(customer);
+        this.customer = customer;
     }
 
-    public String getProduct() {
+    public Product getProduct() {
         return product;
     }
 
     public void setProduct(Product product) {
-        this.product = String.valueOf(product);
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -40,7 +45,8 @@ public class Order {
     }
 
     public double getTotalAmount() {
-        return totalAmount;
+//        return totalAmount;
+        return product.getPrice()* quantity;
     }
 
     public void setTotalAmount(double totalAmount) {
@@ -57,7 +63,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Khách hàng: " + customer + ", Sản phẩm: " + product + ", Số lượng: " + quantity +
+        return "Khách hàng: " + customer.getName() + ", Sản phẩm: " + product.getName() + ", Số lượng: " + quantity +
                 ", Tổng tiền: " + totalAmount + " VNĐ, Trạng thái: " + status;
     }
 
