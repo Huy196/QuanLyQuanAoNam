@@ -24,13 +24,6 @@ public class HomeController {
 
     @FXML
     private ImageView imageView;
-
-
-
-
-
-
-
     // Phương thức xử lý sự kiện
     @FXML
     private void showHome() {
@@ -48,9 +41,6 @@ public class HomeController {
             System.out.println("Đang hiển thị Trang chủ");
         }
     }
-
-
-
     @FXML
     private void showProducts() {
         try {
@@ -64,8 +54,6 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @FXML

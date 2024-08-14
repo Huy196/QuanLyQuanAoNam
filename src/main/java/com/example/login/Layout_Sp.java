@@ -2,13 +2,15 @@ package com.example.login;
 
 import com.example.login.Login;
 import com.example.login.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.lang.reflect.GenericArrayType;
 
-public class Layout_Sp {
+public class Layout_Sp extends AddProductController{
     public static com.example.login.Main Main;
     @FXML
     private TextField userName;
@@ -52,5 +54,19 @@ public class Layout_Sp {
         alert.setContentText(message);
         alert.show();
     }
+
+    public void handBackSignIn() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Bạn có muốn đăng ký tài khoản mới ?",ButtonType.YES,ButtonType.NO);
+        alert.setTitle("Sign In");
+        alert.setHeaderText(null);
+        if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES){
+            try {
+                com.example.login.Main.changeScene("Sign.fxml");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }

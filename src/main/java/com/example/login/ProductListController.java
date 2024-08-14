@@ -122,8 +122,8 @@ public class ProductListController {
                 productTable.refresh();
                 saveProductsToFile();
 
-            });
 
+            });
             addProductStage.show();
         } catch (IOException e) {
             showError("Error loading add product window: " + e.getMessage());
@@ -209,6 +209,7 @@ public class ProductListController {
             showError("Failed to save products: " + e.getMessage());
         }
     }
+
 
     public void refreshTable() {
         productTable.refresh();

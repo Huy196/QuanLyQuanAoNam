@@ -3,10 +3,13 @@ package com.example.login;
 import Entity.Product;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -24,12 +27,9 @@ public class AddProductController {
     @FXML
     private ImageView imageView;
     private ProductListController productListController;
-
     private Product currentProduct;
-
     private Stage stage;
     private ObservableList<Product> products;
-
     private static final String FILE_PATH = "project.txt";
 
     public void setStage(Stage stage) {
@@ -41,7 +41,7 @@ public class AddProductController {
     }
 
     @FXML //lấy image
-    private void handleChooseImage() {
+    public void handleChooseImage() {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(stage);
 
@@ -56,7 +56,7 @@ public class AddProductController {
     }
 
     @FXML
-    private void handleAdd() {
+    public void handleAdd() {
         try {
             String name = nameField.getText();
             double price = Double.parseDouble(priceField.getText());
@@ -69,10 +69,13 @@ public class AddProductController {
             if (products == null) {
                 throw new IllegalStateException("Product list is not initialized.");
             }
-            products.add(new Product(name, price, quantity, image));
+            Product newProduct = new Product(name,price,quantity,image);
+            products.addAll(newProduct);
             saveProductsToFile();
 
             showAlert("Product added successfully!");
+            Stage stage1 = (Stage) nameField.getScene().getWindow();
+            stage1.close();
 
         } catch (NumberFormatException e) {
             showError(e.getMessage());
@@ -108,7 +111,7 @@ public class AddProductController {
     }
 
     @FXML //update sản phầm
-    private void handAddOrUpdate() {
+    public void handAddOrUpdate() {
 
         try {
             String name = nameField.getText();
@@ -128,6 +131,9 @@ public class AddProductController {
             currentProduct.setImage(image);
             saveProductsToFile();
             showAlert("Product saved successfully!");
+
+            Stage stage1 = (Stage) nameField.getScene().getWindow();
+            stage1.close();
 
         } catch (NumberFormatException e) {
             showError(e.getMessage());

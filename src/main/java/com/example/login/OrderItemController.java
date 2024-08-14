@@ -1,12 +1,16 @@
 package com.example.login;
 
 import Entity.Order;
+import Entity.Product;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Optional;
 
 public class OrderItemController {
@@ -30,6 +34,8 @@ public class OrderItemController {
     private Button cancelButton;
 
     private Order order;  // Đúng kiểu dữ liệu là Order
+
+    private static final String FILE_HOADON = "project.txt";
 
     @FXML
     private void initialize() {
@@ -114,4 +120,5 @@ public class OrderItemController {
             cancelButton.setDisable(false);
         }
     }
+
 }
