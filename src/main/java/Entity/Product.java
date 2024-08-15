@@ -3,17 +3,40 @@ package Entity;
 import javafx.beans.property.*;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private final StringProperty name;
     private final DoubleProperty price;
     private final IntegerProperty quantity;
     private final ObjectProperty<Image> image;
+    private String description;
+    private List<String> sizes;
 
     public Product(String name, Double price, Integer quantity, Image image) {
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.image = new SimpleObjectProperty<>(image);
+    }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getSizes() {
+        return sizes != null ? sizes : new ArrayList<>();
+    }
+
+    public void setSizes(List<String> sizes) {
+        this.sizes = sizes;
     }
 
     public String getName() {
@@ -69,19 +92,15 @@ public class Product {
         return getName() + "," + getPrice() + "," + getQuantity() + "," + getImage().getUrl();
     }
 
-    public static Product fromString(String line) {
-//         Phân tách chuỗi để tạo đối tượng Product
-        String[] parts = line.split(",", 4);
-        if (parts.length < 4) {
-            throw new IllegalArgumentException("Invalid product format.");
-        }
-        String name = parts[0];
-        double price = Double.parseDouble(parts[1]);
-        int quantity = Integer.parseInt(parts[2]);
-        Image image = new Image(parts[3]);
+    public static Product fromString(String data) {
+        // Example data format: "name,price,quantity,imagePath,description,size"
+        String[] parts = data.split(",");
+        return new Product(
+                parts[0],
+                Double.parseDouble(parts[1]),
+                Integer.parseInt(parts[2]),
+                new Image(parts[3])
+        );
 
-        return new Product(name, price, quantity, image);
     }
-
-
 }
