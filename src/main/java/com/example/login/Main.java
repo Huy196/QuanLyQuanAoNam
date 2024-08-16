@@ -12,12 +12,15 @@ import java.util.Objects;
 
 public class Main extends Application {
     private static Stage primaryStage;
-    public void start(Stage primaryStage){
-    Main.primaryStage = primaryStage;
+
+    public void start(Stage primaryStage) {
+
+        Main.primaryStage = primaryStage;
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ShoppingCar.fxml")));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css.css")).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("home.css")).toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
             primaryStage.show();
@@ -31,6 +34,8 @@ public class Main extends Application {
             Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
             Scene scene = new Scene(pane);
             scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("css.css")).toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("home.css")).toExternalForm());
+
             primaryStage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

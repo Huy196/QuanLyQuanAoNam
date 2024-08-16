@@ -1,77 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="450.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.ProductHomeUser">
-    <top>
-        <VBox prefHeight="101.0" prefWidth="711.0">
-            <HBox prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-                <children>
-                    <ImageView fx:id="logo" fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../../Image/logoHDT.jpg" />
-                        </image></ImageView>
-                    <TextField fx:id="searchProduct" prefHeight="25.0" prefWidth="237.0" promptText="Tìm kiếm" />
-                    <Button mnemonicParsing="false" text="Tìm kiếm" />
-                    <ImageView fx:id="cartIcon" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleCartClick" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
-                            <Image url="@../../../Image/icon.png" />
-                        </image>
-                    </ImageView>
-                </children>
-            </HBox>
-            <MenuBar prefHeight="37.0" prefWidth="711.0">
-                <Menu text="Trang chủ">
-                </Menu>
-                <Menu text="Áo">
-                    <MenuItem text="Áo Sơ Mi" />
-                    <MenuItem text="Áo Polo" />
-                    <MenuItem text="Áo Thun" />
-                    <MenuItem text="Áo Len" />
-                </Menu>
-                <Menu text="Quần">
-                    <MenuItem text="Quần Jeans" />
-                    <MenuItem text="Quần Âu" />
-                    <MenuItem text="Quần Short" />
-                </Menu>
-                <Menu text="Đồ bộ">
-                    <items>
-                        <MenuItem text="Bộ Vest" />
-                        <MenuItem text="Bộ Thể Thao" />
-                    </items>
-                </Menu>
-                <Menu text="Phụ kiện">
-                    <items>
-                        <MenuItem text="Thắt Lưng" />
-                        <MenuItem text="Đồng Hồ" />
-                        <MenuItem text="Mũ" />
-                    </items>
-                </Menu>
-            </MenuBar>
-        </VBox>
-    </top>
-    <center>
-            <HBox fx:id="productContainer" spacing="20" style="-fx-padding: 20;" />
-    </center>
-<!--        <VBox>-->
-<!--            <AnchorPane prefHeight="126.0" prefWidth="1224.0">-->
-<!--                <AnchorPane layoutX="-1.0" layoutY="1.0" prefHeight="126.0" prefWidth="1528.0">-->
-<!--                    <children>-->
-<!--                        <Hyperlink layoutX="1313.0" layoutY="-1.0" onAction="#handleBack" prefHeight="48.0"-->
-<!--                                   prefWidth="106.0"-->
-<!--                                   style="-fx-border-color: transparent;     -fx-background-color: transparent;     -fx-padding: 0;-fx-font-size: 25px ;-fx-underline: false;"-->
-<!--                                   text="Log Out"/>-->
-<!--                        <Hyperlink layoutX="1418.0" layoutY="-2.0" onAction="#handBackSignIn" prefHeight="48.0"-->
-<!--                                   prefWidth="114.0"-->
-<!--                                   style="-fx-border-color: transparent;     -fx-background-color: transparent;     -fx-padding: 0;-fx-font-size: 25px; -fx-border-color: transparent transparent transparent black; -fx-border-width: 0 0 0 2px ;-fx-underline: false;"-->
-<!--                                   text="  Sign In"/>-->
-<!--                    </children>-->
-<!--                </AnchorPane>-->
-<!--            </AnchorPane>-->
-<!--        </VBox>-->
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.login.ProductHomeUser"
+            fitToWidth="true" fitToHeight="true">
+    <VBox>
 
 
-</BorderPane>
+        <BorderPane prefHeight="701.0" prefWidth="1400.0">
+            <top>
+                <VBox alignment="CENTER" prefHeight="101.0" prefWidth="511.0" style="-fx-background-color: #ff7337">
+
+                    <HBox fx:id="hBox" alignment="CENTER" prefHeight="37.0" prefWidth="100.0" spacing="260">
+                        <ImageView fx:id="logo" fitHeight="150.0" fitWidth="170.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Image/logohome.png"/>
+                            </image>
+                        </ImageView>
+                        <HBox/>
+
+
+                        <HBox minWidth="320" spacing="10" style="-fx-padding: 25 0 0 0 ">
+                            <TextField fx:id="searchProduct" prefHeight="26.0" prefWidth="240.0"
+                                       style="-fx-background-color: lightgrey"/>
+                            <Button mnemonicParsing="false" text="Tìm kiếm"/>
+                        </HBox>
+                        <HBox style="-fx-padding: 10 0 0 0 " spacing="25">
+
+
+                            <ImageView fx:id="cartIcon" fitHeight="40.0" fitWidth="40.0"
+                                       onMouseClicked="#handleCartClick"
+                                       pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
+                                    <Image url="@../../../Image/cart.png"/>
+                                </image>
+                            </ImageView>
+
+
+                            <ImageView fx:id="userIcon" fitHeight="38.0" fitWidth="38.0"
+
+                                       pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
+                                    <Image url="@../../../Image/user-circle.png"/>
+                                </image>
+                            </ImageView>
+
+                        </HBox>
+                    </HBox>
+
+
+                    <HBox alignment="CENTER" minHeight="40" prefHeight="50.0" prefWidth="711.0" spacing="220"
+                          style=" -fx-padding: 0 0 0 0; -fx-background-color: #0046ab">
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Trang chủ" onAction="#handleHome"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Áo" onAction="#handleShirts"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần" onAction="#handlePants"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Đồ bộ" onAction="#handleSuits"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Phụ Kiện" onAction="#handleAccessories"/>
+                    </HBox>
+                </VBox>
+            </top>
+
+            <center>
+                <ScrollPane fitToWidth="true" prefHeight="701.0" prefWidth="1400.0" minHeight="616">
+                    <VBox fx:id="productDisplayArea">
+                        <FlowPane fx:id="productContainer" hgap="100" minHeight="701" minWidth="150"
+                                  style="-fx-padding: 30 40 30 30;" vgap="20">
+                            <effect>
+                                <DropShadow color="#807172" offsetX="4" offsetY="4" radius="10"/>
+                            </effect>
+                        </FlowPane>
+                    </VBox>
+                </ScrollPane>
+            </center>
+
+            <bottom>
+                <HBox style="-fx-background-color: #02212c; -fx-pref-height: 50px; -fx-alignment: CENTER;">
+
+
+                    <HBox spacing="40" alignment="CENTER">
+
+                        <Hyperlink text="Facebook |" style="-fx-text-fill: white;" layoutX="14.0" layoutY="14.0" onAction="#handleFacebookLinkAction"/>
+                        <ImageView fx:id="iconFacebook" fitHeight="30.0" fitWidth="30.0"
+
+                                   pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
+                                <Image url="@../../../Image/Facebook-icon-white-PNG-medium-size.png"/>
+                            </image>
+                        </ImageView>
+
+                        <Hyperlink text="Intagram |" style="-fx-text-fill: white;" layoutX="15.0" layoutY="15.0" onAction="#handleFacebookLinkAction"/>
+                        <ImageView fx:id="iconIntagram" fitHeight="30.0" fitWidth="30.0"
+
+                                   pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
+                                <Image url="@../../../Image/Instagram_logo.png"/>
+                            </image>
+                        </ImageView>
+                    </HBox>
+
+<!--                    <HBox>-->
+<!--                        <Button text="Đăng xuất" style="-fx-background-color: red; -fx-text-fill: white ; "/>-->
+<!--                    </HBox>-->
+
+
+                </HBox>
+
+            </bottom>
+        </BorderPane>
+    </VBox>
+</ScrollPane>

@@ -1,19 +1,24 @@
 package com.example.login;
 
 import Entity.Product;
+import javafx.animation.ScaleTransition;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,9 +28,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProductHomeUser {
+    @FXML
+    private Hyperlink facebookLink;
+
+    private HostServices hostServices;
 
     @FXML
-    private HBox productContainer;
+    private FlowPane productContainer;
+    @FXML
+    private VBox productDisplayArea;
 
     @FXML
     private Button purchaseButton; // Nút để xử lý việc mua hàng
@@ -36,8 +47,68 @@ public class ProductHomeUser {
     @FXML
     private void initialize() {
         loadProductsFromFile();
+
 //        purchaseButton.setOnAction(e -> handlePurchase());
+
+
     }
+    @FXML
+    private void handleHome() {
+        displayProducts("Trang chủ");
+    }
+
+    @FXML
+    private void handleShirts() {
+        displayProducts("Áo");
+    }
+
+    @FXML
+    private void handlePants() {
+        displayProducts("Quần");
+    }
+
+    @FXML
+    private void handleSuits() {
+        displayProducts("Đồ bộ");
+    }
+
+    @FXML
+    private void handleAccessories() {
+        displayProducts("Phụ Kiện");
+    }
+
+    private void displayProducts(String category) {
+        productDisplayArea.getChildren().clear();
+        // Giả sử bạn có một phương thức để lấy sản phẩm theo danh mục
+        // List<Product> products = getProductsByCategory(category);
+        // for (Product product : products) {
+        //     // Hiển thị sản phẩm
+        //     productDisplayArea.getChildren().add(createProductView(product));
+        // }
+
+        // Dưới đây là một ví dụ đơn giản để hiển thị tên danh mục
+        Label categoryLabel = new Label("Sản phẩm trong danh mục: " + category);
+        productDisplayArea.getChildren().add(categoryLabel);
+    }
+
+
+
+    @FXML
+    private void handleFacebookLinkAction() {
+        if (hostServices != null) {
+            hostServices.showDocument("https://www.facebook.com/profile.php?id=100025115431173&mibextid=ZbWKwL");
+        } else {
+            System.out.println("HostServices is null");
+        }
+    }
+
+    @FXML
+    public void setHostServices(HostServices hostServices) {
+        this.hostServices = hostServices;
+    }
+
+
+
 
     private void loadProductsFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("project.txt"))) {
@@ -50,6 +121,7 @@ public class ProductHomeUser {
             System.err.println("Không thể tải sản phẩm: " + e.getMessage());
         }
     }
+
     @FXML
     private void handleCartClick() {
         // Xử lý sự kiện khi nhấp vào biểu tượng giỏ hàng
@@ -62,47 +134,73 @@ public class ProductHomeUser {
 
     private void addProductToDisplay(Product product) {
         ImageView imageView = new ImageView(product.getImage());
-        imageView.setFitWidth(150);
-        imageView.setFitHeight(150);
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(200);
         imageView.setPreserveRatio(true);
 
         VBox productBox = new VBox();
-        productBox.setSpacing(10);
-        productBox.setStyle("-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-border-radius: 5;");
+        productBox.setSpacing(15);
+        productBox.setAlignment(Pos.CENTER);
+        productBox.setStyle("-fx-padding: 10; -fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 5; ");
+
+        productBox.setMinWidth(200);
+        productBox.setMinHeight(370);
+        productBox.setMaxWidth(170);
+        productBox.setMaxHeight(370);
+
 
         Text nameText = new Text("Tên: " + product.getName());
         nameText.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
         Text priceText = new Text("Giá: $" + product.getPrice());
         priceText.setStyle("-fx-font-size: 14px;");
+        priceText.setFill(Color.RED);
 
-        Text quantityText = new Text("Số lượng: " + product.getQuantity());
-        quantityText.setStyle("-fx-font-size: 14px;");
+//        Text quantityText = new Text("Số lượng: " + product.getQuantity());
+//        quantityText.setStyle("-fx-font-size: 14px;");
 
         Button detailsButton = new Button("Chi tiết");
         detailsButton.setOnAction(e -> showProductDetails(product));
+        detailsButton.setStyle("-fx-font-size: 14px; -fx-background-color: #ff7337; -fx-text-fill: white");
 
         HBox productHBox = new HBox();
         productHBox.setSpacing(10);
         productHBox.getChildren().addAll(imageView, productBox);
 
-        productBox.getChildren().addAll(imageView, nameText, priceText, quantityText, detailsButton);
+
+        productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
+
+//làm phồng
+//        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(50), productHBox);
+//        scaleUp.setToX(1.1);
+//        scaleUp.setToY(1.1);
+//
+//        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(50), productHBox);
+//        scaleDown.setToX(1.0);
+//        scaleDown.setToY(1.0);
+//
+//        productContainer.setOnMouseEntered(event -> scaleUp.play());
+//        productContainer.setOnMouseExited(event -> scaleDown.play());
+
     }
 
-    private void addToCart(Product product) {
-        cart.add(product);
+    private void addToCart(Product product, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            cart.add(product);
+        }
+        product.setQuantity(product.getQuantity() - quantity);// số lượng sản phẩm giảm sau mỗi lần mua
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Giỏ hàng");
         alert.setHeaderText(null);
-        alert.setContentText(product.getName() + " đã được thêm vào giỏ hàng.");
+        alert.setContentText(product.getName() + " x" + quantity + " đã được thêm vào giỏ hàng.");
         alert.showAndWait();
 
         if (detailStage != null) {
             detailStage.close(); // Đóng hộp thoại chi tiết sau khi thêm vào giỏ hàng
         }
     }
-
     private void handlePurchase() {
         if (cart.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -124,7 +222,7 @@ public class ProductHomeUser {
         cart.clear(); // Xóa giỏ hàng sau khi mua
     }
 
-    private void buyNow(Product product, ComboBox<String> sizeComboBox) {
+    private void buyNow(Product product, ComboBox<String> sizeComboBox, int quantity) {
         String selectedSize = sizeComboBox.getValue();
         if (selectedSize == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -138,20 +236,19 @@ public class ProductHomeUser {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mua ngay");
         alert.setHeaderText(null);
-        alert.setContentText("Bạn đã chọn mua ngay sản phẩm: " + product.getName() +
+        alert.setContentText("Bạn đã chọn mua ngay " + quantity + " sản phẩm: " + product.getName() +
                 ".\nGiá: $" + product.getPrice() + "\nKích cỡ: " + selectedSize);
         alert.showAndWait();
 
         // Cập nhật kích cỡ cho sản phẩm
         product.setSizes(Collections.singletonList(selectedSize));
-        cart.add(product); // Thêm sản phẩm vào giỏ hàng
+        addToCart(product, quantity); // Thêm sản phẩm vào giỏ hàng
         handlePurchase(); // Xử lý mua hàng
 
         if (detailStage != null) {
             detailStage.close(); // Đóng hộp thoại chi tiết sau khi mua ngay
         }
     }
-
 
     private void showProductDetails(Product product) {
 
@@ -186,16 +283,17 @@ public class ProductHomeUser {
             sizeComboBox.getItems().addAll(sizes);
         }
         sizeComboBox.setPromptText("Chọn kích cỡ");
-
+// Tạo Spinner cho việc chọn số lượng
+        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
+        quantitySpinner.setPrefWidth(100);
 
         Button addToCartButton = new Button("Thêm vào giỏ hàng");
-        addToCartButton.setOnAction(e -> addToCart(product));
+        addToCartButton.setOnAction(e -> addToCart(product, quantitySpinner.getValue()));
 
         Button buyNowButton = new Button("Mua ngay");
-        buyNowButton.setOnAction(e -> buyNow(product,sizeComboBox));
+        buyNowButton.setOnAction(e -> buyNow(product, sizeComboBox, quantitySpinner.getValue()));
 
-        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText,sizeComboBox,descriptionText, addToCartButton, buyNowButton);
-
+        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText, sizeComboBox, descriptionText, quantitySpinner, addToCartButton, buyNowButton);
         Scene scene = new Scene(detailBox);
         detailStage.setScene(scene);
         detailStage.setTitle("Chi tiết sản phẩm");

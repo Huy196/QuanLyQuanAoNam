@@ -1,3 +1,7 @@
-Áo Sơ Mi,450.0,10,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_1.jpg
-Áo phông trơn ( Đen),200.0,50,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg
-Áo phông GoodBoy (Đỏ),250.0,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg
+gẻg,324.0,22,file:/C:/Users/This%20%20PC/Pictures/yêu%20em.jpg
+ẻtewrretre,34234.0,32423,file:/C:/Users/Dell/Downloads/doxwn9qf.png
+ewfsfwe,342.0,23423,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
+frwf,423.0,234,file:/C:/Users/Dell/OneDrive/Gambar/Screenshots/Screenshot%202024-08-13%20081008.png
+vest tay,4.0E8,7,file:/C:/Users/This%20%20PC/Pictures/b62a8fff802652780b37.jpg
+codosaovang,6000000.0,34,file:/C:/Users/This%20%20PC/Pictures/d1c8a9f3dcf109af50e0.jpg
+lichsu,6988989.0,8,file:/C:/Users/This%20%20PC/Pictures/581b73b97f60ad3ef471.jpg

@@ -1,0 +1,18 @@
+
+
+.label1 {
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+}
+
+.label1:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
