@@ -10,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -237,7 +234,7 @@ public class ProductHomeUser {
         alert.setTitle("Mua ngay");
         alert.setHeaderText(null);
         alert.setContentText("Bạn đã chọn mua ngay " + quantity + " sản phẩm: " + product.getName() +
-                ".\nGiá: $" + product.getPrice() + "\nKích cỡ: " + selectedSize);
+                ".\nGiá: $" + product.getPrice()*quantity + "\nKích cỡ: " + selectedSize);
         alert.showAndWait();
 
         // Cập nhật kích cỡ cho sản phẩm
@@ -256,17 +253,29 @@ public class ProductHomeUser {
         VBox detailBox = new VBox();
         detailBox.setSpacing(10);
         detailBox.setPadding(new Insets(20));
+        detailBox.setAlignment(Pos.CENTER);
+
+        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        detailBox.setBackground(background);
+
+        detailBox.setMinWidth(450);
+        detailBox.setMinHeight(630);
+        detailBox.setMaxWidth(970);
+        detailBox.setMaxHeight(1700);
+
 
         ImageView imageView = new ImageView(product.getImage());
-        imageView.setFitWidth(300);
-        imageView.setFitHeight(300);
+        imageView.setFitWidth(400);
+        imageView.setFitHeight(400);
         imageView.setPreserveRatio(true);
+        imageView.setStyle("-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0, 5, 5)");
 
         Text nameText = new Text("Tên: " + product.getName());
         nameText.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
         Text priceText = new Text("Giá: $" + product.getPrice());
-        priceText.setStyle("-fx-font-size: 14px;");
+        priceText.setStyle("-fx-font-size: 14px; -fx-fill: red");
 
         Text quantityText = new Text("Số lượng: " + product.getQuantity());
         quantityText.setStyle("-fx-font-size: 14px;");
@@ -283,21 +292,35 @@ public class ProductHomeUser {
             sizeComboBox.getItems().addAll(sizes);
         }
         sizeComboBox.setPromptText("Chọn kích cỡ");
-// Tạo Spinner cho việc chọn số lượng
+
+        // Tạo Spinner cho việc chọn số lượng
         Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
         quantitySpinner.setPrefWidth(100);
 
+        // Tạo các nút
         Button addToCartButton = new Button("Thêm vào giỏ hàng");
         addToCartButton.setOnAction(e -> addToCart(product, quantitySpinner.getValue()));
+        addToCartButton.setStyle("-fx-background-color: #ff7337; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
         Button buyNowButton = new Button("Mua ngay");
         buyNowButton.setOnAction(e -> buyNow(product, sizeComboBox, quantitySpinner.getValue()));
+        buyNowButton.setStyle("-fx-background-color: #ff7337;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
-        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText, sizeComboBox, descriptionText, quantitySpinner, addToCartButton, buyNowButton);
+        // Sử dụng HBox để đặt hai nút trên cùng một hàng
+        HBox buttonBox = new HBox(10); // Khoảng cách giữa các nút là 10px
+        buttonBox.setAlignment(Pos.CENTER);// Căn giữa các nút trong HBox
+        buttonBox.setSpacing(30);
+        buttonBox.getChildren().addAll(addToCartButton, buyNowButton);
+
+        // Thêm các thành phần vào VBox chính
+        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText, sizeComboBox, descriptionText, quantitySpinner, buttonBox);
+
+        // Hiển thị hộp thoại
         Scene scene = new Scene(detailBox);
         detailStage.setScene(scene);
         detailStage.setTitle("Chi tiết sản phẩm");
         detailStage.initModality(Modality.APPLICATION_MODAL);
         detailStage.show();
     }
+
 }
