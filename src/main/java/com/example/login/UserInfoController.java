@@ -75,8 +75,7 @@ public class UserInfoController {
             userInfoVBox.getChildren().add(updateButton);
         } catch (IOException e) {
             e.printStackTrace();
-            Label errorLabel = new Label("Không thể đọc thông tin người dùng.");
-            userInfoVBox.getChildren().add(errorLabel);
+            showErrorMessage("Không thể đọc thông tin người dùng.");
         }
     }
 
@@ -119,7 +118,7 @@ public class UserInfoController {
 
                 printWriter.println(fieldName + ": " + valueField.getText());
             }
-            showErrorMessage("Cập nhật thành công !");
+            showSuccessMessage("Cập nhật thành công !");
         } catch (IOException e) {
             e.printStackTrace();
             showErrorMessage("Lỗi !");
@@ -131,5 +130,12 @@ public class UserInfoController {
         Label errorLabel = new Label(message);
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
         userInfoVBox.getChildren().add(errorLabel);
+    }
+    private void showSuccessMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
