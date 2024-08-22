@@ -3,6 +3,9 @@ package com.example.login;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +51,7 @@ public class Login {
     }
 
     public void listUser() {
-        user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462", "admin"});
+        user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462","admin"});
         user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com", "0108738465", "user"});
         user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com", "0829746352", "user"});
         user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com", "0849284736", "user"});
@@ -80,6 +83,7 @@ public class Login {
                 Username.clear();
                 Password.clear();
                 if (loggedInUser != null) {
+                    saveUserInfoToFile(loggedInUser);
                     showUserList(loggedInUser);
                 }
                 try {
@@ -124,6 +128,16 @@ public class Login {
 
         } else {
             System.out.println("Username: \"" + loggedInUser[0] + ",\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + ",\t\t" + " Role: " + loggedInUser[4]);
+        }
+    }
+    private void saveUserInfoToFile(String[] userInfo) {
+        try (FileWriter fileWriter = new FileWriter("user_info.txt", false);
+             PrintWriter printWriter = new PrintWriter(fileWriter)) {
+            printWriter.println("Tên đăng nhập: " + userInfo[0]);
+            printWriter.println("Email: " + userInfo[2]);
+            printWriter.println("SĐT: " + userInfo[3]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

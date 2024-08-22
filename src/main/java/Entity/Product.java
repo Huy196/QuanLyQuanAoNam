@@ -1,12 +1,17 @@
 package Entity;
 
 import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private final StringProperty name;
     private final DoubleProperty price;
     private final IntegerProperty quantity;
@@ -103,4 +108,29 @@ public class Product {
         );
 
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return
+                quantity == product.quantity &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(sizes, product.sizes);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, quantity, image, description, sizes);
+    }
+
+    public ImageView getImageView() {
+        ImageView imageView = new ImageView(String.valueOf(image));
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+        return imageView;
+    }
+
 }

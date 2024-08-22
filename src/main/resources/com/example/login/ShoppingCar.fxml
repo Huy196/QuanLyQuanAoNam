@@ -10,8 +10,6 @@
             fx:controller="com.example.login.ProductHomeUser"
             fitToWidth="true" fitToHeight="true">
     <VBox>
-
-
         <BorderPane prefHeight="701.0" prefWidth="1400.0">
             <top>
                 <VBox alignment="CENTER" prefHeight="101.0" prefWidth="511.0" style="-fx-background-color: #ff7337">
@@ -44,7 +42,7 @@
                             </ImageView>
 
 
-                            <ImageView fx:id="userIcon" fitHeight="38.0" fitWidth="38.0"
+                            <ImageView fx:id="userIcon" fitHeight="38.0" fitWidth="38.0" onMouseClicked="#informationDisplayProcessingUser"
 
                                        pickOnBounds="true" preserveRatio="true">
                                 <image>

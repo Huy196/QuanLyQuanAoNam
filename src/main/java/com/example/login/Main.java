@@ -17,7 +17,7 @@ public class Main extends Application {
 
         Main.primaryStage = primaryStage;
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ShoppingCar.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css.css")).toExternalForm());
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("home.css")).toExternalForm());

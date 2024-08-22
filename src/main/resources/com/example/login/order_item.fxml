@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="601.0" spacing="65" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderItemController">
+<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="600.0" spacing="65" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderItemController">
 
     <Label fx:id="productLabel" layoutX="20.0" layoutY="20.0" text="Sản phẩm">
       <font>

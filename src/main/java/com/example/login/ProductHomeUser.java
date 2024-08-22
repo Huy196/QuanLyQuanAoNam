@@ -4,8 +4,10 @@ import Entity.Product;
 import javafx.animation.ScaleTransition;
 import javafx.application.HostServices;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -19,12 +21,18 @@ import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ProductHomeUser {
+    @FXML
+    private ImageView logo;
+    @FXML
+    private static final String User_info_file = "user_info.txt";
+
     @FXML
     private Hyperlink facebookLink;
 
@@ -121,13 +129,41 @@ public class ProductHomeUser {
 
     @FXML
     private void handleCartClick() {
-        // Xử lý sự kiện khi nhấp vào biểu tượng giỏ hàng
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Giỏ hàng");
-        alert.setHeaderText(null);
-        alert.setContentText("Giỏ hàng được mở!");
-        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cart.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Giỏ hàng");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            CartController controller = loader.getController();
+            controller.setStage(stage);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    @FXML
+    private void informationDisplayProcessingUser(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UserInfo.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Thông tin người dùng");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Không thể mở cửa sổ thông tin người dùng.");
+            alert.showAndWait();
+        }
+    }
+    // Đọc thông tin người dùng từ file
 
     private void addProductToDisplay(Product product) {
         ImageView imageView = new ImageView(product.getImage());
@@ -168,17 +204,6 @@ public class ProductHomeUser {
         productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
 
-//làm phồng
-//        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(50), productHBox);
-//        scaleUp.setToX(1.1);
-//        scaleUp.setToY(1.1);
-//
-//        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(50), productHBox);
-//        scaleDown.setToX(1.0);
-//        scaleDown.setToY(1.0);
-//
-//        productContainer.setOnMouseEntered(event -> scaleUp.play());
-//        productContainer.setOnMouseExited(event -> scaleDown.play());
 
     }
 
@@ -186,7 +211,14 @@ public class ProductHomeUser {
         for (int i = 0; i < quantity; i++) {
             cart.add(product);
         }
+
         product.setQuantity(product.getQuantity() - quantity);// số lượng sản phẩm giảm sau mỗi lần mua
+
+        try (FileWriter writer = new FileWriter("cart.txt", true)) {
+            writer.write(product.toString() + "\n");
+        } catch (IOException e) {
+            System.err.println("Không thể lưu vào giỏ hàng: " + e.getMessage());
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Giỏ hàng");
@@ -322,5 +354,22 @@ public class ProductHomeUser {
         detailStage.initModality(Modality.APPLICATION_MODAL);
         detailStage.show();
     }
+//    @FXML
+//    private void openCartWindow() throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/login/Cart.fxml"));
+//        Parent root = loader.load();
+//        Stage stage = new Stage();
+//        stage.setTitle("Giỏ hàng");
+//        stage.setScene(new Scene(root));
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        stage.show();
+//    }
 
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông tin người dùng");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
