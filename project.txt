@@ -1,7 +1,9 @@
-gẻg,324.0,22,file:/C:/Users/This%20%20PC/Pictures/yêu%20em.jpg
-ẻtewrretre,34234.0,32423,file:/C:/Users/Dell/Downloads/doxwn9qf.png
-ewfsfwe,342.0,23423,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
-frwf,423.0,234,file:/C:/Users/Dell/OneDrive/Gambar/Screenshots/Screenshot%202024-08-13%20081008.png
-vest tay,4.0E8,7,file:/C:/Users/This%20%20PC/Pictures/b62a8fff802652780b37.jpg
-codosaovang,6000000.0,34,file:/C:/Users/This%20%20PC/Pictures/d1c8a9f3dcf109af50e0.jpg
-lichsu,6988989.0,8,file:/C:/Users/This%20%20PC/Pictures/581b73b97f60ad3ef471.jpg
+Áo dai,4500.0,9,file:/C:/Users/This%20%20PC/Pictures/b62a8fff802652780b37.jpg
+vest ,1000.0,5,file:/C:/Users/This%20%20PC/Pictures/b62a8fff802652780b37.jpg
+Áo dài Việt Nam,700.0,10,file:/C:/Users/This%20%20PC/Pictures/d1c8a9f3dcf109af50e0.jpg
+Áo dài,500.0,3,file:/C:/Users/This%20%20PC/Pictures/b62a8fff802652780b37.jpg
+Somi ,200.0,8,file:/C:/Users/This%20%20PC/Pictures/519b8a27ff252a7b7334.jpg
+Áo phông,125.0,4,file:/C:/Users/This%20%20PC/Pictures/yêu%20em.jpg
+Áo Phông,100.0,1,file:/C:/Users/This%20%20PC/Pictures/yêu%20em.jpg
+Áo sơ mi,50.0,2,file:/C:/Users/This%20%20PC/Pictures/519b8a27ff252a7b7334.jpg
+Áo phông,50.0,6,file:/C:/Users/This%20%20PC/Pictures/d1c8a9f3dcf109af50e0.jpg

@@ -2,6 +2,7 @@ package com.example.login;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,11 @@ public class Login {
     @FXML
     private Label messageLable;
 
+
+
+    // Ví dụ một user hiện tại được giả lập để hiển thị thông tin
+
+
     public Login(TextField UserName, TextField Password) {
         TextField username = null;
         this.Username = username;
@@ -39,6 +45,8 @@ public class Login {
         listUser();
         loginButton.setOnAction(actionEvent -> handleLogin());
         signButton.setOnAction(actionEvent -> handleSign());
+
+
         if (textField != null) {
             textField.setManaged(false);
             textField.setVisible(false);
@@ -47,9 +55,12 @@ public class Login {
         }
     }
 
+
+
+
     public void listUser() {
         user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462", "admin"});
-        user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com", "0108738465", "user"});
+        user.add(new String[]{"levandan1", "08082005", "lavandan1@gmail.com", "0108738465", "user"});
         user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com", "0829746352", "user"});
         user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com", "0849284736", "user"});
         user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com", "9473625174", "user"});

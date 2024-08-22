@@ -3,6 +3,8 @@ package com.example.login;
 import Entity.Product;
 import javafx.animation.ScaleTransition;
 import javafx.application.HostServices;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,10 +25,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductHomeUser {
-    @FXML
-    private Hyperlink facebookLink;
 
     private HostServices hostServices;
 
@@ -36,57 +37,102 @@ public class ProductHomeUser {
     private VBox productDisplayArea;
 
     @FXML
-    private Button purchaseButton; // Nút để xử lý việc mua hàng
+    private ImageView nguoiDung; // Thêm ImageView
+
+    @FXML
+    private TextField searchProduct; // TextField để nhập từ khóa tìm kiếm
+
+    @FXML
+    private Button searchButton; // Nút "Tìm kiếm"
+
+
 
     private List<Product> cart = new ArrayList<>(); // Giỏ hàng
+    private List<Product> productList = new ArrayList<>();
     private Stage detailStage; // Tham chiếu đến hộp thoại chi tiết sản phẩm
+    private String[] currentUser = {"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462", "admin"};
 
     @FXML
     private void initialize() {
         loadProductsFromFile();
-
-//        purchaseButton.setOnAction(e -> handlePurchase());
-
-
-    }
-    @FXML
-    private void handleHome() {
-        displayProducts("Trang chủ");
+        searchButton.setOnAction(event -> handleSearch());
+        displayAllProducts();
+        nguoiDung.setOnMouseClicked(mouseEvent -> showUserInfo());
     }
 
-    @FXML
-    private void handleShirts() {
-        displayProducts("Áo");
+    private void showUserInfo() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông tin người dùng");
+        alert.setHeaderText("Thông tin chi tiết");
+        alert.setContentText(
+                "Username: " + currentUser[0] + "\n" +
+                        "Email: " + currentUser[2] + "\n" +
+                        "SĐT: " + currentUser[3] + "\n" +
+                        "Role: " + currentUser[4]
+        );
+        alert.showAndWait();
     }
 
-    @FXML
-    private void handlePants() {
-        displayProducts("Quần");
+
+
+
+    // Phương thức để tải sản phẩm từ file vào danh sách productList
+    private void loadProductsFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("project.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Product product = Product.fromString(line);
+                productList.add(product); // Thêm sản phẩm vào danh sách
+            }
+            displayAllProducts(); // Hiển thị tất cả sản phẩm sau khi load xong
+        } catch (IOException e) {
+            System.err.println("Không thể tải sản phẩm: " + e.getMessage());
+        }
     }
 
-    @FXML
-    private void handleSuits() {
-        displayProducts("Đồ bộ");
+
+    private void displayAllProducts() {
+        productContainer.getChildren().clear(); // Xóa các sản phẩm cũ trên giao diện
+        for (Product product : productList) {
+            addProductToDisplay(product); // Thêm từng sản phẩm vào giao diện
+        }
     }
 
-    @FXML
-    private void handleAccessories() {
-        displayProducts("Phụ Kiện");
+
+
+
+    private void handleSearch() {
+        String searchText = searchProduct.getText().toLowerCase(); // Lấy từ khóa tìm kiếm
+
+        // Lọc danh sách sản phẩm dựa trên từ khóa
+        List<Product> filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getName().toLowerCase().contains(searchText)) {
+                filteredList.add(product);
+            }
+        }
+
+        // Kiểm tra nếu danh sách lọc trống
+        if (filteredList.isEmpty()) {
+            // Hiển thị thông báo alert nếu không tìm thấy sản phẩm
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có sản phẩm phù hợp với từ khóa tìm kiếm!");
+            alert.showAndWait();
+            searchProduct.clear();
+            displayAllProducts();
+        }else {
+            // Nếu tìm thấy sản phẩm, cập nhật giao diện với các sản phẩm đã lọc
+            productContainer.getChildren().clear(); // Xóa các sản phẩm cũ khỏi màn hình
+            for (Product product : filteredList) {
+                addProductToDisplay(product); // Hiển thị các sản phẩm đã lọc
+            }
+        }
     }
 
-    private void displayProducts(String category) {
-        productDisplayArea.getChildren().clear();
-        // Giả sử bạn có một phương thức để lấy sản phẩm theo danh mục
-        // List<Product> products = getProductsByCategory(category);
-        // for (Product product : products) {
-        //     // Hiển thị sản phẩm
-        //     productDisplayArea.getChildren().add(createProductView(product));
-        // }
 
-        // Dưới đây là một ví dụ đơn giản để hiển thị tên danh mục
-        Label categoryLabel = new Label("Sản phẩm trong danh mục: " + category);
-        productDisplayArea.getChildren().add(categoryLabel);
-    }
+
 
 
 
@@ -107,18 +153,6 @@ public class ProductHomeUser {
 
 
 
-    private void loadProductsFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("project.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Product product = Product.fromString(line);
-                addProductToDisplay(product);
-            }
-        } catch (IOException e) {
-            System.err.println("Không thể tải sản phẩm: " + e.getMessage());
-        }
-    }
-
     @FXML
     private void handleCartClick() {
         // Xử lý sự kiện khi nhấp vào biểu tượng giỏ hàng
@@ -128,6 +162,10 @@ public class ProductHomeUser {
         alert.setContentText("Giỏ hàng được mở!");
         alert.showAndWait();
     }
+
+
+
+
 
     private void addProductToDisplay(Product product) {
         ImageView imageView = new ImageView(product.getImage());
@@ -167,29 +205,18 @@ public class ProductHomeUser {
 
         productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
-
-//làm phồng
-//        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(50), productHBox);
-//        scaleUp.setToX(1.1);
-//        scaleUp.setToY(1.1);
-//
-//        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(50), productHBox);
-//        scaleDown.setToX(1.0);
-//        scaleDown.setToY(1.0);
-//
-//        productContainer.setOnMouseEntered(event -> scaleUp.play());
-//        productContainer.setOnMouseExited(event -> scaleDown.play());
-
     }
 
-    private void addToCart(Product product, int quantity) {
+    private void addToCart(Product product,  int quantity) {
         for (int i = 0; i < quantity; i++) {
             cart.add(product);
         }
         product.setQuantity(product.getQuantity() - quantity);// số lượng sản phẩm giảm sau mỗi lần mua
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         alert.setTitle("Giỏ hàng");
+
         alert.setHeaderText(null);
         alert.setContentText(product.getName() + " x" + quantity + " đã được thêm vào giỏ hàng.");
         alert.showAndWait();
@@ -280,7 +307,11 @@ public class ProductHomeUser {
         Text quantityText = new Text("Số lượng: " + product.getQuantity());
         quantityText.setStyle("-fx-font-size: 14px;");
 
-        Text descriptionText = new Text("Mô tả: " + (product.getDescription() != null ? product.getDescription() : "Chưa có mô tả"));
+        Text descriptionText = new Text("Mô tả: " + (product.getDescription() != null ? product.getDescription() : " \n Phong cách---> " + "Hàn Quốc\n" +
+                "Chiều dài áo---> " + "Dài\n" +
+                "Xuất xứ---> " + "Việt Nam\n" +
+                "Chất liệu---> " + "Cotton\n"
+                ));
         descriptionText.setStyle("-fx-font-size: 14px;");
 
         // Tạo ComboBox cho việc chọn kích cỡ
@@ -307,7 +338,7 @@ public class ProductHomeUser {
         buyNowButton.setStyle("-fx-background-color: #ff7337;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
         // Sử dụng HBox để đặt hai nút trên cùng một hàng
-        HBox buttonBox = new HBox(10); // Khoảng cách giữa các nút là 10px
+        HBox buttonBox = new HBox(10); // Khoảng cách giữa các nút là  10px
         buttonBox.setAlignment(Pos.CENTER);// Căn giữa các nút trong HBox
         buttonBox.setSpacing(30);
         buttonBox.getChildren().addAll(addToCartButton, buyNowButton);
