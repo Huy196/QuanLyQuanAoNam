@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.lang.annotation.Inherited;
 import java.util.regex.Pattern;
 
 public class Sign extends Login {
@@ -23,6 +24,8 @@ public class Sign extends Login {
     private Button signButton;
     @FXML
     private Button backButton;
+    @FXML
+    private TextField DiaChi;
 
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     private static final String PHONE_REGEX = "^\\d{10}$";
@@ -41,8 +44,9 @@ public class Sign extends Login {
         String phoneNumber = PhoneNumber.getText();
         String password = Password.getText();
         String confirmPassword = ConfirmPassword.getText();
+        String diaChi = DiaChi.getText();
 
-        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phoneNumber.isEmpty()) {
+        if (fullName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phoneNumber.isEmpty() || diaChi.isEmpty()) {
             showAlert("Không được để chống các mục");
         } else if (fullName.length() < 8) {
             showAlert("Tên không được dưới 8 kí tự");
@@ -57,13 +61,14 @@ public class Sign extends Login {
         } else {
             showAlert("Đăng kí thành công");
             Login login = new Sign();
-            login.getUsers().add(new String[]{fullName, password, email, phoneNumber,User});
+            login.getUsers().add(new String[]{fullName, password, email, phoneNumber,diaChi,User});
 
             FullName.clear();
             Password.clear();
             Email.clear();
             PhoneNumber.clear();
             ConfirmPassword.clear();
+            DiaChi.clear();
 
             handleLogin();
         }

@@ -40,7 +40,7 @@
 
                 <HBox alignment="CENTER" spacing="10">
                     <Label style="-fx-text-fill: black; -fx-font-size: 15" text="Address :" />
-                    <TextField prefHeight="31.0" prefWidth="202.0" promptText="Nhap dia chi" style="-fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-font-size: 15" />
+                    <TextField fx:id="DiaChi" prefHeight="31.0" prefWidth="202.0" promptText="Nhap dia chi" style="-fx-effect: dropshadow(gaussian,rgba(0,0,0,0.6),10,0,0,0); -fx-font-size: 15" />
 
                 </HBox>
 

@@ -5,3 +5,4 @@ ve,100.0,3,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 3
 Lo,100.0,3,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 3
 ve,100.0,3,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 3
 Lo,100.0,2,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 2
+ve,100.0,2,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 2
