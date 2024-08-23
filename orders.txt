@@ -1,0 +1,30 @@
+
+
+
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Tên Sản Phẩm: Áo phông GoodBoy, Giá: $150.00, Số lượng: 1, Tổng: $150.00, Trạng thái: Chờ xác nhận
+--------------------------------------------------------------------------------
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Tên Sản Phẩm: Áo phông GoodBoy, Giá: $150.00, Số lượng: 1, Tổng: $150.00, Trạng thái: Chờ xác nhận
+--------------------------------------------------------------------------------
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Tên Sản Phẩm: Áo phông đen, Giá: $199.90, Số lượng: 1, Tổng: $199.90, Trạng thái: Chờ xác nhận
+--------------------------------------------------------------------------------

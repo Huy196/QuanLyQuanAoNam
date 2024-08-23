@@ -1,14 +1,15 @@
 package com.example.login;
 
+import Entity.Customer;
 import Entity.Product;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import javax.security.auth.callback.Callback;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,16 +142,39 @@ public class CartController {
         }
     }
     @FXML
-    private void buySelectedProducts(){
+
+    private void buySelectedProducts() {
         boolean hasSelectedProduct = false;
-        // Kiểm tra xem có ít nhất một sản phẩm được chọn
+        List<OrderItem> orderItems = new ArrayList<>();
+        Customer customer = getCustomerInformation();
+
+        // Kiểm tra xem có ít nhất một sản phẩm được chọn và chuẩn bị dữ liệu
         for (HBox hBox : hboxProductMap.keySet()) {
             CheckBox checkBox = (CheckBox) hBox.getChildren().get(0);
             if (checkBox.isSelected()) {
                 hasSelectedProduct = true;
-                break;
+                Product product = hboxProductMap.get(hBox);
+                int quantity = ((Spinner<Integer>) hBox.getChildren().get(4)).getValue();
+                double total = product.getPrice() * quantity;
+
+                // Thay đổi trạng thái mặc định ở đây
+                String status = "Chờ xác nhận"; // Trạng thái mặc định
+
+                orderItems.add(new OrderItem(product.getName(), product.getPrice(), quantity, total, status));
+
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("purchased_products.txt", true))) {
+                    writer.write(product.toString() + " _ Số lượng: " + quantity + "\n");
+                } catch (IOException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Không thể lưu thông tin mua hàng: " + e.getMessage());
+                    alert.showAndWait();
+                }
+                removeProductFromList(product);
             }
         }
+
         if (!hasSelectedProduct) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Thông báo");
@@ -159,23 +183,52 @@ public class CartController {
             alert.showAndWait();
             return;
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("purchased_products.txt",true))) {
-            for (HBox hBox: new ArrayList<>(hboxProductMap.keySet())) {
-                CheckBox checkBox = (CheckBox) hBox.getChildren().get(0);
-                Product product = hboxProductMap.get(hBox);
-                if (checkBox.isSelected()){
-                    int quantity = ((Spinner<Integer>) hBox.getChildren().get(4)).getValue();
-                    writer.write(product.toString() + " _ Số lượng: " + quantity + "\n");
-                    removeProductFromList(product);
-                }
-            }
-        }catch (IOException e){
+
+        // Hiển thị hóa đơn
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("order_summary.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            OrderSummaryController controller = loader.getController();
+            controller.setInvoiceDetails(customer, orderItems);
+
+            stage.setTitle("Hóa Đơn");
+            stage.show();
+        } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Lỗi");
             alert.setHeaderText(null);
-            alert.setContentText("Không thể lưu thông tin mua hàng: " + e.getMessage());
+            alert.setContentText("Không thể hiển thị hóa đơn: " + e.getMessage());
             alert.showAndWait();
         }
+
+        // Lưu chi tiết đơn hàng vào order.txt
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt", true))) {
+            writer.write("Thông tin khách hàng:\n");
+            writer.write("Tên: " + customer.getName() + "\n");
+            writer.write("Email: " + customer.getEmail() + "\n");
+            writer.write("SĐT: " + customer.getPhoneNumber() + "\n");
+            writer.write("Địa chỉ: " + customer.getAddress() + "\n\n");
+            writer.write("Chi tiết đơn hàng:\n");
+
+            for (OrderItem item : orderItems) {
+                writer.write(item.toString() + "\n");
+            }
+
+            writer.write("--------------------------------------------------------------------------------\n");
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Không thể lưu thông tin đơn hàng: " + e.getMessage());
+            alert.showAndWait();
+        }
+
+        // Cập nhật giao diện và xóa giỏ hàng
+        cartListView.getItems().clear(); // Xóa tất cả các mục trong ListView
+        cart.clear(); // Xóa tất cả các sản phẩm trong danh sách giỏ hàng
+        hboxProductMap.clear(); // Xóa tất cả các ánh xạ trong Map
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Giỏ hàng");
         alert.setHeaderText(null);
@@ -183,8 +236,45 @@ public class CartController {
         alert.showAndWait();
 
         updateTotalCartLabel();
+
+        // Đóng giỏ hàng
+        if (stage != null) {
+            stage.close();
+        }
     }
 
+
+    private Customer getCustomerInformation() {
+        String filePath = "user_info.txt";
+        String name = "";
+        String email = "";
+        String phoneNumber = "";
+        String address = "";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Tên đăng nhập: ")) {
+                    name = line.substring("Tên đăng nhập: ".length()).trim();
+                } else if (line.startsWith("Email: ")) {
+                    email = line.substring("Email: ".length()).trim();
+                } else if (line.startsWith("SĐT: ")) {
+                    phoneNumber = line.substring("SĐT: ".length()).trim();
+                } else if (line.startsWith("Địa chỉ: ")) {
+                    address = line.substring("Địa chỉ: ".length()).trim();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Không thể đọc thông tin khách hàng: " + e.getMessage());
+            alert.showAndWait();
+        }
+
+        return new Customer(name, email, address, phoneNumber);
+    }
     public void setStage(Stage stage) {
         this.stage = stage;
     }

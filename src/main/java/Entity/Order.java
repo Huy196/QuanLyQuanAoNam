@@ -1,7 +1,5 @@
 package Entity;
 
-import java.util.List;
-
 public class Order {
 
     private Customer customer;
@@ -17,8 +15,6 @@ public class Order {
         this.totalAmount = totalAmount;
         this.status = status;
     }
-
-
 
     public Customer getCustomer() {
         return customer;

@@ -1,12 +1,12 @@
 package com.example.login;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -21,6 +21,8 @@ public class UserInfoController {
     private Button closeButton;
     @FXML
     private Button Sign_in;
+    @FXML
+    private Button viewOrderHistoryButton;  // Thêm thuộc tính cho nút "Xem Lịch Sử Đơn Hàng"
 
     private static final String USER_INFO_FILE = "user_info.txt";
     private Map<String, TextField> fieldMap = new HashMap<>();
@@ -76,6 +78,21 @@ public class UserInfoController {
         } catch (IOException e) {
             e.printStackTrace();
             showErrorMessage("Không thể đọc thông tin người dùng.");
+        }
+    }
+
+    @FXML
+    private void handleViewOrderHistory() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("order_history.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            stage.setTitle("Lịch Sử Đơn Hàng");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();  // Handle the exception as needed
+            showErrorMessage("Không thể hiển thị lịch sử đơn hàng.");
         }
     }
 

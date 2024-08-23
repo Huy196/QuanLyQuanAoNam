@@ -2,16 +2,12 @@ package com.example.login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -24,6 +20,7 @@ public class HomeController {
 
     @FXML
     private ImageView imageView;
+
     // Phương thức xử lý sự kiện
     @FXML
     private void showHome() {
@@ -41,6 +38,7 @@ public class HomeController {
             System.out.println("Đang hiển thị Trang chủ");
         }
     }
+
     @FXML
     private void showProducts() {
         try {
@@ -91,7 +89,18 @@ public class HomeController {
 
     @FXML
     private void showInvoiceDetails() {
-        // Mã để hiển thị chi tiết hóa đơn
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("invoice_admin.fxml"));
+            Parent invoiceDetailsView = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(invoiceDetailsView);
+
+            System.out.println("Đang hiển thị Chi tiết hóa đơn");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi khi hiển thị chi tiết hóa đơn.");
+        }
         System.out.println("Đang hiển thị Chi tiết hóa đơn");
     }
 

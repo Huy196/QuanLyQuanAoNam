@@ -1,8 +1,13 @@
-Lo,100.0,13,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 1
-ve,100.0,33,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 1
-ve,100.0,3,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 3
-áo dài,200.0,3,file:/D:/download.jpg _ Số lượng: 3
-Lo,100.0,3,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 3
-ve,100.0,3,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 3
-Lo,100.0,2,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 2
-ve,100.0,2,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 2
+Áo phông đen,199.9,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1
+Áo phông đen,199.9,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1
+Áo phông đen,199.9,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1
+Áo sơ mi,299.9,99,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_1.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông đen,199.9,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1
+Áo phông đen,199.9,48,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông GoodBoy,150.0,24,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_3.jpg _ Số lượng: 1
+Áo phông đen,199.9,49,file:/C:/Users/ADMON/IdeaProjects/QuanLyQuanAoNam/src/main/resources/ImageProduct/aonam_2.jpg _ Số lượng: 1

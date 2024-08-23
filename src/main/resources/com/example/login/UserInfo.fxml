@@ -9,6 +9,7 @@
         <VBox fx:id="userInfoVBox" alignment="CENTER" spacing="20"/>
     </GridPane>
     <HBox alignment="CENTER" spacing="30">
+        <Button fx:id="viewOrderHistoryButton" onAction="#handleViewOrderHistory" text="Xem Lịch Sử Đơn Hàng"/>
         <Button fx:id="closeButton" onAction="#handleClose" text="CANCEL"/>
         <Button fx:id="Sign_in" onAction="#handleSign" prefHeight="26.0" prefWidth="85.0" text="LOG__OUT"/>
     </HBox>
