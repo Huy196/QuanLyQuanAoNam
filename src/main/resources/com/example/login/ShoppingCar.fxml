@@ -24,11 +24,20 @@
                         <HBox/>
 
 
+
+
+
                         <HBox minWidth="320" spacing="10" style="-fx-padding: 25 0 0 0 ">
                             <TextField fx:id="searchProduct" prefHeight="26.0" prefWidth="240.0"
                                        style="-fx-background-color: lightgrey"/>
-                            <Button mnemonicParsing="false" text="Tìm kiếm"/>
+                            <Button fx:id="searchButton" mnemonicParsing="false" text="Tìm kiếm" />
                         </HBox>
+
+
+
+
+
+
                         <HBox style="-fx-padding: 10 0 0 0 " spacing="25">
 
 
@@ -57,11 +66,11 @@
 
                     <HBox alignment="CENTER" minHeight="40" prefHeight="50.0" prefWidth="711.0" spacing="220"
                           style=" -fx-padding: 0 0 0 0; -fx-background-color: #0046ab">
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Trang chủ" onAction="#handleHome"/>
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Áo" onAction="#handleShirts"/>
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần" onAction="#handlePants"/>
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Đồ bộ" onAction="#handleSuits"/>
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Phụ Kiện" onAction="#handleAccessories"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Trang chủ"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Áo"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần" />
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Đồ bộ" />
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Phụ Kiện"/>
                     </HBox>
                 </VBox>
             </top>

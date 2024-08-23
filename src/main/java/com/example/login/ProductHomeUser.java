@@ -43,60 +43,74 @@ public class ProductHomeUser {
     @FXML
     private VBox productDisplayArea;
 
-    @FXML
-    private Button purchaseButton; // Nút để xử lý việc mua hàng
-
     private List<Product> cart = new ArrayList<>(); // Giỏ hàng
+
     private Stage detailStage; // Tham chiếu đến hộp thoại chi tiết sản phẩm
+
+    private List<Product> productList = new ArrayList<>();
+
+    @FXML
+    private TextField searchProduct; // TextField để nhập từ khóa tìm kiếm
+
+    @FXML
+    private Button searchButton; // Nút "Tìm kiếm"
+
 
     @FXML
     private void initialize() {
         loadProductsFromFile();
-
-//        purchaseButton.setOnAction(e -> handlePurchase());
-
-
-    }
-    @FXML
-    private void handleHome() {
-        displayProducts("Trang chủ");
+        searchButton.setOnAction(event -> handleSearch());
+        displayAllProducts();
     }
 
-    @FXML
-    private void handleShirts() {
-        displayProducts("Áo");
+    private void loadProductsFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("project.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Product product = Product.fromString(line);
+                productList.add(product); // Thêm sản phẩm vào danh sách
+            }
+            displayAllProducts(); // Hiển thị tất cả sản phẩm sau khi load xong
+        } catch (IOException e) {
+            System.err.println("Không thể tải sản phẩm: " + e.getMessage());
+        }
+    }
+    private void displayAllProducts() {
+        productContainer.getChildren().clear(); // Xóa các sản phẩm cũ trên giao diện
+        for (Product product : productList) {
+            addProductToDisplay(product); // Thêm từng sản phẩm vào giao diện
+        }
     }
 
-    @FXML
-    private void handlePants() {
-        displayProducts("Quần");
+    private void handleSearch() {
+        String searchText = searchProduct.getText().toLowerCase(); // Lấy từ khóa tìm kiếm
+
+        // Lọc danh sách sản phẩm dựa trên từ khóa
+        List<Product> filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (product.getName().toLowerCase().contains(searchText)) {
+                filteredList.add(product);
+            }
+        }
+
+        // Kiểm tra nếu danh sách lọc trống
+        if (filteredList.isEmpty()) {
+            // Hiển thị thông báo alert nếu không tìm thấy sản phẩm
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không có sản phẩm phù hợp với từ khóa tìm kiếm!");
+            alert.showAndWait();
+            searchProduct.clear();
+            displayAllProducts();
+        }else {
+            // Nếu tìm thấy sản phẩm, cập nhật giao diện với các sản phẩm đã lọc
+            productContainer.getChildren().clear(); // Xóa các sản phẩm cũ khỏi màn hình
+            for (Product product : filteredList) {
+                addProductToDisplay(product); // Hiển thị các sản phẩm đã lọc
+            }
+        }
     }
-
-    @FXML
-    private void handleSuits() {
-        displayProducts("Đồ bộ");
-    }
-
-    @FXML
-    private void handleAccessories() {
-        displayProducts("Phụ Kiện");
-    }
-
-    private void displayProducts(String category) {
-        productDisplayArea.getChildren().clear();
-        // Giả sử bạn có một phương thức để lấy sản phẩm theo danh mục
-        // List<Product> products = getProductsByCategory(category);
-        // for (Product product : products) {
-        //     // Hiển thị sản phẩm
-        //     productDisplayArea.getChildren().add(createProductView(product));
-        // }
-
-        // Dưới đây là một ví dụ đơn giản để hiển thị tên danh mục
-        Label categoryLabel = new Label("Sản phẩm trong danh mục: " + category);
-        productDisplayArea.getChildren().add(categoryLabel);
-    }
-
-
 
     @FXML
     private void handleFacebookLinkAction() {
@@ -106,27 +120,6 @@ public class ProductHomeUser {
             System.out.println("HostServices is null");
         }
     }
-
-    @FXML
-    public void setHostServices(HostServices hostServices) {
-        this.hostServices = hostServices;
-    }
-
-
-
-
-    private void loadProductsFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("project.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Product product = Product.fromString(line);
-                addProductToDisplay(product);
-            }
-        } catch (IOException e) {
-            System.err.println("Không thể tải sản phẩm: " + e.getMessage());
-        }
-    }
-
     @FXML
     private void handleCartClick() {
         try {
@@ -163,8 +156,6 @@ public class ProductHomeUser {
             alert.showAndWait();
         }
     }
-    // Đọc thông tin người dùng từ file
-
     private void addProductToDisplay(Product product) {
         ImageView imageView = new ImageView(product.getImage());
         imageView.setFitWidth(200);
@@ -189,9 +180,6 @@ public class ProductHomeUser {
         priceText.setStyle("-fx-font-size: 14px;");
         priceText.setFill(Color.RED);
 
-//        Text quantityText = new Text("Số lượng: " + product.getQuantity());
-//        quantityText.setStyle("-fx-font-size: 14px;");
-
         Button detailsButton = new Button("Chi tiết");
         detailsButton.setOnAction(e -> showProductDetails(product));
         detailsButton.setStyle("-fx-font-size: 14px; -fx-background-color: #ff7337; -fx-text-fill: white");
@@ -203,15 +191,11 @@ public class ProductHomeUser {
 
         productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
-
-
     }
-
     private void addToCart(Product product, int quantity) {
         for (int i = 0; i < quantity; i++) {
             cart.add(product);
         }
-
         product.setQuantity(product.getQuantity() - quantity);// số lượng sản phẩm giảm sau mỗi lần mua
 
         try (FileWriter writer = new FileWriter("cart.txt", true)) {
@@ -239,9 +223,7 @@ public class ProductHomeUser {
             alert.showAndWait();
             return;
         }
-
         // Tại đây, bạn có thể triển khai logic để xử lý việc mua hàng
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mua hàng");
         alert.setHeaderText(null);
@@ -278,7 +260,6 @@ public class ProductHomeUser {
             detailStage.close(); // Đóng hộp thoại chi tiết sau khi mua ngay
         }
     }
-
     private void showProductDetails(Product product) {
 
         detailStage = new Stage(); // Lưu tham chiếu đến hộp thoại chi tiết
@@ -354,16 +335,6 @@ public class ProductHomeUser {
         detailStage.initModality(Modality.APPLICATION_MODAL);
         detailStage.show();
     }
-//    @FXML
-//    private void openCartWindow() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/login/Cart.fxml"));
-//        Parent root = loader.load();
-//        Stage stage = new Stage();
-//        stage.setTitle("Giỏ hàng");
-//        stage.setScene(new Scene(root));
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        stage.show();
-//    }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
