@@ -1,12 +1,13 @@
 package com.example.login;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -21,9 +22,12 @@ public class UserInfoController {
     private Button closeButton;
     @FXML
     private Button Sign_in;
+    @FXML
+    private Button viewOrderHistoryButton;  // Thêm thuộc tính cho nút "Xem Lịch Sử Đơn Hàng"
 
     private static final String USER_INFO_FILE = "user_info.txt";
     private Map<String, TextField> fieldMap = new HashMap<>();
+
     @FXML
     public void initialize() {
         loadUserInfo();
@@ -80,6 +84,21 @@ public class UserInfoController {
     }
 
     @FXML
+    private void handleViewOrderHistory () throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("order_history.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Lịch Sử Đơn Hàng");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
+    }
+
+
+    @FXML
     private void handleClose() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
@@ -108,6 +127,7 @@ public class UserInfoController {
             }
         }
     }
+
     private void saveUpdatedUserInfo() {
         try (FileWriter fileWriter = new FileWriter("user_info.txt", false);
              PrintWriter printWriter = new PrintWriter(fileWriter)) {
@@ -131,6 +151,7 @@ public class UserInfoController {
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 14px;");
         userInfoVBox.getChildren().add(errorLabel);
     }
+
     private void showSuccessMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

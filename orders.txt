@@ -1,0 +1,18 @@
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Chờ thanh toán, Ngày giờ: 24/08/2024 11:05:34
+--------------------------------------------------------------------------------
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Chờ thanh toán, Ngày giờ: 24/08/2024 12:56:32
+--------------------------------------------------------------------------------

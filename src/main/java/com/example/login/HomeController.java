@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -24,6 +25,7 @@ public class HomeController {
 
     @FXML
     private ImageView imageView;
+
     // Phương thức xử lý sự kiện
     @FXML
     private void showHome() {
@@ -41,6 +43,7 @@ public class HomeController {
             System.out.println("Đang hiển thị Trang chủ");
         }
     }
+
     @FXML
     private void showProducts() {
         try {
@@ -91,28 +94,40 @@ public class HomeController {
 
     @FXML
     private void showInvoiceDetails() {
-        // Mã để hiển thị chi tiết hóa đơn
-        System.out.println("Đang hiển thị Chi tiết hóa đơn");
+        try {
+            // Tải nội dung của order_list.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin_order.fxml"));
+            Parent orderListView = loader.load();
+
+            // Thay thế nội dung hiện tại của contentArea bằng order_list.fxml
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(orderListView);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi khi hiển thị giao diện Đơn hàng.");
+        } finally {
+            System.out.println("Đang hiển thị  Đơn hàng ");
+        }
     }
 
     @FXML
-    private void logout() {
-        // Xác nhận đăng xuất
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có muốn đăng xuất?", ButtonType.YES, ButtonType.NO);
-        alert.setTitle("Đăng xuất");
-        alert.setHeaderText(null);
+        private void logout () {
+            // Xác nhận đăng xuất
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có muốn đăng xuất?", ButtonType.YES, ButtonType.NO);
+            alert.setTitle("Đăng xuất");
+            alert.setHeaderText(null);
 
 
-        if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
-            System.out.println("Đang đăng xuất...");
-            try {
-                Main.changeScene("Login.fxml");
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
+                System.out.println("Đang đăng xuất...");
+                try {
+                    Main.changeScene("Login.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+
+
         }
-
-
     }
-}
 

@@ -1,71 +1,101 @@
 package Entity;
 
-import java.util.List;
+import javafx.beans.property.*;
 
 public class Order {
 
-    private Customer customer;
-    private Product product;
-    private int quantity;
-    private double totalAmount;
-    private String status;
+    private final StringProperty customerName;
+    private final StringProperty productName;
+    private final DoubleProperty price;
+    private final IntegerProperty quantity;
+    private final DoubleProperty totalAmount;
+    private final StringProperty status;
 
-    public Order(Customer customer, Product product, int quantity, double totalAmount, String status) {
-        this.customer = customer;
-        this.product = product;
-        this.quantity = quantity;
-        this.totalAmount = totalAmount;
-        this.status = status;
+    public Order(Customer customer, Product product, int quantity, String status) {
+        this.customerName = new SimpleStringProperty(customer.getName());
+        this.productName = new SimpleStringProperty(product.getName());
+        this.price = new SimpleDoubleProperty(product.getPrice());
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.totalAmount = new SimpleDoubleProperty(product.getPrice() * quantity);
+        this.status = new SimpleStringProperty(status);
     }
 
-
-
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerName() {
+        return customerName.get();
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerName(String customerName) {
+        this.customerName.set(customerName);
     }
 
-    public Product getProduct() {
-        return product;
+    public StringProperty customerNameProperty() {
+        return customerName;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public String getProductName() {
+        return productName.get();
+    }
+
+    public void setProductName(String productName) {
+        this.productName.set(productName);
+    }
+
+    public StringProperty productNameProperty() {
+        return productName;
+    }
+
+    public double getPrice() {
+        return price.get();
+    }
+
+    public void setPrice(double price) {
+        this.price.set(price);
+    }
+
+    public DoubleProperty priceProperty() {
+        return price;
     }
 
     public int getQuantity() {
-        return quantity;
+        return quantity.get();
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.quantity.set(quantity);
+        setTotalAmount(price.get() * quantity); // Cập nhật lại tổng số tiền khi số lượng thay đổi
+    }
+
+    public IntegerProperty quantityProperty() {
+        return quantity;
     }
 
     public double getTotalAmount() {
-//        return totalAmount;
-        return product.getPrice()* quantity;
+        return totalAmount.get();
     }
 
     public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+        this.totalAmount.set(totalAmount);
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public DoubleProperty totalAmountProperty() {
+        return totalAmount;
     }
 
     public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
+    public StringProperty statusProperty() {
         return status;
     }
 
     @Override
     public String toString() {
-        return "Khách hàng: " + customer.getName() + ", Sản phẩm: " + product.getName() + ", Số lượng: " + quantity +
-                ", Tổng tiền: " + totalAmount + " VNĐ, Trạng thái: " + status;
+        return String.format("Khách hàng: %s, Sản phẩm: %s, Số lượng: %d, Tổng tiền: %.2f VNĐ, Trạng thái: %s",
+                customerName.get(), productName.get(), quantity.get(), totalAmount.get(), status.get());
     }
-
-
 }

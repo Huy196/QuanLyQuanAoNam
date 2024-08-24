@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderSummaryController">
+    <VBox spacing="10">
+        <Label fx:id="customerNameLabel" text="Tên Khách Hàng: " />
+        <Label fx:id="customerEmailLabel" text="Email: " />
+        <Label fx:id="customerPhoneLabel" text="SĐT: " />
+        <Label fx:id="customerAddressLabel" text="Địa Chỉ: " />
+        <Label fx:id="purchaseDateLabel" text="Ngày giờ mua hàng: " /> <!-- Thêm Label để hiển thị ngày giờ mua hàng -->
+    </VBox>
+    <TableView fx:id="orderTableView">
+        <columns>
+            <TableColumn text="Tên Sản Phẩm" fx:id="productNameColumn" />
+            <TableColumn text="Giá" fx:id="priceColumn" />
+            <TableColumn text="Số Lượng" fx:id="quantityColumn" />
+            <TableColumn text="Tổng" fx:id="totalColumn" />
+            <TableColumn text="Trạng Thái" fx:id="statusColumn" />  <!-- Thêm cột trạng thái -->
+        </columns>
+    </TableView>
+    <Button fx:id="totalAmountButton" layoutX="10" layoutY="60" text="Tổng cộng: $" />
+    <Button fx:id="closeButton" text="Đóng" layoutX="350" layoutY="350" onAction="#handleClose" />
+
+</VBox>

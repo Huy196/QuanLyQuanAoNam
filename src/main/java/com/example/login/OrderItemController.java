@@ -46,7 +46,7 @@ public class OrderItemController {
 
     public void setOrder(Order order) {
         this.order = order;  // Cập nhật biến order
-        productLabel.setText(order.getProduct().getName());
+        productLabel.setText(order.getProductName());
         quantityLabel.setText("Số lượng: " + order.getQuantity());
         totalAmountLabel.setText("Tổng tiền: $" + order.getTotalAmount());
         // Cập nhật trạng thái nút nếu cần

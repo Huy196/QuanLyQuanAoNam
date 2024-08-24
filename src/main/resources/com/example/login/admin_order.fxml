@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.login.AdminOrderController">
+    <children>
+        <!-- Tiêu đề -->
+        <Label text="Quản lý đơn hàng" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+        <!-- ListView để hiển thị danh sách đơn hàng -->
+        <ListView fx:id="orderHistoryListView" VBox.vgrow="ALWAYS" />
+
+        <!-- TextArea để hiển thị chi tiết đơn hàng -->
+        <TextArea fx:id="orderDetailTextArea" prefHeight="150" editable="false" wrapText="true" />
+        <Button fx:id="confirmButton" text="Duyệt Đơn" onAction="#handleConfirmButton" />
+        <Button fx:id="cancelButton" text="Hủy Đơn" onAction="#handleCancelButton" />
+    </children>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+</VBox>

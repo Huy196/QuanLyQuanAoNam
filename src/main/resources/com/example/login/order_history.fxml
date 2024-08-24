@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.login.OrderHistoryController">
+
+    <Label fx:id="customerInfoLabel" text="Customer Info" />
+    <ListView fx:id="orderHistoryListView" prefHeight="400" prefWidth="600" />
+    <TextArea fx:id="orderDetailTextArea" />
+    <!-- Hai nút thanh toán và hủy đơn -->
+<!--    <Button fx:id="payButton" text="Thanh toán" layoutX="50" layoutY="400" visible="false" />-->
+<!--    <Button fx:id="cancelButton" text="Hủy đơn" layoutX="150" layoutY="400" visible="false" />-->
+
+
+</VBox>
