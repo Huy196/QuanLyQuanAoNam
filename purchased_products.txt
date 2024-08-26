@@ -52,3 +52,4 @@ ve,100.0,33,file:/C:/Users/Dell/Downloads/6ij5m3nm.png _ Số lượng: 1
 Lo,100.0,13,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 1
 áo dài,200.0,12,file:/D:/download.jpg _ Số lượng: 1
 Lo,100.0,13,file:/C:/Users/Dell/Downloads/doxwn9qf.png _ Số lượng: 1
+mũ,150.0,19,file:/C:/Users/ADMON/OneDrive%20-%20THPT%20Hồng%20Thái/Ứng%20dụng/Ảnh/Cuộn%20Camera/IMG_1462.JPG _ Số lượng: 1
