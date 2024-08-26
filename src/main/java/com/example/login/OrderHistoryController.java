@@ -8,11 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class OrderHistoryController implements Initializable {
 
@@ -60,9 +59,25 @@ public class OrderHistoryController implements Initializable {
             if (selectedOrder != null) {
                 ObservableList<OrderItem> orderItems = parseOrderDetails(selectedOrder);
                 orderDetailTableView.setItems(orderItems);
+
+                // Xử lý hiển thị các nút dựa trên trạng thái của đơn hàng
+                if (orderItems.isEmpty()) {
+                    payButton.setVisible(false);
+                    cancelButton.setVisible(false);
+                } else {
+                    String status = orderItems.get(0).getStatus(); // Giả sử tất cả các mục đơn hàng có trạng thái giống nhau
+                    if ("Chờ thanh toán".equals(status)) {
+                        payButton.setVisible(true);
+                        cancelButton.setVisible(true);
+                    } else {
+                        payButton.setVisible(false);
+                        cancelButton.setVisible(false);
+                    }
+                }
             }
         });
     }
+
 
     @FXML
     public void refreshOrderList() {
@@ -133,43 +148,147 @@ public class OrderHistoryController implements Initializable {
 
         return orderItems;
     }
-
-
-
     @FXML
     private void handlePay() {
-        // Xử lý thanh toán
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thanh toán");
-        alert.setHeaderText(null);
-        alert.setContentText("Đơn hàng đã được thanh toán.");
-        alert.showAndWait();
-    }
+        // Lấy đơn hàng đã chọn từ ListView
+        String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
 
+        if (selectedOrder != null) {
+            ObservableList<OrderItem> allOrderItems = orderDetailTableView.getItems();
+            boolean hasPendingPayment = false;
+
+            // Kiểm tra xem đơn hàng có sản phẩm nào ở trạng thái "Chờ thanh toán" không
+            for (OrderItem orderItem : allOrderItems) {
+                if ("Chờ thanh toán".equals(orderItem.getStatus())) {
+                    hasPendingPayment = true;
+                    break;
+                }
+            }
+
+            if (hasPendingPayment) {
+                // Cập nhật trạng thái sản phẩm trong TableView
+                for (OrderItem orderItem : allOrderItems) {
+                    if ("Chờ thanh toán".equals(orderItem.getStatus())) {
+                        orderItem.setStatus("Đã thanh toán");
+                    }
+                }
+
+                // Cập nhật trạng thái đơn hàng trong ListView
+                String updatedOrder = selectedOrder.replace("Chờ thanh toán", "Đã thanh toán");
+
+                // Cập nhật trạng thái trong file
+                updateOrderStatusInFile(selectedOrder, "Đã thanh toán");
+
+                // Cập nhật ListView
+                int selectedIndex = orderHistoryListView.getSelectionModel().getSelectedIndex();
+                orderHistoryListView.getItems().set(selectedIndex, updatedOrder);
+
+                showAlert(Alert.AlertType.INFORMATION, "Thanh toán", "Đơn hàng đã được thanh toán.");
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Không có sản phẩm nào cần thanh toán.");
+            }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Vui lòng chọn một đơn hàng để thanh toán.");
+        }
+    }
     @FXML
     private void handleCancel() {
-        // Xử lý hủy đơn
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Hủy Đơn");
-        alert.setHeaderText(null);
-        alert.setContentText("Bạn có chắc chắn muốn hủy đơn hàng?");
+        // Lấy đơn hàng đã chọn từ ListView
+        String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
 
-        ButtonType confirmButton = new ButtonType("Hủy đơn");
-        ButtonType cancelButton = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+        if (selectedOrder != null) {
+            ObservableList<OrderItem> allOrderItems = orderDetailTableView.getItems();
+            boolean hasPendingCancellation = false;
 
-        alert.getButtonTypes().setAll(confirmButton, cancelButton);
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == confirmButton) {
-                // Xử lý hủy đơn
-                Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
-                confirmationAlert.setTitle("Hủy Đơn");
-                confirmationAlert.setHeaderText(null);
-                confirmationAlert.setContentText("Đơn hàng đã được hủy.");
-                confirmationAlert.showAndWait();
+            // Kiểm tra nếu có sản phẩm nào trong đơn hàng cần hủy
+            for (OrderItem orderItem : allOrderItems) {
+                if ("Chờ thanh toán".equals(orderItem.getStatus())) {
+                    hasPendingCancellation = true;
+                    break;
+                }
             }
-        });
+
+            if (hasPendingCancellation) {
+                // Hiển thị hộp thoại xác nhận hủy đơn
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Xác Nhận Hủy Đơn");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn có chắc chắn muốn hủy đơn hàng đã chọn?");
+
+                ButtonType confirmButton = new ButtonType("Hủy đơn");
+                ButtonType cancelButton = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == confirmButton) {
+                        // Cập nhật trạng thái sản phẩm trong TableView
+                        for (OrderItem orderItem : allOrderItems) {
+                            if ("Chờ thanh toán".equals(orderItem.getStatus())) {
+                                orderItem.setStatus("Đã hủy");
+                            }
+                        }
+
+                        // Cập nhật trạng thái đơn hàng trong ListView
+                        String updatedOrder = selectedOrder.replace("Chờ thanh toán", "Đã hủy");
+
+                        // Cập nhật trạng thái trong file
+                        updateOrderStatusInFile(selectedOrder, "Đã hủy");
+
+                        // Cập nhật ListView
+                        int selectedIndex = orderHistoryListView.getSelectionModel().getSelectedIndex();
+                        orderHistoryListView.getItems().set(selectedIndex, updatedOrder);
+
+                        showAlert(Alert.AlertType.INFORMATION, "Hủy Đơn", "Đơn hàng đã được hủy.");
+                    }
+                });
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Không có sản phẩm nào cần hủy.");
+            }
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Vui lòng chọn một đơn hàng để hủy.");
+        }
     }
+    private void updateOrderStatusInFile(String selectedOrder, String newStatus) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("orders.txt"));
+            StringBuilder fileContent = new StringBuilder();
+            String line;
+            boolean isInSelectedOrder = false;
+
+            // Đọc từng dòng trong file
+            while ((line = reader.readLine()) != null) {
+                // Khi bắt đầu xử lý đơn hàng được chọn
+                if (line.equals("--------------------------------------------------------------------------------")) {
+                    isInSelectedOrder = false;  // Reset biến kiểm soát khi gặp dấu phân cách
+                }
+
+                if (line.equals(selectedOrder.split("\n")[0])) {
+                    isInSelectedOrder = true; // Xác định bắt đầu xử lý đúng đơn hàng
+                }
+
+                // Nếu đúng đơn hàng và dòng chứa "Trạng thái:" thì cập nhật trạng thái
+                if (isInSelectedOrder && line.contains("Trạng thái:")) {
+                    line = line.replace("Chờ thanh toán", newStatus)
+                            .replace("Đã thanh toán", newStatus)
+                            .replace("Đã hủy", newStatus);
+                    isInSelectedOrder = false;  // Sau khi thay đổi trạng thái, không cần kiểm tra tiếp trong đơn hàng này
+                }
+
+                fileContent.append(line).append("\n");
+            }
+            reader.close();
+
+            // Ghi nội dung cập nhật vào file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt"));
+            writer.write(fileContent.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể cập nhật trạng thái đơn hàng.");
+        }
+    }
+
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
