@@ -51,6 +51,9 @@ public class OrderSummaryController {
     private Label purchaseDateLabel;  // Label để hiển thị ngày giờ mua hàng
 
     @FXML
+    private Button totalAmountLabel; // Label để hiển thị tổng tiền
+
+    @FXML
     private Button closeButton;
 
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
@@ -76,11 +79,12 @@ public class OrderSummaryController {
         orderItems.setAll(items);
 
         double total = items.stream().mapToDouble(item -> Double.parseDouble(item.getTotal().replace("$", ""))).sum();
-        totalColumn.setText("Tổng: $" + String.format("%.2f", total));
+        totalAmountLabel.setText("Tổng: $" + String.format("%.2f", total)); // Sử dụng totalAmountLabel
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String currentDateTime = LocalDateTime.now().format(formatter);
         purchaseDateLabel.setText("Ngày giờ mua hàng: " + currentDateTime);
+
     }
 
     @FXML
@@ -93,9 +97,10 @@ public class OrderSummaryController {
             showAlert("Lỗi", "Không thể lưu đơn hàng", "Có lỗi xảy ra khi lưu đơn hàng.");
         }
 
-        // Đóng giỏ hàng
+        // Đóng giỏ hàng sau khi hoàn thành
         handleClose();
     }
+
 
     private void saveOrderToFile() throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt", true))) {
@@ -134,6 +139,7 @@ public class OrderSummaryController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+
     }
 
     @FXML
@@ -142,8 +148,8 @@ public class OrderSummaryController {
             stage.close();
         }
     }
-
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
 }

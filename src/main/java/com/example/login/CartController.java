@@ -184,6 +184,7 @@ public class CartController {
 
         clearCart();
         showAlert("Giỏ hàng", "Sản phẩm đã được mua thành công.", Alert.AlertType.INFORMATION);
+        stage.close();
     }
 
     private void showOrderSummary(Customer customer, List<OrderItem> orderItems) {
@@ -193,7 +194,9 @@ public class CartController {
             stage.setScene(new Scene(loader.load()));
 
             OrderSummaryController controller = loader.getController();
+            controller.setStage(stage);  // Truyền Stage vào Controller
             controller.setInvoiceDetails(customer, orderItems);
+
 
             stage.setTitle("Hóa Đơn");
             stage.show();

@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderSummaryController">
     <VBox spacing="10">
         <Label fx:id="customerNameLabel" text="Tên Khách Hàng: " />
@@ -23,7 +24,9 @@
             <TableColumn text="Trạng Thái" fx:id="statusColumn" />  <!-- Thêm cột trạng thái -->
         </columns>
     </TableView>
-    <Button fx:id="totalAmountButton" layoutX="10" layoutY="60" text="Tổng cộng: $" />
-    <Button fx:id="closeButton" text="Đóng" layoutX="350" layoutY="350" onAction="#handleClose" />
+    <HBox spacing="10">
+        <Button fx:id="totalAmountLabel" text="Tổng cộng: $" />
+        <Button fx:id="closeButton" text="Đóng" onAction="#handleClose" />
 
+    </HBox>
 </VBox>
