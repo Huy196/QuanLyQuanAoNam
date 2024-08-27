@@ -56,6 +56,8 @@ public class OrderSummaryController {
     @FXML
     private Button closeButton;
 
+    private int orderCounter = 1; // Đếm số lượng đơn hàng để tạo mã đơn mới
+
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
     private Stage stage;
 

@@ -3,21 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.login.OrderHistoryController">
-    <Label fx:id="customerInfoLabel" text="Thông tin khách hàng" />
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderHistoryController">
+    <Label fx:id="orderHistoryLabel" prefHeight="31.0" prefWidth="91.0" text="Lịch sử đơn hàng" />
     <ListView fx:id="orderHistoryListView" prefHeight="400" prefWidth="600" />
-    <TableView fx:id="orderDetailTableView" prefHeight="300" prefWidth="600">
-        <columns>
-            <TableColumn fx:id="productNameColumn" text="Sản phẩm" />
-            <TableColumn fx:id="priceColumn" text="Giá" />
-            <TableColumn fx:id="quantityColumn" text="Số lượng" />
-            <TableColumn fx:id="totalColumn" text="Tổng cộng" />
-            <TableColumn fx:id="statusColumn" text="Trạng thái" />
-            <TableColumn fx:id="orderDateColumn" text="Ngày giờ" />
-        </columns>
-    </TableView>
-    <HBox spacing="10" alignment="center">
-        <Button fx:id="payButton" text="Thanh toán" onAction="#handlePay" />
-        <Button fx:id="cancelButton" text="Hủy đơn" onAction="#handleCancel" />
+
+    <HBox alignment="center" spacing="10">
+        <Button fx:id="payButton" onAction="#handlePay" text="Thanh toán" />
+        <Button fx:id="cancelButton" onAction="#handleCancel" text="Hủy đơn" />
     </HBox>
 </VBox>

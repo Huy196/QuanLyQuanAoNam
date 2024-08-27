@@ -1,41 +1,18 @@
-Thông tin khách hàng:
-Tên: huyentrang
-Email: huyentrang@gmail.com
-SĐT: 0829746352
-Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
-
 Chi tiết đơn hàng:
-Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 08:38:51
+ Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 08:38:51
 Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 08:38:51
 Sản phẩm: ve, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 08:38:51
 --------------------------------------------------------------------------------
-Thông tin khách hàng:
-Tên: huyentrang
-Email: huyentrang@gmail.com
-SĐT: 0829746352
-Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
-
 Chi tiết đơn hàng:
-Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Hủy, Ngày giờ: 26/08/2024 08:43:19
+ Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Hủy, Ngày giờ: 26/08/2024 08:43:19
 --------------------------------------------------------------------------------
-
-Thông tin khách hàng:
-Tên: huyentrang
-Email: huyentrang@gmail.com
-SĐT: 0829746352
-Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
-
 Chi tiết đơn hàng:
-Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: chờ thanh toán, Ngày giờ: 26/08/2024 09:08:25
+ Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Chờ thanh toán, Ngày giờ: 26/08/2024 09:08:25
 Sản phẩm: ve, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Chờ thanh toán, Ngày giờ: 26/08/2024 09:08:25
 --------------------------------------------------------------------------------
-
-Thông tin khách hàng:
-Tên: huyentrang
-Email: huyentrang@gmail.com
-SĐT: 0829746352
-Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
-
 Chi tiết đơn hàng:
-Sản phẩm: mũ, Giá: 150.00, Số lượng: 1, Tổng cộng: 150.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 09:26:00
+ Sản phẩm: mũ, Giá: 150.00, Số lượng: 1, Tổng cộng: 150.00, Trạng thái: Đã thanh toán, Ngày giờ: 26/08/2024 09:26:00
+--------------------------------------------------------------------------------
+Chi tiết đơn hàng:
+ Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Chờ xác nhận, Ngày giờ: 27/08/2024 14:47:26
 --------------------------------------------------------------------------------
