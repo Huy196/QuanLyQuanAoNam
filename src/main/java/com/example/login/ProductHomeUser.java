@@ -1,5 +1,6 @@
 package com.example.login;
 
+import Entity.CartItem;
 import Entity.Product;
 import javafx.animation.ScaleTransition;
 import javafx.application.HostServices;
@@ -192,22 +193,27 @@ public class ProductHomeUser {
         productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
     }
-    private void addToCart(Product product, int quantity) {
+    private void addToCart(Product product, Spinner<Integer> quantitySpinner) {
+        int quantity = quantitySpinner.getValue();
         for (int i = 0; i < quantity; i++) {
             cart.add(product);
         }
-        product.setQuantity(product.getQuantity() - quantity);// số lượng sản phẩm giảm sau mỗi lần mua
+        // Cập nhật số lượng sản phẩm còn lại trong danh sách sản phẩm
+        product.setQuantity(product.getQuantity() - quantity);
+        product.setQuantity(quantity);
+
 
         try (FileWriter writer = new FileWriter("cart.txt", true)) {
-            writer.write(product.toString() + "\n");
+            writer.write(product.toString() + "\n" );
         } catch (IOException e) {
             System.err.println("Không thể lưu vào giỏ hàng: " + e.getMessage());
         }
 
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Giỏ hàng");
         alert.setHeaderText(null);
-        alert.setContentText(product.getName() + " x" + quantity + " đã được thêm vào giỏ hàng.");
+        alert.setContentText(product.getName() + " đã được thêm vào giỏ hàng.");
         alert.showAndWait();
 
         if (detailStage != null) {
@@ -233,33 +239,7 @@ public class ProductHomeUser {
         cart.clear(); // Xóa giỏ hàng sau khi mua
     }
 
-//    private void buyNow(Product product, ComboBox<String> sizeComboBox, int quantity) {
-//        String selectedSize = sizeComboBox.getValue();
-//        if (selectedSize == null) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Lỗi chọn kích cỡ");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Bạn cần chọn kích cỡ trước khi mua hàng.");
-//            alert.showAndWait();
-//            return;
-//        }
-//
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Mua ngay");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Bạn đã chọn mua ngay " + quantity + " sản phẩm: " + product.getName() +
-//                ".\nGiá: $" + product.getPrice()*quantity + "\nKích cỡ: " + selectedSize);
-//        alert.showAndWait();
-//
-//        // Cập nhật kích cỡ cho sản phẩm
-//        product.setSizes(Collections.singletonList(selectedSize));
-//        addToCart(product, quantity); // Thêm sản phẩm vào giỏ hàng
-//        handlePurchase(); // Xử lý mua hàng
-//
-//        if (detailStage != null) {
-//            detailStage.close(); // Đóng hộp thoại chi tiết sau khi mua ngay
-//        }
-//    }
+
     private void showProductDetails(Product product) {
 
         detailStage = new Stage(); // Lưu tham chiếu đến hộp thoại chi tiết
@@ -312,7 +292,7 @@ public class ProductHomeUser {
 
         // Tạo các nút
         Button addToCartButton = new Button("Thêm vào giỏ hàng");
-        addToCartButton.setOnAction(e -> addToCart(product, quantitySpinner.getValue()));
+        addToCartButton.setOnAction(e -> addToCart(product, quantitySpinner));
         addToCartButton.setStyle("-fx-background-color: #ff7337; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
 //        Button buyNowButton = new Button("Mua ngay");

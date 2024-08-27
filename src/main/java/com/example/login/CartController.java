@@ -64,7 +64,7 @@ public class CartController {
         Label totalLabel = new Label();
         updateTotalLabel(totalLabel, product);
 
-        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),1);
+        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),product.getQuantity());
         quantitySpinner.setEditable(true);
         quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             product.setQuantity(newValue);
