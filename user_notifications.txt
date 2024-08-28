@@ -1,0 +1,41 @@
+Thông báo: Đơn hàng đã được xác nhận.
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: ve, Giá: 100.00, Số lượng: 2, Tổng cộng: 200.00, Trạng thái: Chờ thanh toán, Ngày giờ: 27/08/2024 13:14:19
+Sản phẩm: ve, Giá: 100.00, Số lượng: 2, Tổng cộng: 200.00, Trạng thái: Chờ thanh toán, Ngày giờ: 27/08/2024 13:14:19
+--------------------------------------------------------------------------------
+Thông báo: Đơn hàng đã được xác nhận.
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Chờ thanh toán, Ngày giờ: 28/08/2024 14:18:58
+--------------------------------------------------------------------------------
+Thông báo: Đơn hàng đã được xác nhận.
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: áo dài, Giá: 200.00, Số lượng: 1, Tổng cộng: 200.00, Trạng thái: Chờ thanh toán, Ngày giờ: 28/08/2024 14:20:02
+--------------------------------------------------------------------------------
+Thông báo: Đơn hàng đã bị hủy.
+Thông tin khách hàng:
+Tên: huyentrang
+Email: huyentrang@gmail.com
+SĐT: 0829746352
+Địa chỉ: 18-Cửa Đình - Tây Đằng - Ba Vì
+
+Chi tiết đơn hàng:
+Sản phẩm: Lo, Giá: 100.00, Số lượng: 1, Tổng cộng: 100.00, Trạng thái: Hủy, Ngày giờ: 28/08/2024 14:24:33
+--------------------------------------------------------------------------------

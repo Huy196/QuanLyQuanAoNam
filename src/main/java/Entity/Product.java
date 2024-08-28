@@ -16,6 +16,7 @@ public class Product implements Serializable {
     private final DoubleProperty price;
     private final IntegerProperty quantity;
     private final ObjectProperty<Image> image;
+    private int selectedQuantity;
     private String description;
     private List<String> sizes;
 
@@ -27,6 +28,13 @@ public class Product implements Serializable {
     }
 
 
+    public int getSelectedQuantity() {
+        return selectedQuantity;
+    }
+
+    public void setSelectedQuantity(int selectedQuantity) {
+        this.selectedQuantity = selectedQuantity;
+    }
 
     public String getDescription() {
         return description;
@@ -132,5 +140,6 @@ public class Product implements Serializable {
         imageView.setPreserveRatio(true);
         return imageView;
     }
+
 
 }

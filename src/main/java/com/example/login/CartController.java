@@ -64,7 +64,9 @@ public class CartController {
         Label totalLabel = new Label();
         updateTotalLabel(totalLabel, product);
 
-        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),product.getQuantity());
+
+        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),1);
+        quantitySpinner.getValue();
         quantitySpinner.setEditable(true);
         quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             product.setQuantity(newValue);
@@ -78,6 +80,17 @@ public class CartController {
             updateTotalCartLabel();
         });
 
+//         Tạo ComboBox cho việc chọn kích cỡ
+        ComboBox<String> sizeComboBox = new ComboBox<>();
+        List<String> sizes = product.getSizes();
+        if (sizes == null || sizes.isEmpty()) {
+            sizeComboBox.getItems().addAll("S", "M", "L"); // Giá trị mặc định nếu sizes rỗng
+        } else {
+            sizeComboBox.getItems().addAll(sizes);
+        }
+        sizeComboBox.setPromptText("Chọn kích cỡ");
+
+
         Button removeButton = new Button("Xóa");
 
         removeButton.setOnAction(e -> {
@@ -85,7 +98,7 @@ public class CartController {
             updateTotalCartLabel();
         });
         HBox hbox = new HBox(30);
-        hbox.getChildren().addAll(selectCheckBox,imageView, nameLabel, priceLabel, quantitySpinner, removeButton);
+        hbox.getChildren().addAll(selectCheckBox,imageView, nameLabel, priceLabel, quantitySpinner,sizeComboBox,totalLabel, removeButton);
         cartListView.getItems().add(hbox);
 
         hboxProductMap.put(hbox, product);
@@ -183,7 +196,7 @@ public class CartController {
         showOrderSummary(customer, orderItems);
 
         clearCart();
-        showAlert("Giỏ hàng", "Sản phẩm đã được mua thành công.", Alert.AlertType.INFORMATION);
+        showAlert("Giỏ hàng", "Đã đặt hàng thành công.", Alert.AlertType.INFORMATION);
         stage.close();
     }
 

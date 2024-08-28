@@ -49,16 +49,10 @@ public class OrderItemController {
         productLabel.setText(order.getProductName());
         quantityLabel.setText("Số lượng: " + order.getQuantity());
         totalAmountLabel.setText("Tổng tiền: $" + order.getTotalAmount());
-        // Cập nhật trạng thái nút nếu cần
         statusLabel.setText(order.getStatus());
 
         paidButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
         cancelButton.setVisible(order.getStatus().equals("Chờ thanh toán"));
-
-//        order.statusProperty().addListener((observable, oldValue, newValue) -> {
-//            updateButtonStatus();  // Cập nhật trạng thái các nút khi trạng thái đơn hàng thay đổi
-//        });
-
     }
 
     private void handlePaidAction() {

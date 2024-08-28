@@ -1,8 +1,6 @@
 package com.example.login;
 
-import Entity.CartItem;
 import Entity.Product;
-import javafx.animation.ScaleTransition;
 import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,24 +9,22 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductHomeUser {
+
     @FXML
     private ImageView logo;
     @FXML
@@ -193,22 +189,18 @@ public class ProductHomeUser {
         productBox.getChildren().addAll(imageView, nameText, priceText, detailsButton);
         productContainer.getChildren().add(productBox);
     }
-    private void addToCart(Product product, Spinner<Integer> quantitySpinner) {
-        int quantity = quantitySpinner.getValue();
-        for (int i = 0; i < quantity; i++) {
-            cart.add(product);
-        }
-        // Cập nhật số lượng sản phẩm còn lại trong danh sách sản phẩm
-        product.setQuantity(product.getQuantity() - quantity);
-        product.setQuantity(quantity);
 
-
+    private void addToCart(Product product) {
+//        int quantity = quantitySpinner.getValue();
+//        for (int i = 0; i < quantity; i++) {
+//            cart.add(product);
+//        }
         try (FileWriter writer = new FileWriter("cart.txt", true)) {
             writer.write(product.toString() + "\n" );
+
         } catch (IOException e) {
             System.err.println("Không thể lưu vào giỏ hàng: " + e.getMessage());
         }
-
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Giỏ hàng");
@@ -233,7 +225,7 @@ public class ProductHomeUser {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mua hàng");
         alert.setHeaderText(null);
-        alert.setContentText("Bạn đã mua thành công " + cart.size() + " sản phẩm.");
+        alert.setContentText("Bạn đã đặt hàng thành công " + cart.size() + " sản phẩm.");
         alert.showAndWait();
 
         cart.clear(); // Xóa giỏ hàng sau khi mua
@@ -277,22 +269,22 @@ public class ProductHomeUser {
         descriptionText.setStyle("-fx-font-size: 14px;");
 
         // Tạo ComboBox cho việc chọn kích cỡ
-        ComboBox<String> sizeComboBox = new ComboBox<>();
-        List<String> sizes = product.getSizes();
-        if (sizes == null || sizes.isEmpty()) {
-            sizeComboBox.getItems().addAll("S", "M", "L"); // Giá trị mặc định nếu sizes rỗng
-        } else {
-            sizeComboBox.getItems().addAll(sizes);
-        }
-        sizeComboBox.setPromptText("Chọn kích cỡ");
+//        ComboBox<String> sizeComboBox = new ComboBox<>();
+//        List<String> sizes = product.getSizes();
+//        if (sizes == null || sizes.isEmpty()) {
+//            sizeComboBox.getItems().addAll("S", "M", "L"); // Giá trị mặc định nếu sizes rỗng
+//        } else {
+//            sizeComboBox.getItems().addAll(sizes);
+//        }
+//        sizeComboBox.setPromptText("Chọn kích cỡ");
 
         // Tạo Spinner cho việc chọn số lượng
-        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
-        quantitySpinner.setPrefWidth(100);
+//        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
+//        quantitySpinner.setPrefWidth(100);
 
         // Tạo các nút
         Button addToCartButton = new Button("Thêm vào giỏ hàng");
-        addToCartButton.setOnAction(e -> addToCart(product, quantitySpinner));
+        addToCartButton.setOnAction(e -> addToCart(product));
         addToCartButton.setStyle("-fx-background-color: #ff7337; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
 //        Button buyNowButton = new Button("Mua ngay");
@@ -306,7 +298,7 @@ public class ProductHomeUser {
         buttonBox.getChildren().addAll(addToCartButton);
 
         // Thêm các thành phần vào VBox chính
-        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText, sizeComboBox, descriptionText, quantitySpinner, buttonBox);
+        detailBox.getChildren().addAll(imageView, nameText, priceText, quantityText, descriptionText, buttonBox);
 
         // Hiển thị hộp thoại
         Scene scene = new Scene(detailBox);

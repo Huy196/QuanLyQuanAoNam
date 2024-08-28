@@ -1,4 +1,4 @@
-áo dài,200.0,13,file:/D:/download.jpg
 ve,100.0,34,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
-Lo,100.0,14,file:/C:/Users/Dell/Downloads/doxwn9qf.png
 mũ,150.0,20,file:/C:/Users/ADMON/OneDrive%20-%20THPT%20Hồng%20Thái/Ứng%20dụng/Ảnh/Cuộn%20Camera/IMG_1462.JPG
+Lo,100.0,14,file:/C:/Users/Dell/Downloads/doxwn9qf.png
+áo dài,200.0,13,file:/D:/download.jpg
