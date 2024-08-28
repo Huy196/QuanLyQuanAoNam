@@ -82,20 +82,25 @@ public class UserInfoController {
             showErrorMessage("Không thể đọc thông tin người dùng.");
         }
     }
-
     @FXML
-    private void handleViewOrderHistory () throws IOException {
+    private void handleViewOrderHistory() throws IOException {
         try {
+            // Tạo một cửa sổ mới để hiển thị lịch sử đơn hàng
             FXMLLoader loader = new FXMLLoader(getClass().getResource("order_history.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Lịch Sử Đơn Hàng");
-            stage.show();
+            Stage orderHistoryStage = new Stage();
+            orderHistoryStage.setScene(new Scene(loader.load()));
+            orderHistoryStage.setTitle("Lịch Sử Đơn Hàng");
+            orderHistoryStage.show();
+
+            // Đóng cửa sổ thông tin khách hàng hiện tại
+            Stage currentStage = (Stage) viewOrderHistoryButton.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception
+            showErrorMessage("Không thể mở cửa sổ lịch sử đơn hàng.");
         }
     }
+
 
 
     @FXML

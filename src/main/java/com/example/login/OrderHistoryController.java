@@ -5,12 +5,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,36 +17,23 @@ public class OrderHistoryController implements Initializable {
     private ListView<String> orderHistoryListView; // Hiển thị danh sách các đơn hàng
 
     @FXML
-    private TableView<OrderItem> orderDetailTableView; // Hiển thị chi tiết đơn hàng trong TableView
-
-    @FXML
-    private TableColumn<OrderItem, String> productNameColumn;
-    @FXML
-    private TableColumn<OrderItem, String> priceColumn;
-    @FXML
-    private TableColumn<OrderItem, Integer> quantityColumn;
-    @FXML
-    private TableColumn<OrderItem, String> totalColumn;
-    @FXML
-    private TableColumn<OrderItem, String> orderDateColumn;
-
-    @FXML
-    private TableColumn<OrderItem, String> statusColumn;
-
-    @FXML
     private Button payButton;
     @FXML
     private Button cancelButton;
 
+    @FXML
+    private Label customerNameLabel;
+    @FXML
+    private Label customerEmailLabel;
+    @FXML
+    private Label customerAddressLabel;
+    @FXML
+    private Label customerPhoneLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Cấu hình các cột cho TableView
-        productNameColumn.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
-        priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-        quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
-        totalColumn.setCellValueFactory(cellData -> cellData.getValue().totalProperty());
-        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-        statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+        // Tải thông tin khách hàng từ user_info.txt
+        loadCustomerInfo();
 
         // Tải danh sách đơn hàng khi controller được khởi tạo
         refreshOrderList();
@@ -58,12 +42,40 @@ public class OrderHistoryController implements Initializable {
         orderHistoryListView.setOnMouseClicked((MouseEvent event) -> {
             String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
             if (selectedOrder != null) {
-                ObservableList<OrderItem> orderItems = parseOrderDetails(selectedOrder);
-                orderDetailTableView.setItems(orderItems);
+                // Xử lý hiển thị các nút dựa trên trạng thái của đơn hàng
+                if (selectedOrder.contains("Chờ thanh toán")) {
+                    payButton.setVisible(true);
+                    cancelButton.setVisible(true);
+                } else {
+                    payButton.setVisible(false);
+                    cancelButton.setVisible(false);
+                }
             }
         });
     }
 
+    // Phương thức tải thông tin khách hàng từ file user_info.txt
+    private void loadCustomerInfo() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("user_info.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Tên đăng nhập:")) {
+                    customerNameLabel.setText("Tên khách hàng: " + line.split(":")[1].trim());
+                } else if (line.startsWith("Email:")) {
+                    customerEmailLabel.setText("Email: " + line.split(":")[1].trim());
+                } else if (line.startsWith("SĐT:")) {
+                    customerPhoneLabel.setText("SĐT: " + line.split(":")[1].trim());
+                } else if (line.startsWith("Địa chỉ:")) {
+                    customerAddressLabel.setText("Địa chỉ: " + line.split(":")[1].trim());
+                }
+            }
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể tải thông tin khách hàng.");
+            e.printStackTrace();
+        }
+    }
+
+    // Tải danh sách đơn hàng từ file orders.txt
     @FXML
     public void refreshOrderList() {
         try (BufferedReader reader = new BufferedReader(new FileReader("orders.txt"))) {
@@ -104,72 +116,92 @@ public class OrderHistoryController implements Initializable {
         }
     }
 
-    private ObservableList<OrderItem> parseOrderDetails(String orderText) {
-        ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
-        String[] lines = orderText.split("\n");
-        boolean inOrderDetails = false;
-
-        for (String line : lines) {
-            line = line.trim();
-            if (line.startsWith("Chi tiết đơn hàng:")) {
-                inOrderDetails = true;
-            } else if (line.startsWith("--------------------------------------------------------------------------------")) {
-                inOrderDetails = false;
-            } else if (inOrderDetails) {
-                String[] parts = line.split(", ");
-                if (parts.length == 6) {
-                    String productName = parts[0].split(": ")[1];
-                    String price = parts[1].split(": ")[1];
-                    int quantity = Integer.parseInt(parts[2].split(": ")[1]);
-                    String total = parts[3].split(": ")[1];
-                    String status = parts[4].split(": ")[1];
-                    String orderDate = parts[5].split(": ")[1];
-
-                    OrderItem item = new OrderItem(productName, price, quantity, total, status);
-                    orderItems.add(item);
-                }
-            }
-        }
-
-        return orderItems;
-    }
-
-
-
     @FXML
     private void handlePay() {
         // Xử lý thanh toán
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thanh toán");
-        alert.setHeaderText(null);
-        alert.setContentText("Đơn hàng đã được thanh toán.");
-        alert.showAndWait();
+        String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
+        if (selectedOrder != null && selectedOrder.contains("Chờ thanh toán")) {
+            // Cập nhật trạng thái đơn hàng
+            String updatedOrder = selectedOrder.replace("Chờ thanh toán", "Đã thanh toán");
+            int selectedIndex = orderHistoryListView.getSelectionModel().getSelectedIndex();
+            orderHistoryListView.getItems().set(selectedIndex, updatedOrder);
+
+            // Lưu danh sách đơn hàng đã cập nhật vào file
+            saveOrdersToFile();
+
+            showAlert(Alert.AlertType.INFORMATION, "Thanh toán", "Đơn hàng đã được thanh toán.");
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Vui lòng chọn đơn hàng hợp lệ để thanh toán.");
+        }
     }
 
     @FXML
     private void handleCancel() {
         // Xử lý hủy đơn
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Hủy Đơn");
-        alert.setHeaderText(null);
-        alert.setContentText("Bạn có chắc chắn muốn hủy đơn hàng?");
+        String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
+        if (selectedOrder != null && selectedOrder.contains("Chờ thanh toán")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Hủy Đơn");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn có chắc chắn muốn hủy đơn hàng này?");
 
-        ButtonType confirmButton = new ButtonType("Hủy đơn");
-        ButtonType cancelButton = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+            ButtonType confirmButton = new ButtonType("Hủy đơn");
+            ButtonType cancelButton = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+            alert.getButtonTypes().setAll(confirmButton, cancelButton);
 
-        alert.showAndWait().ifPresent(response -> {
-            if (response == confirmButton) {
-                // Xử lý hủy đơn
-                Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
-                confirmationAlert.setTitle("Hủy Đơn");
-                confirmationAlert.setHeaderText(null);
-                confirmationAlert.setContentText("Đơn hàng đã được hủy.");
-                confirmationAlert.showAndWait();
-            }
-        });
+            alert.showAndWait().ifPresent(response -> {
+                if (response == confirmButton) {
+                    // Cập nhật trạng thái đơn hàng
+                    String updatedOrder = selectedOrder.replace("Chờ thanh toán", "Đã hủy");
+                    int selectedIndex = orderHistoryListView.getSelectionModel().getSelectedIndex();
+                    orderHistoryListView.getItems().set(selectedIndex, updatedOrder);
+
+                    // Lưu danh sách đơn hàng đã cập nhật vào file
+                    saveOrdersToFile();
+
+                    showAlert(Alert.AlertType.INFORMATION, "Hủy Đơn", "Đơn hàng đã được hủy.");
+                }
+            });
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Vui lòng chọn đơn hàng hợp lệ để hủy.");
+        }
     }
+
+    @FXML
+    private void saveOrdersToFile() {
+        // Cập nhật thông tin khách hàng và danh sách đơn hàng vào file orders.txt
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt"))) {
+            // Lưu danh sách đơn hàng
+            for (String order : orderHistoryListView.getItems()) {
+                // Lưu thông tin khách hàng
+                writer.write("Thông tin khách hàng:");
+                writer.newLine();
+                writer.write("Tên: " + customerNameLabel.getText().split(":")[1].trim());
+                writer.newLine();
+                writer.write("Email: " + customerEmailLabel.getText().split(":")[1].trim());
+                writer.newLine();
+                writer.write("SĐT: " + customerPhoneLabel.getText().split(":")[1].trim());
+                writer.newLine();
+                writer.write("Địa chỉ: " + customerAddressLabel.getText().split(":")[1].trim());
+//                writer.newLine();
+//                writer.write("--------------------------------------------------------------------------------");
+                writer.newLine();
+
+                // Lưu chi tiết đơn hàng
+//                writer.write("Chi tiết đơn hàng:");
+                writer.newLine();
+                writer.write(order); // Đơn hàng đã cập nhật
+                writer.newLine();
+                writer.write("--------------------------------------------------------------------------------");
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể lưu thông tin khách hàng và danh sách đơn hàng.");
+        }
+    }
+
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);
