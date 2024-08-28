@@ -17,12 +17,6 @@ public class AdminOrderController implements Initializable {
     private ListView<String> orderHistoryListView;
 
     @FXML
-    private TextArea orderDetailTextArea;
-
-    @FXML
-    private Button backButton;
-
-    @FXML
     private Button confirmButton;
 
     @FXML
@@ -39,7 +33,6 @@ public class AdminOrderController implements Initializable {
             selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
             if (selectedOrder != null) {
                 // Hiển thị chi tiết đơn hàng được chọn
-                displayOrderDetails(selectedOrder);
                 updateButtonStates();
             }
         });
@@ -76,11 +69,6 @@ public class AdminOrderController implements Initializable {
         }
     }
 
-    private void displayOrderDetails(String order) {
-        // Hiển thị chi tiết đơn hàng được chọn trong TextArea
-        orderDetailTextArea.setText(order);
-    }
-
     private void updateButtonStates() {
         if (selectedOrder != null && selectedOrder.contains("Chờ xác nhận")) {
             confirmButton.setDisable(false);
@@ -107,13 +95,12 @@ public class AdminOrderController implements Initializable {
             return;
         }
 
-        if (showConfirmationDialog(newStatus.equals("Xác nhận") ? "Xác nhận" : "Hủy",
+        if (showConfirmationDialog(newStatus.equals("Chờ thanh toán") ? "Xác nhận" : "Hủy",
                 "Bạn có chắc chắn muốn " + newStatus.toLowerCase() + " đơn hàng này không?")) {
 
             String updatedOrder = selectedOrder.replace(oldStatus, newStatus);
             if (updateOrderStatusInFile(selectedOrder, updatedOrder)) {
                 orders.set(orders.indexOf(selectedOrder), updatedOrder);
-                displayOrderDetails(updatedOrder);
                 updateButtonStates();
 
                 sendNotificationToUser(notificationMessage, updatedOrder);
@@ -194,4 +181,5 @@ public class AdminOrderController implements Initializable {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
+
 }

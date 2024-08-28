@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.login.AdminOrderController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.AdminOrderController">
     <children>
         <!-- Tiêu đề -->
-        <Label text="Quản lý đơn hàng" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <HBox alignment="CENTER">
+            <Label prefHeight="40.0" prefWidth="205.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Quản lý đơn hàng">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+        </HBox>
+
 
         <!-- ListView để hiển thị danh sách đơn hàng -->
-        <ListView fx:id="orderHistoryListView" VBox.vgrow="ALWAYS" />
-
-        <!-- TextArea để hiển thị chi tiết đơn hàng -->
-        <TextArea fx:id="orderDetailTextArea" prefHeight="150" editable="false" wrapText="true" />
-        <Button fx:id="confirmButton" text="Duyệt Đơn" onAction="#handleConfirmButton" />
-        <Button fx:id="cancelButton" text="Hủy Đơn" onAction="#handleCancelButton" />
+        <ListView fx:id="orderHistoryListView" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="130.0">
+         <VBox.margin>
+            <Insets bottom="10.0" left="25.0" right="10.0" />
+         </VBox.margin></ListView>
+<!--        &lt;!&ndash; TextArea để hiển thị chi tiết đơn hàng &ndash;&gt;-->
+<!--        <TextArea fx:id="orderDetailTextArea" prefHeight="150" editable="false" wrapText="true" />-->
+        <HBox>
+        <children>
+            <Button fx:id="confirmButton" onAction="#handleConfirmButton" prefHeight="37.0" prefWidth="107.0" style="-fx-background-color: #009688 ; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Duyệt Đơn">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Button>
+            <Button fx:id="cancelButton" onAction="#handleCancelButton" prefHeight="37.0" prefWidth="106.0" style="-fx-background-color:  #E53935; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Hủy Đơn">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Button>
+        </children>
+    </HBox>
     </children>
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10" />
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
 </VBox>
