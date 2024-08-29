@@ -10,15 +10,17 @@ public class OrderItem {
     private final IntegerProperty quantity;
     private final StringProperty total;
     private final StringProperty status;
-    private final StringProperty orderDate;  // Thêm thuộc tính ngày giờ
+    private final StringProperty orderDate;
+    private final StringProperty size;  // Thêm thuộc tính size
 
-    public OrderItem(String productName, String price, int quantity, String total, String status) {
+    public OrderItem(String productName, String price, int quantity, String total, String status, String size) {
         this.productName = new SimpleStringProperty(productName);
         this.price = new SimpleStringProperty(price);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.total = new SimpleStringProperty(total);
         this.status = new SimpleStringProperty(status);
         this.orderDate = new SimpleStringProperty(getCurrentDateTime());  // Khởi tạo ngày giờ hiện tại
+        this.size = new SimpleStringProperty(size);  // Khởi tạo size
     }
 
     public String getProductName() { return productName.get(); }
@@ -45,10 +47,14 @@ public class OrderItem {
     public void setOrderDate(String orderDate) { this.orderDate.set(orderDate); }
     public StringProperty orderDateProperty() { return orderDate; }
 
+    public String getSize() { return size.get(); }  // Getter cho size
+    public void setSize(String size) { this.size.set(size); }  // Setter cho size
+    public StringProperty sizeProperty() { return size; }
+
     @Override
     public String toString() {
-        return String.format("Sản phẩm: %s, Giá: %s, Số lượng: %d, Tổng cộng: %s, Trạng thái: %s, Ngày giờ: %s",
-                getProductName(), getPrice(), getQuantity(), getTotal(), getStatus(), getOrderDate());
+        return String.format("Sản phẩm: %s, Giá: %s, Kích thước: %s, Số lượng: %d, Tổng cộng: %s, Trạng thái: %s, Ngày giờ: %s",
+                getProductName(), getPrice(), getSize(), getQuantity(), getTotal(), getStatus(), getOrderDate());
     }
 
     // Phương thức để lấy ngày giờ hiện tại

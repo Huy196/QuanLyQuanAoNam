@@ -54,6 +54,9 @@ public class OrderSummaryController {
     private Button totalAmountLabel; // Label để hiển thị tổng tiền
 
     @FXML
+    private TableColumn<OrderItem, String> sizeColumn;
+
+    @FXML
     private Button closeButton;
 
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
@@ -63,6 +66,7 @@ public class OrderSummaryController {
     private void initialize() {
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        sizeColumn.setCellValueFactory(cellData -> cellData.getValue().sizeProperty());  // Gán giá trị kích cỡ
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));

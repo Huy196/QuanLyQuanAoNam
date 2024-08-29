@@ -166,11 +166,14 @@ public class CartController {
             if (checkBox.isSelected()) {
                 hasSelectedProduct = true;
                 Product product = hboxProductMap.get(hBox);
+                // Lấy kích cỡ đã chọn từ ComboBox
+                ComboBox<String> sizeComboBox = (ComboBox<String>) hBox.getChildren().get(5);
+                String selectedSize = sizeComboBox.getValue();
                 int quantity = ((Spinner<Integer>) hBox.getChildren().get(4)).getValue();
                 double total = product.getPrice() * quantity;
                 String status = "Chờ xác nhận";
 
-                orderItems.add(new OrderItem(product.getName(), String.format("%.2f", product.getPrice()), quantity,String.format("%.2f",total), status));
+                orderItems.add(new OrderItem(product.getName(), String.format("%.2f", product.getPrice()), quantity,String.format("%.2f",total), status,selectedSize  ));
             }
         }
 

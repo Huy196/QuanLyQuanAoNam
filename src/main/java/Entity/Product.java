@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private int selectedQuantity;
     private String description;
     private List<String> sizes;
+    private String selectedSize;
 
     public Product(String name, Double price, Integer quantity, Image image) {
         this.name = new SimpleStringProperty(name);
@@ -26,7 +27,17 @@ public class Product implements Serializable {
         this.quantity = new SimpleIntegerProperty(quantity);
         this.image = new SimpleObjectProperty<>(image);
     }
+    public List<String> getSizes() {
+        return sizes;
+    }
 
+    public void setSelectedSize(String size) {
+        this.selectedSize = size;
+    }
+
+    public String getSelectedSize() {
+        return selectedSize;
+    }
 
     public int getSelectedQuantity() {
         return selectedQuantity;
@@ -44,9 +55,9 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public List<String> getSizes() {
-        return sizes != null ? sizes : new ArrayList<>();
-    }
+//    public List<String> getSizes() {
+//        return sizes != null ? sizes : new ArrayList<>();
+//    }
 
     public void setSizes(List<String> sizes) {
         this.sizes = sizes;
