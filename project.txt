@@ -1,4 +1,18 @@
-ve,100.0,34,file:/C:/Users/Dell/Downloads/6ij5m3nm.png
-mũ,150.0,20,file:/C:/Users/ADMON/OneDrive%20-%20THPT%20Hồng%20Thái/Ứng%20dụng/Ảnh/Cuộn%20Camera/IMG_1462.JPG
-Lo,100.0,14,file:/C:/Users/Dell/Downloads/doxwn9qf.png
-áo dài,200.0,13,file:/D:/download.jpg
+Quần jean rách nam ,550000.0,1,file:/C:/Users/Dell/OneDrive/Gambar/28ff0514b147bbf107a70964bcac8d36.jpg
+Quần jean rách,400000.0,2,file:/C:/Users/Dell/OneDrive/Gambar/6de0e961766a8563bf78bf6dda2d0024.jpg
+Quần jean cào,600000.0,3,file:/C:/Users/Dell/OneDrive/Gambar/458efcdb8ea57671dbcf7b04d386dc33.jpg
+Quần jean rách,1500000.0,4,file:/C:/Users/Dell/OneDrive/Gambar/OIP.jpg
+Quần jean nam,300000.0,5,file:/C:/Users/Dell/OneDrive/Gambar/16587127584ea3a734d00ae26ad5f8a98b7e208f07_thumbnail_405x552.jpg
+Quần jean nam,800000.0,6,file:/C:/Users/Dell/OneDrive/Gambar/54564138b_b_03_500.jpg
+Đồ thể thao nam,700000.0,7,file:/C:/Users/Dell/OneDrive/Gambar/R%20(2).jpg
+Áo sơ mi boy phố,500000.0,8,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(7).jpg
+Áo sơ mi hàn quốc,300000.0,9,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(4).jpg
+Đồ thể thao,500000.0,10,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(10).jpg
+Quần jean nam,900000.0,11,file:/C:/Users/Dell/OneDrive/Gambar/58592557b_b_33_500.jpg
+Đồ thể thao,400000.0,12,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(11).jpg
+Áo sơ mi kẻ,750000.0,13,file:/C:/Users/Dell/OneDrive/Gambar/R.jpg
+Đồ thể thao,1000000.0,14,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(12).jpg
+Áo sơ mi bò,640000.0,14,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(8).jpg
+Quần vải,400000.0,15,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(14).jpg
+Quần vải bó,200000.0,16,file:/C:/Users/Dell/OneDrive/Gambar/original.jpg
+Quần âu ,500000.0,17,file:/C:/Users/Dell/OneDrive/Gambar/IMG_2614.jpg

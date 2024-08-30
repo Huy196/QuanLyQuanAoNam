@@ -58,7 +58,8 @@ public class UserInfoController {
 
                     // Tạo TextField cho giá trị trường
                     TextField valueField = new TextField(parts[1]);
-                    valueField.setStyle("-fx-font-size: 14px;");
+                    valueField.setStyle("-fx-font-size: 14px; -fx-border-color: white");
+
 
                     // Thêm Label và TextField vào GridPane ở hàng hiện tại
                     gridPane.add(fieldLabel, 0, rowIndex);
@@ -75,6 +76,7 @@ public class UserInfoController {
             userInfoVBox.getChildren().add(gridPane);
 
             Button updateButton = new Button("Lưu");
+            updateButton.setStyle("-fx-background-color: lightblue");
             updateButton.setOnAction(e -> saveUpdatedUserInfo());
             userInfoVBox.getChildren().add(updateButton);
         } catch (IOException e) {

@@ -12,7 +12,7 @@
     <VBox>
         <BorderPane prefHeight="701.0" prefWidth="1400.0">
             <top>
-                <VBox alignment="CENTER" prefHeight="101.0" prefWidth="511.0" style="-fx-background-color: #ff7337">
+                <VBox alignment="CENTER" prefHeight="101.0" prefWidth="511.0" style="-fx-background-color: #04AA6D">
 
                     <HBox fx:id="hBox" alignment="CENTER" prefHeight="37.0" prefWidth="100.0" spacing="260">
                         <ImageView fx:id="logo" fitHeight="150.0" fitWidth="170.0" pickOnBounds="true"
@@ -29,8 +29,8 @@
 
                         <HBox minWidth="320" spacing="10" style="-fx-padding: 25 0 0 0 ">
                             <TextField fx:id="searchProduct" prefHeight="26.0" prefWidth="240.0"
-                                       style="-fx-background-color: lightgrey"/>
-                            <Button fx:id="searchButton" mnemonicParsing="false" text="Tìm kiếm" />
+                                       style="-fx-background-color: white"/>
+                            <Button fx:id="searchButton" mnemonicParsing="false" text="Tìm kiếm" style="-fx-background-color: #006400; -fx-text-fill: white " />
                         </HBox>
 
 
@@ -65,7 +65,7 @@
 
 
                     <HBox alignment="CENTER" minHeight="40" prefHeight="50.0" prefWidth="711.0" spacing="220"
-                          style=" -fx-padding: 0 0 0 0; -fx-background-color: #0046ab">
+                          style=" -fx-padding: 0 0 0 0; -fx-background-color: #4169E1">
                         <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Trang chủ"/>
                         <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Áo"/>
                         <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần" />
@@ -76,7 +76,7 @@
             </top>
 
             <center>
-                <ScrollPane fitToWidth="true" prefHeight="701.0" prefWidth="1400.0" minHeight="616">
+                <ScrollPane fitToWidth="true" prefHeight="701.0" prefWidth="1400.0" minHeight="628">
                     <VBox fx:id="productDisplayArea">
                         <FlowPane fx:id="productContainer" hgap="100" minHeight="701" minWidth="150"
                                   style="-fx-padding: 30 40 30 30;" vgap="20">

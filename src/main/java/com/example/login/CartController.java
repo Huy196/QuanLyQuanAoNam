@@ -62,7 +62,7 @@ public class CartController {
         Label priceLabel = new Label("Giá: $" + product.getPrice());
 
         Label totalLabel = new Label();
-        updateTotalLabel(totalLabel, product);
+        updateTotalLabel(totalLabel,product,1);
 
 
         Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),1);
@@ -70,7 +70,7 @@ public class CartController {
         quantitySpinner.setEditable(true);
         quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             product.setQuantity(newValue);
-            updateTotalLabel(totalLabel, product);
+            updateTotalLabel(totalLabel, product,quantitySpinner.getValue());
             updateCartFile();
             updateTotalCartLabel();
         });
@@ -90,8 +90,8 @@ public class CartController {
         }
         sizeComboBox.setPromptText("Chọn kích cỡ");
 
-
         Button removeButton = new Button("Xóa");
+        removeButton.setStyle("-fx-background-color: red; -fx-text-fill: white");
 
         removeButton.setOnAction(e -> {
             removeProductFromList(product);
@@ -104,8 +104,8 @@ public class CartController {
         hboxProductMap.put(hbox, product);
     }
 
-    private void updateTotalLabel(Label totalLabel, Product product) {
-        double total = product.getQuantity() * product.getPrice();
+    private void updateTotalLabel(Label totalLabel, Product product,int quantity) {
+        double total = quantity * product.getPrice();
         totalLabel.setText("Tổng: $" + String.format("%.2f", total));
     }
 
@@ -169,6 +169,10 @@ public class CartController {
                 // Lấy kích cỡ đã chọn từ ComboBox
                 ComboBox<String> sizeComboBox = (ComboBox<String>) hBox.getChildren().get(5);
                 String selectedSize = sizeComboBox.getValue();
+                if (selectedSize == null || selectedSize.isEmpty()) {
+                    showAlert("Thông báo", "Vui lòng chọn kích cỡ cho sản phẩm: " + product.getName(), Alert.AlertType.WARNING);
+                    return; // Dừng việc đặt hàng nếu chưa chọn kích cỡ
+                }
                 int quantity = ((Spinner<Integer>) hBox.getChildren().get(4)).getValue();
                 double total = product.getPrice() * quantity;
                 String status = "Chờ xác nhận";

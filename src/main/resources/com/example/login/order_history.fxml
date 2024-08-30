@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/21.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderHistoryController">
-    <Label fx:id="orderHistoryLabel" graphicTextGap="5.0" prefHeight="48.0" prefWidth="171.0" text="Lịch sử đơn hàng">
+<VBox minWidth="800" alignment="CENTER" xmlns="http://javafx.com/javafx/21.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderHistoryController">
+    <Label  alignment="CENTER" fx:id="orderHistoryLabel" graphicTextGap="5.0" prefHeight="48.0" prefWidth="800.0" text="Lịch sử đơn hàng" style="-fx-font-weight: bold; -fx-font-size: 25; -fx-background-color: black; -fx-text-fill: white">
         <font>
             <Font size="20.0" />
         </font>
     </Label>
 
     <!-- Thông tin khách hàng -->
-    <VBox fx:id="customerInfoBox" prefHeight="46.0" prefWidth="600.0">
+    <VBox alignment="CENTER" style="-fx-background-color: lightgray; -fx-font-size: 15; -fx-text-alignment: justify" fx:id="customerInfoBox" prefHeight="46.0" prefWidth="600.0">
         <Label fx:id="customerNameLabel" text="Tên khách hàng: " />
         <Label fx:id="customerEmailLabel" text="Email: " />
         <Label fx:id="customerAddressLabel" text="Địa chỉ: " />
@@ -25,8 +25,8 @@
 
     <ListView fx:id="orderHistoryListView" prefHeight="400" prefWidth="600" />
 
-    <HBox alignment="center" spacing="10">
-        <Button fx:id="payButton" onAction="#handlePay" text="Thanh toán" />
-        <Button fx:id="cancelButton" onAction="#handleCancel" text="Hủy đơn" />
+    <HBox alignment="center" spacing="10" minHeight="60">
+        <Button fx:id="payButton" onAction="#handlePay" text="Thanh toán" style="-fx-text-fill: white; -fx-background-color: green"/>
+        <Button fx:id="cancelButton" onAction="#handleCancel" text="Hủy đơn" style="-fx-text-fill: white; -fx-background-color: red" />
     </HBox>
 </VBox>
