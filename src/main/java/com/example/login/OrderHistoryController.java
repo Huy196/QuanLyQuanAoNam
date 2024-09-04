@@ -34,10 +34,8 @@ public class OrderHistoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Tải thông tin khách hàng từ user_info.txt
         loadCustomerInfo();
-
         // Tải danh sách đơn hàng khi controller được khởi tạo
         refreshOrderList();
-
         // Xử lý sự kiện chọn đơn hàng từ ListView
         orderHistoryListView.setOnMouseClicked((MouseEvent event) -> {
             String selectedOrder = orderHistoryListView.getSelectionModel().getSelectedItem();
@@ -130,6 +128,9 @@ public class OrderHistoryController implements Initializable {
             saveOrdersToFile();
 
             showAlert(Alert.AlertType.INFORMATION, "Thanh toán", "Đơn hàng đã được thanh toán.");
+
+            payButton.setVisible(false);
+            cancelButton.setVisible(false);
         } else {
             showAlert(Alert.AlertType.WARNING, "Không Có Đơn Hàng", "Vui lòng chọn đơn hàng hợp lệ để thanh toán.");
         }
@@ -161,6 +162,8 @@ public class OrderHistoryController implements Initializable {
                     saveOrdersToFile();
 
                     showAlert(Alert.AlertType.INFORMATION, "Hủy Đơn", "Đơn hàng đã được hủy.");
+                    payButton.setVisible(false);
+                    this.cancelButton.setVisible(false);
                 }
             });
         } else {
@@ -201,7 +204,6 @@ public class OrderHistoryController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể lưu thông tin khách hàng và danh sách đơn hàng.");
         }
     }
-
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType, message, ButtonType.OK);

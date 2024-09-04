@@ -13,24 +13,32 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <center>
-        <VBox alignment="CENTER_LEFT" style="-fx-padding: 90px; -fx-background-color: linear-gradient(to bottom, #0088ff,greenyellow)  " spacing="10" >
-            <Button alignment="CENTER" layoutX="112.0" layoutY="49.0" onAction="#handleChooseImage" prefHeight="88.0" prefWidth="335.0" text="Choose Image"  style="-fx-background-radius: 7; -fx-background-color: #eda500; -fx-text-fill: white"/>
-            <ImageView fx:id="imageView" fitHeight="274.0" fitWidth="336.0" nodeOrientation="INHERIT" preserveRatio="true" BorderPane.alignment="CENTER" />
+        <VBox alignment="CENTER_LEFT"
+              style="-fx-padding: 90px; -fx-background-color: linear-gradient(to bottom, #0088ff,greenyellow)  "
+              spacing="10">
+            <Button alignment="CENTER" layoutX="112.0" layoutY="49.0" onAction="#handleChooseImage" prefHeight="88.0"
+                    prefWidth="335.0" text="Choose Image"
+                    style="-fx-background-radius: 7; -fx-background-color: #eda500; -fx-text-fill: white"/>
+            <ImageView fx:id="imageView" fitHeight="274.0" fitWidth="336.0" nodeOrientation="INHERIT"
+                       preserveRatio="true" BorderPane.alignment="CENTER"/>
         </VBox>
     </center>
 
     <right>
-        <VBox spacing="20" alignment="CENTER_RIGHT" prefHeight="500.0" prefWidth="447.0" style="-fx-padding: 30px;-fx-background-color: linear-gradient(to bottom, #0088ff, greenyellow) ">
+        <VBox spacing="20" alignment="CENTER_RIGHT" prefHeight="500.0" prefWidth="447.0"
+              style="-fx-padding: 30px;-fx-background-color: linear-gradient(to bottom, #0088ff, greenyellow) ">
             <HBox>
                 <VBox prefHeight="43.0" prefWidth="245.0">
                     <Label text="Name: " style="-fx-font-size: 16"/>
-                    <TextField fx:id="nameField" prefHeight="26.0" prefWidth="365.0" style="-fx-font-size: 15; -fx-background-radius: 9" />
+                    <TextField fx:id="nameField" prefHeight="26.0" prefWidth="365.0"
+                               style="-fx-font-size: 15; -fx-background-radius: 9"/>
                 </VBox>
             </HBox>
             <HBox>
                 <VBox>
                     <Label prefHeight="18.0" prefWidth="245.0" text="Price:" style="-fx-font-size: 16"/>
-                    <TextField fx:id="priceField" prefHeight="26.0" prefWidth="0.0" style="-fx-font-size: 15; -fx-background-radius: 9"/>
+                    <TextField fx:id="priceField" prefHeight="26.0" prefWidth="0.0"
+                               style="-fx-font-size: 15; -fx-background-radius: 9"/>
                 </VBox>
             </HBox>
             <HBox>
@@ -41,11 +49,11 @@
             </HBox>
             <HBox>
                 <VBox>
-                    <Button onAction="#handAddOrUpdate" prefHeight="30.0" prefWidth="136.0" text="Save" style=" -fx-background-color: #26aa99; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7"/>
+                    <Button onAction="#handAddOrUpdate" prefHeight="30.0" prefWidth="136.0" text="Save"
+                            style=" -fx-background-color: #26aa99; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 15, 0, 0, 0); -fx-border-color: gray; -fx-border-radius: 7; -fx-background-radius: 7"/>
                 </VBox>
             </HBox>
 
         </VBox>
     </right>
-
 </BorderPane>

@@ -111,23 +111,23 @@ public class HomeController {
     }
 
     @FXML
-        private void logout () {
-            // Xác nhận đăng xuất
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có muốn đăng xuất?", ButtonType.YES, ButtonType.NO);
-            alert.setTitle("Đăng xuất");
-            alert.setHeaderText(null);
+    private void logout() {
+        // Xác nhận đăng xuất
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn có muốn đăng xuất?", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Đăng xuất");
+        alert.setHeaderText(null);
 
 
-            if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
-                System.out.println("Đang đăng xuất...");
-                try {
-                    Main.changeScene("Login.fxml");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
+            System.out.println("Đang đăng xuất...");
+            try {
+                Main.changeScene("Login.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-
         }
+
+
     }
+}
 

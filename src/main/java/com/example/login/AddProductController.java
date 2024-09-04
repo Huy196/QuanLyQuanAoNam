@@ -69,7 +69,7 @@ public class AddProductController {
             if (products == null) {
                 throw new IllegalStateException("Product list is not initialized.");
             }
-            Product newProduct = new Product(name,price,quantity,image);
+            Product newProduct = new Product(name, price, quantity, image);
             products.addAll(newProduct);
             saveProductsToFile();
 
@@ -112,7 +112,6 @@ public class AddProductController {
 
     @FXML //update sản phầm
     public void handAddOrUpdate() {
-
         try {
             String name = nameField.getText();
             double price = Double.parseDouble(priceField.getText());

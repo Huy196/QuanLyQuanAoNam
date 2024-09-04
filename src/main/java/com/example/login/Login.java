@@ -54,8 +54,7 @@ public class Login {
         user.add(new String[]{"doquochuy", "123456789", "doquochuy@gmail.com", "0743278462", "18-Cửa Đình - Tây Đằng - Ba Vì", "admin"});
         user.add(new String[]{"levandan1", "987654321", "lavandan1@gmail.com", "0108738465", "18-Cửa Đình - Tây Đằng - Ba Vì", "user"});
         user.add(new String[]{"huyentrang", "111111111", "huyentrang@gmail.com", "0829746352", "18-Cửa Đình - Tây Đằng - Ba Vì", "user"});
-        user.add(new String[]{"vungocanh", "333333333", "vungocanh@gmail.com", "0849284736", "user"});
-        user.add(new String[]{"tiencong1", "555555555", "tiencong1@gmail.com", "9473625174", "user"});
+
     }
 
     void handleLogin() {
@@ -127,14 +126,14 @@ public class Login {
             System.out.println("Username: \"" + loggedInUser[0] + ",\t\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + ",\t\t" + "Địa chỉ: " + loggedInUser[4] + ",\t\t" + " Role: " + loggedInUser[5]);
 
         } else {
-            System.out.println("Username: \"" + loggedInUser[0] + ",\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + "Địa chỉ: " + loggedInUser[4] + ",\t\t" + " Role: " + loggedInUser[5]);
+            System.out.println("Username: \"" + loggedInUser[0] + ",\t" + " Password: " + loggedInUser[1] + "\t\t," + "Email: " + loggedInUser[2] + ",\t\t" + "SĐT : " + loggedInUser[3] + ",\t\t" + "Địa chỉ: " + loggedInUser[4] + ",\t\t" + " Role: " + loggedInUser[5]);
         }
     }
 
     private void saveUserInfoToFile(String[] userInfo) {
         try (FileWriter fileWriter = new FileWriter("user_info.txt", false);
              PrintWriter printWriter = new PrintWriter(fileWriter)) {
-            printWriter.println("Tên đăng nhập: "+ " \t" + userInfo[0]);
+            printWriter.println("Tên đăng nhập: " + " \t" + userInfo[0]);
             printWriter.println("Email: " + " \t" + userInfo[2]);
             printWriter.println("SĐT: " + " \t" + userInfo[3]);
             printWriter.println("Địa chỉ: " + " \t" + userInfo[4]);

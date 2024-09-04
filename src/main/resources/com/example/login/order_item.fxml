@@ -4,31 +4,43 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="600.0" spacing="65" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.OrderItemController">
+<HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="600.0" spacing="65"
+      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.login.OrderItemController">
 
     <Label fx:id="productLabel" layoutX="20.0" layoutY="20.0" text="Sản phẩm">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
     <Label fx:id="quantityLabel" layoutX="20.0" layoutY="20.0" text="Số lượng">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
     <Label fx:id="totalAmountLabel" layoutX="20.0" layoutY="66.0" text="Tổng số tiền">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
     <Label fx:id="statusLabel" layoutX="20.0" layoutY="92.0" text="Trạng thái">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-    <Button fx:id="paidButton" style="-fx-background-color: #009688 ; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Đã thanh toán">
-      <font>
-         <Font size="13.0" />
-      </font></Button>
-    <Button fx:id="cancelButton" style="-fx-background-color:  #E53935; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)" text="Hủy đơn">
-      <font>
-         <Font size="13.0" />
-      </font></Button>
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Button fx:id="paidButton"
+            style="-fx-background-color: #009688 ; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)"
+            text="Đã thanh toán">
+        <font>
+            <Font size="13.0"/>
+        </font>
+    </Button>
+    <Button fx:id="cancelButton"
+            style="-fx-background-color:  #E53935; -fx-text-fill: white; -fx-effect: dropShadow(gaussian,rgba(0,0,0,0.6),10,0,0,0)"
+            text="Hủy đơn">
+        <font>
+            <Font size="13.0"/>
+        </font>
+    </Button>
 
 </HBox>

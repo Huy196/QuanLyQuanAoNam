@@ -16,3 +16,4 @@ Quần jean nam,900000.0,11,file:/C:/Users/Dell/OneDrive/Gambar/58592557b_b_33_5
 Quần vải,400000.0,15,file:/C:/Users/Dell/OneDrive/Gambar/OIP%20(14).jpg
 Quần vải bó,200000.0,16,file:/C:/Users/Dell/OneDrive/Gambar/original.jpg
 Quần âu ,500000.0,17,file:/C:/Users/Dell/OneDrive/Gambar/IMG_2614.jpg
+Thể Thao 4.0,200000.0,20,file:/C:/Users/Dell/OneDrive/Gambar/78260b92a93d18856df2f5895829baa5.jpg

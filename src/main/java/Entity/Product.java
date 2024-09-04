@@ -27,6 +27,7 @@ public class Product implements Serializable {
         this.quantity = new SimpleIntegerProperty(quantity);
         this.image = new SimpleObjectProperty<>(image);
     }
+
     public List<String> getSizes() {
         return sizes;
     }
@@ -55,9 +56,6 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-//    public List<String> getSizes() {
-//        return sizes != null ? sizes : new ArrayList<>();
-//    }
 
     public void setSizes(List<String> sizes) {
         this.sizes = sizes;
@@ -127,6 +125,7 @@ public class Product implements Serializable {
         );
 
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -134,11 +133,12 @@ public class Product implements Serializable {
         Product product = (Product) o;
         return
                 quantity == product.quantity &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(image, product.image) &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(sizes, product.sizes);
+                        Objects.equals(name, product.name) &&
+                        Objects.equals(image, product.image) &&
+                        Objects.equals(description, product.description) &&
+                        Objects.equals(sizes, product.sizes);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(name, price, quantity, image, description, sizes);

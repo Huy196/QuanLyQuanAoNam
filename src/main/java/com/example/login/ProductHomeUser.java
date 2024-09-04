@@ -30,8 +30,6 @@ public class ProductHomeUser {
     @FXML
     private static final String User_info_file = "user_info.txt";
 
-    @FXML
-    private Hyperlink facebookLink;
 
     private HostServices hostServices;
 
@@ -72,6 +70,7 @@ public class ProductHomeUser {
             System.err.println("Không thể tải sản phẩm: " + e.getMessage());
         }
     }
+
     private void displayAllProducts() {
         productContainer.getChildren().clear(); // Xóa các sản phẩm cũ trên giao diện
         for (Product product : productList) {
@@ -100,7 +99,7 @@ public class ProductHomeUser {
             alert.showAndWait();
             searchProduct.clear();
             displayAllProducts();
-        }else {
+        } else {
             // Nếu tìm thấy sản phẩm, cập nhật giao diện với các sản phẩm đã lọc
             productContainer.getChildren().clear(); // Xóa các sản phẩm cũ khỏi màn hình
             for (Product product : filteredList) {
@@ -117,6 +116,7 @@ public class ProductHomeUser {
             System.out.println("HostServices is null");
         }
     }
+
     @FXML
     private void handleCartClick() {
         try {
@@ -134,8 +134,9 @@ public class ProductHomeUser {
             e.printStackTrace();
         }
     }
+
     @FXML
-    private void informationDisplayProcessingUser(){
+    private void informationDisplayProcessingUser() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UserInfo.fxml"));
             Parent root = loader.load();
@@ -153,6 +154,7 @@ public class ProductHomeUser {
             alert.showAndWait();
         }
     }
+
     private void addProductToDisplay(Product product) {
         ImageView imageView = new ImageView(product.getImage());
         imageView.setFitWidth(200);
@@ -196,7 +198,7 @@ public class ProductHomeUser {
 //            cart.add(product);
 //        }
         try (FileWriter writer = new FileWriter("cart.txt", true)) {
-            writer.write(product.toString() + "\n" );
+            writer.write(product.toString() + "\n");
 
         } catch (IOException e) {
             System.err.println("Không thể lưu vào giỏ hàng: " + e.getMessage());
@@ -212,6 +214,7 @@ public class ProductHomeUser {
             detailStage.close(); // Đóng hộp thoại chi tiết sau khi thêm vào giỏ hàng
         }
     }
+
     private void handlePurchase() {
         if (cart.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -268,28 +271,10 @@ public class ProductHomeUser {
         Text descriptionText = new Text("Mô tả: " + (product.getDescription() != null ? product.getDescription() : "Chưa có mô tả"));
         descriptionText.setStyle("-fx-font-size: 14px;");
 
-        // Tạo ComboBox cho việc chọn kích cỡ
-//        ComboBox<String> sizeComboBox = new ComboBox<>();
-//        List<String> sizes = product.getSizes();
-//        if (sizes == null || sizes.isEmpty()) {
-//            sizeComboBox.getItems().addAll("S", "M", "L"); // Giá trị mặc định nếu sizes rỗng
-//        } else {
-//            sizeComboBox.getItems().addAll(sizes);
-//        }
-//        sizeComboBox.setPromptText("Chọn kích cỡ");
-
-        // Tạo Spinner cho việc chọn số lượng
-//        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
-//        quantitySpinner.setPrefWidth(100);
-
         // Tạo các nút
         Button addToCartButton = new Button("Thêm vào giỏ hàng");
         addToCartButton.setOnAction(e -> addToCart(product));
         addToCartButton.setStyle("-fx-background-color: #ff7337; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
-
-//        Button buyNowButton = new Button("Mua ngay");
-//        buyNowButton.setOnAction(e -> buyNow(product, sizeComboBox, quantitySpinner.getValue()));
-//        buyNowButton.setStyle("-fx-background-color: #ff7337;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 7, 0, 5, 5); -fx-text-fill: white; -fx-font-size: 15");
 
         // Sử dụng HBox để đặt hai nút trên cùng một hàng
         HBox buttonBox = new HBox(10); // Khoảng cách giữa các nút là 10px
@@ -306,13 +291,5 @@ public class ProductHomeUser {
         detailStage.setTitle("Chi tiết sản phẩm");
         detailStage.initModality(Modality.APPLICATION_MODAL);
         detailStage.show();
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông tin người dùng");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -3,17 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  minHeight="430" minWidth="815" prefHeight="430.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.login.CartController">
+<BorderPane minHeight="430" minWidth="900" prefHeight="430.0" prefWidth="815.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.login.CartController">
     <top>
-        <Label alignment="CENTER" prefHeight="40.0" prefWidth="815.0" style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Giỏ hàng" />
+        <Label alignment="CENTER" prefHeight="40.0" prefWidth="815.0"
+               style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Giỏ hàng"/>
     </top>
     <center>
-        <ListView fx:id="cartListView" prefHeight="301.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="cartListView" prefHeight="301.0" prefWidth="600.0" VBox.vgrow="ALWAYS"/>
     </center>
     <bottom>
         <HBox prefHeight="47.0" prefWidth="482.0" spacing="10" style="-fx-padding: 10px">
-            <Label fx:id="totalCartLabel" alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="589.0" text="ToTal: $0.00" style="-fx-text-fill: red"/>
-            <Button fx:id="buyButton" alignment="CENTER" onAction="#buySelectedProducts" prefHeight="47.0" prefWidth="253.0" style="-fx-padding: 10px; -fx-background-color: #FF8C00; -fx-text-fill: white" text="Đặt hàng" />
+            <Label fx:id="totalCartLabel" alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="589.0"
+                   text="ToTal: $0.00" style="-fx-text-fill: red"/>
+            <Button fx:id="buyButton" alignment="CENTER" onAction="#buySelectedProducts" prefHeight="47.0"
+                    prefWidth="253.0" style="-fx-padding: 10px; -fx-background-color: #FF8C00; -fx-text-fill: white"
+                    text="Đặt hàng"/>
         </HBox>
     </bottom>
 

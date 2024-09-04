@@ -1,6 +1,7 @@
 package com.example.login;
 
 import javafx.beans.property.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,33 +24,89 @@ public class OrderItem {
         this.size = new SimpleStringProperty(size);  // Khởi tạo size
     }
 
-    public String getProductName() { return productName.get(); }
-    public void setProductName(String productName) { this.productName.set(productName); }
-    public StringProperty productNameProperty() { return productName; }
+    public String getProductName() {
+        return productName.get();
+    }
 
-    public String getPrice() { return price.get(); }
-    public void setPrice(String price) { this.price.set(price); }
-    public StringProperty priceProperty() { return price; }
+    public void setProductName(String productName) {
+        this.productName.set(productName);
+    }
 
-    public int getQuantity() { return quantity.get(); }
-    public void setQuantity(int quantity) { this.quantity.set(quantity); }
-    public IntegerProperty quantityProperty() { return quantity; }
+    public StringProperty productNameProperty() {
+        return productName;
+    }
 
-    public String getTotal() { return total.get(); }
-    public void setTotal(String total) { this.total.set(total); }
-    public StringProperty totalProperty() { return total; }
+    public String getPrice() {
+        return price.get();
+    }
 
-    public String getStatus() { return status.get(); }
-    public void setStatus(String status) { this.status.set(status); }
-    public StringProperty statusProperty() { return status; }
+    public void setPrice(String price) {
+        this.price.set(price);
+    }
 
-    public String getOrderDate() { return orderDate.get(); }
-    public void setOrderDate(String orderDate) { this.orderDate.set(orderDate); }
-    public StringProperty orderDateProperty() { return orderDate; }
+    public StringProperty priceProperty() {
+        return price;
+    }
 
-    public String getSize() { return size.get(); }  // Getter cho size
-    public void setSize(String size) { this.size.set(size); }  // Setter cho size
-    public StringProperty sizeProperty() { return size; }
+    public int getQuantity() {
+        return quantity.get();
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity.set(quantity);
+    }
+
+    public IntegerProperty quantityProperty() {
+        return quantity;
+    }
+
+    public String getTotal() {
+        return total.get();
+    }
+
+    public void setTotal(String total) {
+        this.total.set(total);
+    }
+
+    public StringProperty totalProperty() {
+        return total;
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
+    public StringProperty statusProperty() {
+        return status;
+    }
+
+    public String getOrderDate() {
+        return orderDate.get();
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate.set(orderDate);
+    }
+
+    public StringProperty orderDateProperty() {
+        return orderDate;
+    }
+
+    public String getSize() {
+        return size.get();
+    }  // Getter cho size
+
+    public void setSize(String size) {
+        this.size.set(size);
+    }  // Setter cho size
+
+    public StringProperty sizeProperty() {
+        return size;
+    }
 
     @Override
     public String toString() {

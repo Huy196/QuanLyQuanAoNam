@@ -28,7 +28,6 @@ public class CartController {
     @FXML
     private Label totalCartLabel;
 
-
     @FXML
     private void initialize() {
         loadCart();
@@ -62,15 +61,15 @@ public class CartController {
         Label priceLabel = new Label("Giá: $" + product.getPrice());
 
         Label totalLabel = new Label();
-        updateTotalLabel(totalLabel,product,1);
+        updateTotalLabel(totalLabel, product, 1);
 
 
-        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(),1);
+        Spinner<Integer> quantitySpinner = new Spinner<>(1, product.getQuantity(), 1);
         quantitySpinner.getValue();
         quantitySpinner.setEditable(true);
         quantitySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             product.setQuantity(newValue);
-            updateTotalLabel(totalLabel, product,quantitySpinner.getValue());
+            updateTotalLabel(totalLabel, product, quantitySpinner.getValue());
             updateCartFile();
             updateTotalCartLabel();
         });
@@ -98,13 +97,13 @@ public class CartController {
             updateTotalCartLabel();
         });
         HBox hbox = new HBox(30);
-        hbox.getChildren().addAll(selectCheckBox,imageView, nameLabel, priceLabel, quantitySpinner,sizeComboBox,totalLabel, removeButton);
+        hbox.getChildren().addAll(selectCheckBox, imageView, nameLabel, priceLabel, quantitySpinner, sizeComboBox, totalLabel, removeButton);
         cartListView.getItems().add(hbox);
 
         hboxProductMap.put(hbox, product);
     }
 
-    private void updateTotalLabel(Label totalLabel, Product product,int quantity) {
+    private void updateTotalLabel(Label totalLabel, Product product, int quantity) {
         double total = quantity * product.getPrice();
         totalLabel.setText("Tổng: $" + String.format("%.2f", total));
     }
@@ -177,7 +176,7 @@ public class CartController {
                 double total = product.getPrice() * quantity;
                 String status = "Chờ xác nhận";
 
-                orderItems.add(new OrderItem(product.getName(), String.format("%.2f", product.getPrice()), quantity,String.format("%.2f",total), status,selectedSize  ));
+                orderItems.add(new OrderItem(product.getName(), String.format("%.2f", product.getPrice()), quantity, String.format("%.2f", total), status, selectedSize));
             }
         }
 
@@ -273,6 +272,7 @@ public class CartController {
 
         return new Customer(name, email, address, phoneNumber);
     }
+
     private void clearCart() {
         cartListView.getItems().clear();
         cart.clear();

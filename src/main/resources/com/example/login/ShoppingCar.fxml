@@ -22,25 +22,13 @@
                             </image>
                         </ImageView>
                         <HBox/>
-
-
-
-
-
                         <HBox minWidth="320" spacing="10" style="-fx-padding: 25 0 0 0 ">
                             <TextField fx:id="searchProduct" prefHeight="26.0" prefWidth="240.0"
                                        style="-fx-background-color: white"/>
-                            <Button fx:id="searchButton" mnemonicParsing="false" text="Tìm kiếm" style="-fx-background-color: #006400; -fx-text-fill: white " />
+                            <Button fx:id="searchButton" mnemonicParsing="false" text="Tìm kiếm"
+                                    style="-fx-background-color: #006400; -fx-text-fill: white "/>
                         </HBox>
-
-
-
-
-
-
                         <HBox style="-fx-padding: 10 0 0 0 " spacing="25">
-
-
                             <ImageView fx:id="cartIcon" fitHeight="40.0" fitWidth="40.0"
                                        onMouseClicked="#handleCartClick"
                                        pickOnBounds="true" preserveRatio="true">
@@ -49,28 +37,25 @@
                                     <Image url="@../../../Image/cart.png"/>
                                 </image>
                             </ImageView>
-
-
-                            <ImageView fx:id="userIcon" fitHeight="38.0" fitWidth="38.0" onMouseClicked="#informationDisplayProcessingUser"
-
+                            <ImageView fx:id="userIcon" fitHeight="38.0" fitWidth="38.0"
+                                       onMouseClicked="#informationDisplayProcessingUser"
                                        pickOnBounds="true" preserveRatio="true">
                                 <image>
                                     <!-- Thay thế URL này bằng đường dẫn đến hình ảnh biểu tượng giỏ hàng -->
                                     <Image url="@../../../Image/user-circle.png"/>
                                 </image>
                             </ImageView>
-
                         </HBox>
                     </HBox>
-
-
                     <HBox alignment="CENTER" minHeight="40" prefHeight="50.0" prefWidth="711.0" spacing="220"
                           style=" -fx-padding: 0 0 0 0; -fx-background-color: #4169E1">
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Trang chủ"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1"
+                                   text="Trang chủ"/>
                         <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Áo"/>
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần" />
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Đồ bộ" />
-                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Phụ Kiện"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Quần"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1" text="Đồ bộ"/>
+                        <Hyperlink alignment="CENTER" minHeight="40" minWidth="110" styleClass="label1"
+                                   text="Phụ Kiện"/>
                     </HBox>
                 </VBox>
             </top>
@@ -90,11 +75,9 @@
 
             <bottom>
                 <HBox style="-fx-background-color: #02212c; -fx-pref-height: 50px; -fx-alignment: CENTER;">
-
-
                     <HBox spacing="40" alignment="CENTER">
-
-                        <Hyperlink text="Facebook |" style="-fx-text-fill: white;" layoutX="14.0" layoutY="14.0" onAction="#handleFacebookLinkAction"/>
+                        <Hyperlink text="Facebook |" style="-fx-text-fill: white;" layoutX="14.0" layoutY="14.0"
+                                   onAction="#handleFacebookLinkAction"/>
                         <ImageView fx:id="iconFacebook" fitHeight="30.0" fitWidth="30.0"
 
                                    pickOnBounds="true" preserveRatio="true">
@@ -104,7 +87,8 @@
                             </image>
                         </ImageView>
 
-                        <Hyperlink text="Intagram |" style="-fx-text-fill: white;" layoutX="15.0" layoutY="15.0" onAction="#handleFacebookLinkAction"/>
+                        <Hyperlink text="Intagram |" style="-fx-text-fill: white;" layoutX="15.0" layoutY="15.0"
+                                   onAction="#handleFacebookLinkAction"/>
                         <ImageView fx:id="iconIntagram" fitHeight="30.0" fitWidth="30.0"
 
                                    pickOnBounds="true" preserveRatio="true">
@@ -114,14 +98,7 @@
                             </image>
                         </ImageView>
                     </HBox>
-
-<!--                    <HBox>-->
-<!--                        <Button text="Đăng xuất" style="-fx-background-color: red; -fx-text-fill: white ; "/>-->
-<!--                    </HBox>-->
-
-
                 </HBox>
-
             </bottom>
         </BorderPane>
     </VBox>

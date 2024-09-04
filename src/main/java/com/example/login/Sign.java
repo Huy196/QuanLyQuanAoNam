@@ -27,8 +27,9 @@ public class Sign extends Login {
     @FXML
     private TextField DiaChi;
 
-    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    private static final String PHONE_REGEX = "^\\d{10}$";
+    private static final String EMAIL_REGEX = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
+    private static final String PHONE_REGEX = "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$";
+
 
     @FXML
     private void initialize() {
@@ -53,7 +54,7 @@ public class Sign extends Login {
         } else if (!isValidEmail(email)) {
             showAlert("Địa chỉ email không hợp lệ.");
         } else if (!isValidPhoneNumber(phoneNumber)) {
-            showAlert("Số điện thoại không hợp lệ. Số điện thoại phải gồm 10 chữ số.");
+            showAlert("Số điện thoại không hợp lệ.");
         } else if (password.length() < 8) {
             showAlert("Password không được dưới 8 kí tự");
         } else if (!password.equals(confirmPassword)) {
@@ -96,4 +97,5 @@ public class Sign extends Login {
     private boolean isValidPhoneNumber(String phoneNumber) {
         return Pattern.matches(PHONE_REGEX, phoneNumber);
     }
+
 }
